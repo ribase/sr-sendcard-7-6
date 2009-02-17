@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <description>sr_sendcard</description>
+        <type>module</type>
+        <csh_table></csh_table>
+        <labelContext type="array">
+        </labelContext>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="title">Sent Cards</label>
+            <label index="function1">Alphabetically</label>
+            <label index="function2">Recently sent cards</label>
+            <label index="function3">Most sent cards</label>
+            <label index="cardTitle">Card Title</label>
+            <label index="cardTimes">Number of times sent</label>
+            <label index="cardLastTime">Last time sent</label>
+        </languageKey>
+        <languageKey index="dk" type="array">
+            <label index="title">Sendte kort</label>
+            <label index="function1">Alfabetisk</label>
+            <label index="function2">Seneste sendte kort</label>
+            <label index="function3">Mest sendte kort</label>
+            <label index="cardTitle">Kort titel</label>
+            <label index="cardTimes">Antal gange sendt</label>
+            <label index="cardLastTime">Sendt sidste gang</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+            <label index="title">Cartes envoyées</label>
+            <label index="function1">Par ordre alphabétique</label>
+            <label index="function2">Cartes récemment envoyées</label>
+            <label index="function3">Les cartes les plus envoyées</label>
+            <label index="cardTitle">Titre de la carte</label>
+            <label index="cardTimes">Nombre d'envois</label>
+            <label index="cardLastTime">Dernier envoi</label>
+        </languageKey>
+        <languageKey index="es" type="array">
+            <label index="title">Tarjetas enviadas</label>
+            <label index="function1">En orden alfabético</label>
+            <label index="function2">Tarjetas enviadas recientemente</label>
+            <label index="function3">Las tarjetas más enviadas</label>
+            <label index="cardTitle">Título de la tarjeta</label>
+            <label index="cardTimes">Número de envíos</label>
+            <label index="cardLastTime">Último envío</label>
+        </languageKey>
+        <languageKey index="nl" type="array">
+            <label index="title">Verstuurde kaarten</label>
+            <label index="function1">Alfabetisch</label>
+            <label index="function2">Recent verstuurde kaarten</label>
+            <label index="function3">Meest verstuurde kaarten</label>
+            <label index="cardTitle">Kaart Titel</label>
+            <label index="cardTimes">Aantal keer verstuurd</label>
+            <label index="cardLastTime">Laatste keer verstuurd</label>
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+            <label index="title">Lähetetyt kortit</label>
+            <label index="function1">Aakkosjärjestyksessä</label>
+            <label index="function2">Viimeiset lähetetyt kortit</label>
+            <label index="function3">Eniten lähetetyt kortit</label>
+            <label index="cardTitle">Kortin nimi</label>
+            <label index="cardTimes">Lähetyskerrat</label>
+            <label index="cardLastTime">Viimeksi lähetetty</label>
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+            <label index="title">Skickade kort</label>
+            <label index="function1">I alfabetisk ordning</label>
+            <label index="function2">Senast sända kort</label>
+            <label index="function3">Mest sända kort</label>
+            <label index="cardTitle">Kortets rubrik</label>
+            <label index="cardTimes">Antal sändningar</label>
+            <label index="cardLastTime">Sändes senast</label>
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+        <languageKey index="ro" type="array">
+        </languageKey>
+        <languageKey index="ch" type="array">
+        </languageKey>
+        <languageKey index="sk" type="array">
+        </languageKey>
+        <languageKey index="lt" type="array">
+        </languageKey>
+        <languageKey index="is" type="array">
+        </languageKey>
+        <languageKey index="hr" type="array">
+        </languageKey>
+        <languageKey index="hu" type="array">
+        </languageKey>
+        <languageKey index="gl" type="array">
+        </languageKey>
+        <languageKey index="th" type="array">
+        </languageKey>
+        <languageKey index="gr" type="array">
+        </languageKey>
+        <languageKey index="hk" type="array">
+        </languageKey>
+        <languageKey index="eu" type="array">
+        </languageKey>
+        <languageKey index="bg" type="array">
+        </languageKey>
+        <languageKey index="br" type="array">
+            <label index="title">Cartões Enviados</label>
+            <label index="function1">Ordem Alfabética</label>
+            <label index="function2">Cartões enviados recentemente</label>
+            <label index="function3">Cartões mais enviados</label>
+            <label index="cardTitle">Título do Cartão</label>
+            <label index="cardTimes">Quantidade de vezes enviado</label>
+            <label index="cardLastTime">Último envio</label>
+        </languageKey>
+        <languageKey index="et" type="array">
+        </languageKey>
+        <languageKey index="ar" type="array">
+        </languageKey>
+        <languageKey index="he" type="array">
+        </languageKey>
+        <languageKey index="ua" type="array">
+        </languageKey>
+        <languageKey index="lv" type="array">
+        </languageKey>
+        <languageKey index="jp" type="array">
+            <label index="title">送信済みカード</label>
+            <label index="function1">アルファベット順</label>
+            <label index="function2">日付順</label>
+            <label index="function3">人気カード順</label>
+            <label index="cardTitle">カードタイトル</label>
+            <label index="cardTimes">送信回数</label>
+            <label index="cardLastTime">最新送信</label>
+        </languageKey>
+        <languageKey index="vn" type="array">
+        </languageKey>
+        <languageKey index="ca" type="array">
+        </languageKey>
+        <languageKey index="ba" type="array">
+        </languageKey>
+        <languageKey index="kr" type="array">
+        </languageKey>
+        <languageKey index="eo" type="array">
+        </languageKey>
+        <languageKey index="my" type="array">
+        </languageKey>
+        <languageKey index="hi" type="array">
+        </languageKey>
+    </data>
+    <orig_hash type="array">
+        <languageKey index="default" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="dk" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="es" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="nl" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+        <languageKey index="ro" type="array">
+        </languageKey>
+        <languageKey index="ch" type="array">
+        </languageKey>
+        <languageKey index="sk" type="array">
+        </languageKey>
+        <languageKey index="lt" type="array">
+        </languageKey>
+        <languageKey index="is" type="array">
+        </languageKey>
+        <languageKey index="hr" type="array">
+        </languageKey>
+        <languageKey index="hu" type="array">
+        </languageKey>
+        <languageKey index="gl" type="array">
+        </languageKey>
+        <languageKey index="th" type="array">
+        </languageKey>
+        <languageKey index="gr" type="array">
+        </languageKey>
+        <languageKey index="hk" type="array">
+        </languageKey>
+        <languageKey index="eu" type="array">
+        </languageKey>
+        <languageKey index="bg" type="array">
+        </languageKey>
+        <languageKey index="br" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="et" type="array">
+        </languageKey>
+        <languageKey index="ar" type="array">
+        </languageKey>
+        <languageKey index="he" type="array">
+        </languageKey>
+        <languageKey index="ua" type="array">
+        </languageKey>
+        <languageKey index="lv" type="array">
+        </languageKey>
+        <languageKey index="jp" type="array">
+            <label index="title" type="integer">12720490</label>
+            <label index="function1" type="integer">5636781</label>
+            <label index="function2" type="integer">177925779</label>
+            <label index="function3" type="integer">19232445</label>
+            <label index="cardTitle" type="integer">207234284</label>
+            <label index="cardTimes" type="integer">35863971</label>
+            <label index="cardLastTime" type="integer">161549270</label>
+        </languageKey>
+        <languageKey index="vn" type="array">
+        </languageKey>
+        <languageKey index="ca" type="array">
+        </languageKey>
+        <languageKey index="ba" type="array">
+        </languageKey>
+        <languageKey index="kr" type="array">
+        </languageKey>
+        <languageKey index="eo" type="array">
+        </languageKey>
+        <languageKey index="my" type="array">
+        </languageKey>
+        <languageKey index="hi" type="array">
+        </languageKey>
+    </orig_hash>
+    <orig_text type="array">
+        <languageKey index="default" type="array">
+        </languageKey>
+        <languageKey index="dk" type="array">
+        </languageKey>
+        <languageKey index="de" type="array">
+        </languageKey>
+        <languageKey index="no" type="array">
+        </languageKey>
+        <languageKey index="it" type="array">
+        </languageKey>
+        <languageKey index="fr" type="array">
+        </languageKey>
+        <languageKey index="es" type="array">
+        </languageKey>
+        <languageKey index="nl" type="array">
+        </languageKey>
+        <languageKey index="cz" type="array">
+        </languageKey>
+        <languageKey index="pl" type="array">
+        </languageKey>
+        <languageKey index="si" type="array">
+        </languageKey>
+        <languageKey index="fi" type="array">
+        </languageKey>
+        <languageKey index="tr" type="array">
+        </languageKey>
+        <languageKey index="se" type="array">
+        </languageKey>
+        <languageKey index="pt" type="array">
+        </languageKey>
+        <languageKey index="ru" type="array">
+        </languageKey>
+        <languageKey index="ro" type="array">
+        </languageKey>
+        <languageKey index="ch" type="array">
+        </languageKey>
+        <languageKey index="sk" type="array">
+        </languageKey>
+        <languageKey index="lt" type="array">
+        </languageKey>
+        <languageKey index="is" type="array">
+        </languageKey>
+        <languageKey index="hr" type="array">
+        </languageKey>
+        <languageKey index="hu" type="array">
+        </languageKey>
+        <languageKey index="gl" type="array">
+        </languageKey>
+        <languageKey index="th" type="array">
+        </languageKey>
+        <languageKey index="gr" type="array">
+        </languageKey>
+        <languageKey index="hk" type="array">
+        </languageKey>
+        <languageKey index="eu" type="array">
+        </languageKey>
+        <languageKey index="bg" type="array">
+        </languageKey>
+        <languageKey index="br" type="array">
+        </languageKey>
+        <languageKey index="et" type="array">
+        </languageKey>
+        <languageKey index="ar" type="array">
+        </languageKey>
+        <languageKey index="he" type="array">
+        </languageKey>
+        <languageKey index="ua" type="array">
+        </languageKey>
+        <languageKey index="lv" type="array">
+        </languageKey>
+        <languageKey index="jp" type="array">
+        </languageKey>
+        <languageKey index="vn" type="array">
+        </languageKey>
+        <languageKey index="ca" type="array">
+        </languageKey>
+        <languageKey index="ba" type="array">
+        </languageKey>
+        <languageKey index="kr" type="array">
+        </languageKey>
+        <languageKey index="eo" type="array">
+        </languageKey>
+        <languageKey index="my" type="array">
+        </languageKey>
+        <languageKey index="hi" type="array">
+        </languageKey>
+    </orig_text>
+</T3locallang>

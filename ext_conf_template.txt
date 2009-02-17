@@ -1,0 +1,8 @@
+# ***************************************************************************************
+# Configuration variables for sr_sendcard extension
+#
+# ***************************************************************************************
+
+  # cat=basic/enable; type=boolean; label=Keep card language overlay table : For backward compatibility of card translation mechanisms.
+keepCardLanguageOverlay = 0
+
