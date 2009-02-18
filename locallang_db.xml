@@ -169,6 +169,24 @@
         <languageKey index="pt" type="array">
         </languageKey>
         <languageKey index="ru" type="array">
+            <label index="tx_srsendcard_sendcard">Отправленные открытки</label>
+            <label index="tx_srsendcard_sendcard.uid">Отправить открытку</label>
+            <label index="tx_srsendcard_sendcard.image">Изображение</label>
+            <label index="tx_srsendcard_sendcard.ip_address">IP адрес</label>
+            <label index="tx_srsendcard_card">Открытка</label>
+            <label index="tx_srsendcard_card.card">Заголовок открытки</label>
+            <label index="tx_srsendcard_card.image">Изображение открытки</label>
+            <label index="tx_srsendcard_card.altText">Альтернативный текст для изображения</label>
+            <label index="tx_srsendcard_card.img_width">Ширина изображения</label>
+            <label index="tx_srsendcard_card.img_height">Высота изображения</label>
+            <label index="tx_srsendcard_card.selection_image">Альтернативное изображение</label>
+            <label index="tx_srsendcard_card.selectionaltText">Альтернативный текст для альтернативного изображения</label>
+            <label index="tx_srsendcard_card.selection_image_width">Ширина альтернативного изображения</label>
+            <label index="tx_srsendcard_card.selection_image_height">Высота альтернативного изображения</label>
+            <label index="tx_srsendcard_card.link_pid">Связанная страница</label>
+            <label index="tx_srsendcard_card_language_overlay">Перевод открытки</label>
+            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Язык</label>
+            <label index="tt_content.list_type">Открытки</label>
         </languageKey>
         <languageKey index="ro" type="array">
         </languageKey>

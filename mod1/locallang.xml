@@ -88,6 +88,13 @@
         <languageKey index="pt" type="array">
         </languageKey>
         <languageKey index="ru" type="array">
+            <label index="title">Отправленные открытки</label>
+            <label index="function1">По алфавиту</label>
+            <label index="function2">Недавно отосланные открытки</label>
+            <label index="function3">Самые популярные открытки</label>
+            <label index="cardTitle">Заголовок открытки</label>
+            <label index="cardTimes">Сколько раз отослана</label>
+            <label index="cardLastTime">Последний раз отослана</label>
         </languageKey>
         <languageKey index="ro" type="array">
         </languageKey>

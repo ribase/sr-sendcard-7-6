@@ -60,6 +60,9 @@
         <languageKey index="pt" type="array">
         </languageKey>
         <languageKey index="ru" type="array">
+            <label index="mlang_labels_tablabel">Отправленные открытки</label>
+            <label index="mlang_labels_tabdescr">Статистика отправленных открыток.</label>
+            <label index="mlang_tabs_tab">Отправленные открытки</label>
         </languageKey>
         <languageKey index="ro" type="array">
         </languageKey>

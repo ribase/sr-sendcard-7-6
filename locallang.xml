@@ -55,6 +55,8 @@
         <languageKey index="pt" type="array">
         </languageKey>
         <languageKey index="ru" type="array">
+            <label index="pi1_title">Электронные открытки</label>
+            <label index="pi1_plus_wiz_description">Добавляет электронные открытки на страницу.</label>
         </languageKey>
         <languageKey index="ro" type="array">
         </languageKey>
