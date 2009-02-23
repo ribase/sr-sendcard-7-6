@@ -2,6 +2,7 @@
 
 	* Replaced deprecated t3lib_div::fixed_lgd_pre with fixed_lgd_cs
 	* Require TYPO3 4.1+.
+	* Version 2.3.0 published to TER.
 
 2009-02-17  Stanislas Rolland  <typo3@sjbr.ca>
 
