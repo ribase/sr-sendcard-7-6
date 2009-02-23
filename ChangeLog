@@ -1,5 +1,8 @@
+2009-02-22  Stanislas Rolland  <typo3@sjbr.ca>
+
+	* Replaced deprecated t3lib_div::fixed_lgd_pre with fixed_lgd_cs
+
 2009-02-17  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Initial upload to TYPO3 Forge
 	* Added Russian translation
-
