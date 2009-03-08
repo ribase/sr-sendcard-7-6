@@ -1,6 +1,7 @@
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Fixed bug: Overlapping lines, sometimes, in text image (Thanks to Armin Günther)
+	* Version 2.3.1 published to TER.
 
 2009-02-22  Stanislas Rolland  <typo3@sjbr.ca>
 
