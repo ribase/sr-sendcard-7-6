@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2008 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2009 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -1556,8 +1556,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	array		array of lines of text
 	 */
 	function text_to_lines($text, $size, $font, $width) {
-		
-		$words = t3lib_div::trimExplode(' ', str_replace(chr(13), ' <br> ', str_replace(chr(10).chr(13), ' <br> ', $text)), 0);
+		$words = t3lib_div::trimExplode(' ', preg_replace('/['.preg_quote(chr(10).chr(13)).']/', ' <br> ', preg_replace('/(' . preg_quote(chr(10) . chr(13)) . '|' . preg_quote(chr(13) . chr(10)) . ')/', ' <br> ', $text)));
 		$p = 0;
 		$lines = array();
 		$lines[0] = '';
