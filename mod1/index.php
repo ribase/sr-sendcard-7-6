@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2006 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -26,27 +26,27 @@
 *
 * @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-	// initialization of the module
+	// Initialization of the module
 unset($MCONF);
 require('conf.php');
-require($BACK_PATH.'init.php');
-require($BACK_PATH.'template.php');
-$LANG->includeLLFile(t3lib_extMgm::extPath('sr_sendcard').'mod1/locallang.xml');
-require_once(t3lib_extMgm::extPath('sr_sendcard').'mod1/class.tx_srsendcard_statistics.php');
+require($GLOBALS['BACK_PATH'] . 'init.php');
+require($GLOBALS['BACK_PATH'] . 'template.php');
+$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'mod1/locallang.xml');
+require_once(t3lib_extMgm::extPath('sr_sendcard') . 'mod1/class.tx_srsendcard_statistics.php');
 
-$BE_USER->modAccess($MCONF, 1); // This checks permissions and exits if the users has no permission for entry.
+$GLOBALS['BE_USER']->modAccess($MCONF, 1); // This checks permissions and exits if the users has no permission for entry.
 
 	// Make instance:
-$SOBE = t3lib_div::makeInstance('tx_srsendcard_statistics');
-$SOBE->init();
+$GLOBALS['SOBE'] = t3lib_div::makeInstance('tx_srsendcard_statistics');
+$GLOBALS['SOBE']->init();
 
 	// Include files?
-reset($SOBE->include_once);
-while (list(, $INC_FILE) = each($SOBE->include_once)) {
+reset($GLOBALS['SOBE']->include_once);
+while (list(, $INC_FILE) = each($GLOBALS['SOBE']->include_once)) {
 	include_once($INC_FILE);
 }
 
-$SOBE->main();
-$SOBE->printContent();
+$GLOBALS['SOBE']->main();
+$GLOBALS['SOBE']->printContent();
 
 ?>

@@ -3,8 +3,8 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_srsendcard_card'] = Array (
-	'ctrl' => $TCA['tx_srsendcard_card']['ctrl'],
+$GLOBALS['TCA']['tx_srsendcard_card'] = Array (
+	'ctrl' => $GLOBALS['TCA']['tx_srsendcard_card']['ctrl'],
 	'interface' => Array (
 		'showRecordFieldList' => 'hidden,card,image,cardaltText,img_width,img_height,selection_image,selection_imagealtText,selection_image_width,selection_image_height,link_pid'
 	),

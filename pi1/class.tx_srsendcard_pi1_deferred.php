@@ -57,14 +57,12 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	 */
 	 
 	function main($conf) {
-		global $TYPO3_DB,$TSFE,$TYPO3_CONF_VARS;
-		
 		$this->conf = $conf;
 		$this->tslib_pibase();
 		$this->pi_loadLL();
 		$tbl_name = 'tx_srsendcard_sendcard';
 		$this->pi_USER_INT_obj = 1; // Disable caching
-		$TSFE->set_no_cache();
+		$GLOBALS['TSFE']->set_no_cache();
 		
 			// Load template
 		$this->templateCode = $this->fileResource($this->conf['templateFile']);
@@ -87,12 +85,12 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		 */
 		$whereClause = 'emailsent = 0';
 		$whereClause .= ' AND send_time < ' . intval($time); //can't wait to test!!
-		$res = $TYPO3_DB->exec_SELECTquery(
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
 			$tbl_name,
 			$whereClause
 			);
-		while ($row = $TYPO3_DB->sql_fetch_assoc($res)) {
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$emailData['from_name'] = $row['fromwho'];
 			$emailData['from_email'] = $row['from_email'];
 			$emailData['to_name'] = $row['towho'];
@@ -100,8 +98,8 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 			$emailData['card_url'] = $row['card_url'];
 			
 				// Setting language and charsets
-			$TSFE->config['config']['language'] = $row['language'];
-			$TSFE->initLLvars();
+			$GLOBALS['TSFE']->config['config']['language'] = $row['language'];
+			$GLOBALS['TSFE']->initLLvars();
 			$this->LLkey = $row['language'];
 			$this->charset = $row['charset'];
 			
@@ -112,13 +110,13 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		$whereClause = 'send_time < ' . intval($time) . ' AND emailsent = 0';
 		$fields_values = array();
 		$fields_values['emailsent'] = '1';
-		$res = $TYPO3_DB->exec_UPDATEquery(
+		$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 			$tbl_name,
 			$whereClause,
 			$fields_values
 			);
 		
-	} // end of function main
+	}
 	
 	/**
 	 * Get the content of a file  resource using the full path to the file resource because we are a cron job
@@ -128,9 +126,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	 * @return	void
 	 */
 	 
-	function sendEmail($emailData, $emailTemplateKey) {
-		global $TSFE,$TYPO3_CONF_VARS;
-		
+	function sendEmail($emailData, $emailTemplateKey) {		
 			// Get templates
 		$subpart = $this->cObj->getSubpart($this->templateCode, '###'.$emailTemplateKey.'###');
 		if ($this->conf['enableHTMLMail']) {
@@ -164,16 +160,16 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		$markerArray['###SITE_WWW###'] = t3lib_div::getIndpEnv('TYPO3_HOST_ONLY');
 		$markerArray['###SITE_URL###'] = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
 		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
-		$markerArray['###CHARSET###'] = $TSFE->metaCharset;
+		$markerArray['###CHARSET###'] = $GLOBALS['TSFE']->metaCharset;
 
 			// Substitute in template
 		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 		if ($this->conf['enableHTMLMail']) {
-			$content = $TSFE->csConvObj->conv($content, $TSFE->renderCharset, $TSFE->metaCharset);
+			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset);
 			$HTMLContent = $this->cObj->substituteMarkerArrayCached($HTMLSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
-			$HTMLContent = $TSFE->csConvObj->conv($HTMLContent, $TSFE->renderCharset, $TSFE->metaCharset,1);
+			$HTMLContent = $GLOBALS['TSFE']->csConvObj->conv($HTMLContent, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset,1);
 		} else {
-			$content = $TSFE->csConvObj->conv($content, $TSFE->renderCharset, ($TSFE->config['config']['notification_email_charset'] ? $TSFE->config['config']['notification_email_charset'] : ($TYPO3_CONF_VARS['BE']['forceCharset'] ? $TYPO3_CONF_VARS['BE']['forceCharset'] : 'iso-8859-1')));
+			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, ($GLOBALS['TSFE']->config['config']['notification_email_charset'] ? $GLOBALS['TSFE']->config['config']['notification_email_charset'] : ($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'] ? $GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'] : 'iso-8859-1')));
 		}
 
 			// Set subject, content and headers
@@ -188,7 +184,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		if ($this->conf['enableHTMLMail']) {
 			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
 			$Typo3_htmlmail->start();
-			$Typo3_htmlmail->charset = $TSFE->metaCharset;
+			$Typo3_htmlmail->charset = $GLOBALS['TSFE']->metaCharset;
 			$Typo3_htmlmail->useQuotedPrintable();
 			if($this->conf['forceBase64Encoding']) {
 				$Typo3_htmlmail->useBase64();
@@ -275,9 +271,8 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		return $content;
 	}
 	
-} // end of class
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']);
+}
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']) {
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']);
 }
 ?>

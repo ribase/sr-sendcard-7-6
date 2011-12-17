@@ -59,7 +59,7 @@ require_once(PATH_t3lib.'class.t3lib_cs.php');
 if (!defined ('TYPO3_db'))  die ('The configuration file was not included.');
 
 require_once(PATH_t3lib.'class.t3lib_db.php');
-$TYPO3_DB = t3lib_div::makeInstance('t3lib_DB');
+$GLOBALS['TYPO3_DB'] = t3lib_div::makeInstance('t3lib_DB');
 
 require_once(PATH_t3lib.'class.t3lib_timetrack.php');
 $GLOBALS['TT'] = new t3lib_timeTrack;

@@ -67,8 +67,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	string		content produced by the plugin
 	 */
 	function main($content, $conf) {
-		global $TYPO3_DB,$TSFE;
-		
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
@@ -79,7 +77,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		
 			// Setting charset
 		$globalMarkerArray = array();
-		$globalMarkerArray['###CHARSET###'] = $TSFE->metaCharset;
+		$globalMarkerArray['###CHARSET###'] = $GLOBALS['TSFE']->metaCharset;
 		
 			// Setting CSS style markers if required
 		if ($this->conf['enableHTMLMail']) {
@@ -151,9 +149,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		if ($this->conf['locale_all']) {
 			setlocale(LC_ALL, $this->conf['locale_all']);
 		}
-		if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['t3lib_cs_utils'] == 'mbstring' && $TSFE->metaCharset != 'windows-1250' ) {
+		if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['t3lib_cs_utils'] == 'mbstring' && $GLOBALS['TSFE']->metaCharset != 'windows-1250' ) {
 			$current_internal_encoding = mb_internal_encoding();
-			mb_internal_encoding($TSFE->metaCharset);
+			mb_internal_encoding($GLOBALS['TSFE']->metaCharset);
 			$this->date = strftime($this->conf['date_stdWrap']);
 			mb_internal_encoding($current_internal_encoding);
 		} else {
@@ -244,7 +242,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$whereClause = 'pid = ' . intval($cardSeriesUid[$cardSeriesIndex])
 							. ' AND sys_language_uid <= 0'
 							. $this->cObj->enableFields($this->card_tbl_name);
-					$res = $TYPO3_DB->exec_SELECTquery(
+					$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 						'*',
 						$this->card_tbl_name,
 						$whereClause,
@@ -640,7 +638,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				}
 				$cardData['pid'] = $sentCardsFolderPID;
 				$cardData['language'] = $language;
-				$cardData['charset'] = $TSFE->metaCharset;
+				$cardData['charset'] = $GLOBALS['TSFE']->metaCharset;
 				
 					// Collect ip address in case we want to investigate some possile abuse
 				$cardData['ip_address'] = t3lib_div::getIndpEnv('REMOTE_ADDR');
@@ -667,7 +665,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					}
 				}
 					// Insert card instance into database
-				$res = $TYPO3_DB->exec_INSERTquery($this->tbl_name, $cardData);
+				$res = $GLOBALS['TYPO3_DB']->exec_INSERTquery($this->tbl_name, $cardData);
 				
 					// Send email to recipient... if this is the time
 				$this->notifyRecipient($cardData, 'TEMPLATE_EMAIL_CARD_SENT');
@@ -875,12 +873,10 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	void
 	 */
 	function cleanupOldCards() {
-		global $TYPO3_DB;
-		
 		$whereClause = 'send_time < ' . mktime(0, 0, 0, $this->conf['oldMonth'], $this->conf['oldDay'], $this->conf['oldYear']);
 		$fields_values = array();
 		$fields_values['deleted'] = '1';
-		$res = $TYPO3_DB->exec_UPDATEquery(
+		$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 			$this->tbl_name,
 			$whereClause,
 			$fields_values
@@ -995,14 +991,12 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 */
 	
 	function getCard($uid) {
-		global $TYPO3_DB;
-		
-		$res = $TYPO3_DB->exec_SELECTquery(
+		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
 			$this->tbl_name,
-			'uid=' . $TYPO3_DB->fullQuoteStr($uid, $this->tbl_name)
+			'uid=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($uid, $this->tbl_name)
 			);
-		return $TYPO3_DB->sql_fetch_assoc($res);
+		return $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 	}
 	
 	/**
@@ -1047,8 +1041,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	void
 	 */
 	function notifySender($row,$emailTemplateKey) {
-		global $TYPO3_DB;
-		
 		if ($row['notify'] == 1) {
 			
 			$emailData = array();
@@ -1062,9 +1054,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			
 			$fields_values = array();
 			$fields_values['notify'] = '0';
-			$res = $TYPO3_DB->exec_UPDATEquery(
+			$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 				$this->tbl_name,
-				'uid=' . $TYPO3_DB->fullQuoteStr($row['uid'], $this->tbl_name),
+				'uid=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($row['uid'], $this->tbl_name),
 				$fields_values
 				);
 		}
@@ -1078,7 +1070,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	void
 	 */
 	function sendEmail($emailData, $emailTemplateKey) {
-		global $TSFE,$TYPO3_CONF_VARS;
 		
 			// Get templates
 		$subpart = $this->cObj->getSubpart($this->templateCode, '###'.$emailTemplateKey.'###');
@@ -1118,11 +1109,11 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			// Substitute in template
 		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, array(), array());
 		if ($this->conf['enableHTMLMail']) {
-			$content = $TSFE->csConvObj->conv($content, $TSFE->renderCharset, $TSFE->metaCharset);
+			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset);
 			$HTMLContent = $this->cObj->substituteMarkerArrayCached($HTMLSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
-			$HTMLContent = $TSFE->csConvObj->conv($HTMLContent, $TSFE->renderCharset, $TSFE->metaCharset,1);
+			$HTMLContent = $GLOBALS['TSFE']->csConvObj->conv($HTMLContent, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset,1);
 		} else {
-			$content = $TSFE->csConvObj->conv($content, $TSFE->renderCharset, ($TSFE->config['config']['notification_email_charset'] ? $TSFE->config['config']['notification_email_charset'] : ($TYPO3_CONF_VARS['BE']['forceCharset'] ? $TYPO3_CONF_VARS['BE']['forceCharset'] : 'iso-8859-1')));
+			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, ($GLOBALS['TSFE']->config['config']['notification_email_charset'] ? $GLOBALS['TSFE']->config['config']['notification_email_charset'] : ($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'] ? $GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'] : 'iso-8859-1')));
 		}
 		
 			// Set subject, content and headers
@@ -1138,8 +1129,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			
 			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
 			$Typo3_htmlmail->start();
-// t3lib_htmlmail checks $TSFE->config['metaCharset'] instead of $TSFE->metaCharset
-			$Typo3_htmlmail->charset = $TSFE->metaCharset;
+// t3lib_htmlmail checks $GLOBALS['TSFE']->config['metaCharset'] instead of $GLOBALS['TSFE']->metaCharset
+			$Typo3_htmlmail->charset = $GLOBALS['TSFE']->metaCharset;
 			$Typo3_htmlmail->useQuotedPrintable();
 //
 			if ($this->conf['forceBase64Encoding']) {
@@ -1205,7 +1196,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	string		the generated HTML image selector
 	 */
 	function imageSelector($res) {
-		global $TYPO3_DB,$TYPO3_CONF_VARS;
 		
 		$maxCol = ($this->conf['maxCol'] < 1) ? 1 : $this->conf['maxCol'];
 		$colCount = 0;
@@ -1217,7 +1207,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$thum_usePiVars = false;
 		
 		$selector .= '<div class="' . $this->pi_getClassName('image-selector') . '">' . chr(10);
-		while ($row = $TYPO3_DB->sql_fetch_assoc($res)) {
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 				
 				// Get the localization of the card
 			$row = $this->pidRecord->getRecordOverlay($this->card_tbl_name, $row, $this->pidRecord->sys_language_uid);
@@ -1671,8 +1661,8 @@ class tx_srsendcard_pi1_t3lib_stdGraphic extends t3lib_stdGraphic {
 
 } // end of class
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']);
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']) {
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']);
 }
 
 ?>
