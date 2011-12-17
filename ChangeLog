@@ -7,6 +7,7 @@
 	* Added feature #32640: Module compatibility with TYPO 4.6
 	* Added feature #32642: Fix globals references
 	* Added feature #32643: Eliminate reference to deprecated forceCharset
+	* Added feature #32644: Eliminate reference to deprecated makeInstanceClassName
 
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 

@@ -21,12 +21,10 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-
 /**
  * This is the cron job of extension Send-A-Card (sr_sendcard) that sends the deferred cards
  *
  */
- 
 error_reporting (E_ALL ^ E_NOTICE);
 if (!defined('PATH_thisScript')) define('PATH_thisScript',str_replace('//','/', str_replace('\\','/', php_sapi_name()=='xcgi'||php_sapi_name()=='isapi'||php_sapi_name()=='cgi-fcgi' ? $HTTP_SERVER_VARS['PATH_TRANSLATED']:$HTTP_SERVER_VARS['SCRIPT_FILENAME'])));
 if (!defined('PATH_site')) define('PATH_site', dirname(dirname(dirname(dirname(dirname(PATH_thisScript))))).'/');
@@ -63,14 +61,11 @@ $GLOBALS['TYPO3_DB'] = t3lib_div::makeInstance('t3lib_DB');
 
 require_once(PATH_t3lib.'class.t3lib_timetrack.php');
 $GLOBALS['TT'] = new t3lib_timeTrack;
-
 // ***********************************
 // Creating a fake $TSFE object
 // ***********************************
-
-$TSFEclassName = t3lib_div::makeInstanceClassName('tslib_fe');
-$id = isset($HTTP_GET_VARS['id'])?$HTTP_GET_VARS['id']:0;
-$GLOBALS['TSFE'] = new $TSFEclassName($TYPO3_CONF_VARS, $id, '0', 1, '', '','','');
+$id = isset($HTTP_GET_VARS['id']) ? $HTTP_GET_VARS['id'] : 0;
+$GLOBALS['TSFE'] = t3lib_div::makeInstance('tslib_fe', $GLOBALS['TYPO3_CONF_VARS'], $id, '0', 1, '', '','','');
 $GLOBALS['TSFE']->connectToMySQL();
 $GLOBALS['TSFE']->initFEuser();
 $GLOBALS['TSFE']->fetch_the_id();
@@ -83,5 +78,4 @@ $sendingCards = t3lib_div::makeInstance('tx_srsendcard_pi1_deferred');
 $sendingCards->cObj = t3lib_div::makeInstance('tslib_cObj');
 $conf = $GLOBALS['TSFE']->tmpl->setup['plugin.'][$sendingCards->prefixId.'.'];
 $sendingCards->main($conf);
-
 ?>
