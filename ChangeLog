@@ -1,7 +1,8 @@
 2011-12-16  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Fixed bug #32247: Fatal error for redeclare class
-	* Added feature #32247: Remove deprecated card language overlay table
+	* Added feature #32638: Remove deprecated card language overlay table
+	* Added feature #32639: Remove deprecated old-style template
 
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 

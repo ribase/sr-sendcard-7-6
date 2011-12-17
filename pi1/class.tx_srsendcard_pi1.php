@@ -77,19 +77,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			// Load template
 		$this->templateCode = $this->cObj->fileResource($this->conf['templateFile']);
 		
-			// Substitute global markers, fonts and colors
+			// Setting charset
 		$globalMarkerArray = array();
-		if ($this->conf['templateStyle'] == 'old-style') {	
-			$splitMark = md5(microtime());
-			list($globalMarkerArray['###GW1B###'], $globalMarkerArray['###GW1E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $this->conf['wrap1.']));
-			list($globalMarkerArray['###GW2B###'], $globalMarkerArray['###GW2E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $this->conf['wrap2.']));
-			list($globalMarkerArray['###GW3B###'], $globalMarkerArray['###GW3E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $this->conf['wrap3.']));
-			list($globalMarkerArray['###GW4B###'], $globalMarkerArray['###GW4E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $this->conf['wrap4.']));
-			$globalMarkerArray['###GC1###'] = $this->cObj->stdWrap($this->conf['color1'], $this->conf['color1.']);
-			$globalMarkerArray['###GC2###'] = $this->cObj->stdWrap($this->conf['color2'], $this->conf['color2.']);
-			$globalMarkerArray['###GC3###'] = $this->cObj->stdWrap($this->conf['color3'], $this->conf['color3.']);
-			$globalMarkerArray['###GC4###'] = $this->cObj->stdWrap($this->conf['color4'], $this->conf['color4.']);
-		}
 		$globalMarkerArray['###CHARSET###'] = $TSFE->metaCharset;
 		
 			// Setting CSS style markers if required
@@ -626,11 +615,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 
 					// Dynamically generate some CSS selectors
-				if($this->conf['templateStyle'] == 'css-styled') {
-					$CSSSubpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD_CSS###');
-					$markerArray['###FONTFAMILY###'] = $cardData['fontface'] ? 'font-family: ' . $cardData['fontface'] . ';' : '';
-					$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('preview-card')] = $this->cObj->substituteMarkerArrayCached($CSSSubpart, $markerArray, array(), array());
-				}
+				$CSSSubpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD_CSS###');
+				$markerArray['###FONTFAMILY###'] = $cardData['fontface'] ? 'font-family: ' . $cardData['fontface'] . ';' : '';
+				$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('preview-card')] = $this->cObj->substituteMarkerArrayCached($CSSSubpart, $markerArray, array(), array());
 				break;
 
 			case 'send':
@@ -833,11 +820,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 					
 						// Dynamically generate some CSS selectors
-					if($this->conf['templateStyle'] == 'css-styled') {
-						$CSSSubpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD_CSS###');
-						$markerArray['###FONTFAMILY###'] = $row['fontface'] ? 'font-family: ' . $row['fontface'] . ';' : '';
-						$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('view-card')] = $this->cObj->substituteMarkerArrayCached($CSSSubpart, $markerArray, array(), array());
-					}
+					$CSSSubpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD_CSS###');
+					$markerArray['###FONTFAMILY###'] = $row['fontface'] ? 'font-family: ' . $row['fontface'] . ';' : '';
+					$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('view-card')] = $this->cObj->substituteMarkerArrayCached($CSSSubpart, $markerArray, array(), array());
 						// Notify the sender that the card was viewed
 					$this->notifySender($row, 'TEMPLATE_EMAIL_VIEWED');
 
@@ -992,11 +977,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText')) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title')) . '"');
 			
 				// Dynamically generate some CSS selectors
-			if($this->conf['templateStyle'] == 'css-styled') {
-				$CSSSubpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_PRINT_CARD_CSS###');
-				$markerArray['###FONTFAMILY###'] = $row['fontface'] ? 'font-family: ' . $row['fontface'] . ';' : '';
-				$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('print-card')] = $this->cObj->substituteMarkerArrayCached($CSSSubpart, $markerArray, array(), array());
-			}
+			$CSSSubpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_PRINT_CARD_CSS###');
+			$markerArray['###FONTFAMILY###'] = $row['fontface'] ? 'font-family: ' . $row['fontface'] . ';' : '';
+			$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('print-card')] = $this->cObj->substituteMarkerArrayCached($CSSSubpart, $markerArray, array(), array());
 				
 			return $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, array());
 		} else {
@@ -1233,14 +1216,14 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$thum_unsetVars = array();
 		$thum_usePiVars = false;
 		
-		$selector .= (($this->conf['templateStyle'] == 'css-styled') ? '<div class="' . $this->pi_getClassName('image-selector') . '">': '<table cellspacing="5" cellpadding="0" width="100%" border="0"><tr>') . chr(10);
+		$selector .= '<div class="' . $this->pi_getClassName('image-selector') . '">' . chr(10);
 		while ($row = $TYPO3_DB->sql_fetch_assoc($res)) {
 				
 				// Get the localization of the card
 			$row = $this->pidRecord->getRecordOverlay($this->card_tbl_name, $row, $this->pidRecord->sys_language_uid);
 			
 			if ($colCount++ >= $maxCol) {
-				$selector .= ($this->conf['templateStyle'] == 'css-styled') ? str_replace('###SELECTOR_ROW_HEIGHT###', $selectorRowHeight, $selectorRow) : chr(10) . '</tr><tr>' . chr(10);
+				$selector .= str_replace('###SELECTOR_ROW_HEIGHT###', $selectorRowHeight, $selectorRow);
 				$colCount = 1;
 				$selectorRow = '';
 				$selectorRowHeight = 0;
@@ -1320,7 +1303,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			if (!(($fileInfo['extension'] == 'mov' || $fileInfo['extension'] == 'swf') && !($selectImgInfo)) ) {
 				if ($fileInfo['extension'] == 'mov') {
 					$thumbnail_image = $row['selection_image'];
-					$videoClip = ($this->conf['templateStyle'] == 'css-styled') ? '<br /><span' . $this-> pi_classParam('video-clip-highlight') . '>'.$this->pi_getLL('video_clip_highlight').'</span>' : '<br /><font color="'.$this->cObj->stdWrap($this->conf['color1'], $this->conf['color1.']).'">'.$this->pi_getLL('video_clip_highlight').'</font>';
+					$videoClip = '<br /><span' . $this-> pi_classParam('video-clip-highlight') . '>'.$this->pi_getLL('video_clip_highlight').'</span>';
 					if ($row['img_width'] == 0) {
 						$thum_vars['image_width'] = $this->conf['imageSmallWidth'];
 					}
@@ -1330,7 +1313,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 
 				} elseif ($fileInfo['extension'] == 'swf') {
 					$thumbnail_image = $row['selection_image'];
-					$videoClip = ($this->conf['templateStyle'] == 'css-styled') ? '<br /><span' . $this-> pi_classParam('flash-clip-highlight') . '>'.$this->pi_getLL('flash_clip_highlight').'</span>' : '<br /><font color="'.$this->cObj->stdWrap($this->conf['color1'], $this->conf['color1.']).'">'.$this->pi_getLL('flash_clip_highlight').'</font>';
+					$videoClip = '<br /><span' . $this-> pi_classParam('flash-clip-highlight') . '>'.$this->pi_getLL('flash_clip_highlight').'</span>';
 					if ($row['img_width'] == 0) {
 						$thum_vars['image_width'] = $this->conf['imageSmallWidth'];
 					}
@@ -1347,28 +1330,19 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				if ($this->conf['doNotShowCardCaptions'] && $this->conf['doNotShowCardCaptions'] != '0') {
 					$cardCaption = '';
 				}  else {
-					$cardCaption = ($this->conf['templateStyle'] == 'css-styled') ? ('<a href="' . htmlspecialchars($this->get_url('', $this->formPID.',' . $this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)) . '" title="' . htmlspecialchars($row['card']) . '">'. htmlspecialchars($row['card']) . $videoClip . '</a>') : ('<br />' . htmlspecialchars($row['card']) . $videoClip);
+					$cardCaption = '<a href="' . htmlspecialchars($this->get_url('', $this->formPID.',' . $this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)) . '" title="' . htmlspecialchars($row['card']) . '">'. htmlspecialchars($row['card']) . $videoClip . '</a>';
 				}
-				
-				if ($this->conf['templateStyle'] == 'css-styled') {
-					$selectorRow .= '<dl class="' . $this->pi_getClassName('image-selector-column') . (($colCount == 1) ? ' ' . $this->pi_getClassName('first-column') : '') . '" style="width:'. ((96 / $maxCol)). '%;">' . chr(10);
-					$selectorRow .= '<dt style="height:###SELECTOR_ROW_HEIGHT###px;"><a href="'.htmlspecialchars($this->get_url('', $this->formPID.','.$this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)).' "title="' . htmlspecialchars($row['card']) . '"><img src="'.$imgInfo_scaled[3].'" style="width: ' . $imgInfo_scaled[0] . 'px; height: '.$imgInfo_scaled[1] . 'px;" alt="' . $cardAltText . '" /></a></dt>' . chr(10);
-					$selectorRow .=  '<dd>' . $cardCaption . '</dd></dl>' . chr(10);
-					$selectorRowHeight = max($selectorRowHeight, intval($imgInfo_scaled[1]));
-				} else {
-					$selector .= '<td width="'.(100 / $maxCol).'%" align="center" valign="top"><p>'. '<a href="'.htmlspecialchars($this->get_url('', $this->formPID.','.$this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)).'"><img src="'.$imgInfo_scaled[3].'" style="width: ' . $imgInfo_scaled[0] . 'px; height: '.$imgInfo_scaled[1] . 'px; border-style: none;" alt="' . $cardAltText . '" title="' . htmlspecialchars($row['card']) . '" /><br />'.$cardCaption . '</a><br />'. '</p></td>';
-				}
+
+				$selectorRow .= '<dl class="' . $this->pi_getClassName('image-selector-column') . (($colCount == 1) ? ' ' . $this->pi_getClassName('first-column') : '') . '" style="width:'. ((96 / $maxCol)). '%;">' . chr(10);
+				$selectorRow .= '<dt style="height:###SELECTOR_ROW_HEIGHT###px;"><a href="'.htmlspecialchars($this->get_url('', $this->formPID.','.$this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)).' "title="' . htmlspecialchars($row['card']) . '"><img src="'.$imgInfo_scaled[3].'" style="width: ' . $imgInfo_scaled[0] . 'px; height: '.$imgInfo_scaled[1] . 'px;" alt="' . $cardAltText . '" /></a></dt>' . chr(10);
+				$selectorRow .=  '<dd>' . $cardCaption . '</dd></dl>' . chr(10);
+				$selectorRowHeight = max($selectorRowHeight, intval($imgInfo_scaled[1]));
 			}
 		}
-		if ($this->conf['templateStyle'] == 'css-styled') {
-			$selectorRow = str_replace('###SELECTOR_ROW_HEIGHT###', $selectorRowHeight, $selectorRow);
-			$selector .= $selectorRow;
-		} else {
-			for($i = $colCount; $i < $maxCol-1; $i++ ) {
-				$selector .= '<td>&nbsp;</td>';
-			}
-		}
-		$selector .= chr(10) . (($this->conf['templateStyle'] == 'css-styled') ? '</div><div ' . $this-> pi_classParam('clear-float') . '></div>' . chr(10) : '</tr></table>') . chr(10);
+
+		$selectorRow = str_replace('###SELECTOR_ROW_HEIGHT###', $selectorRowHeight, $selectorRow);
+		$selector .= $selectorRow;
+		$selector .= chr(10) . '</div><div ' . $this-> pi_classParam('clear-float') . '></div>' . chr(10);
 		return $selector;
 	}
 
@@ -1381,49 +1355,25 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	string		the generated HTML radio button color selector
 	 */
 	function colorSelector($name, $valueChecked, $values) {
+		$newName = str_replace('[', '-', $name);
+		$newName = str_replace(']', '', $newName);
+		$newName = str_replace('_', '-', $newName);
 		
-		if($this->conf['templateStyle'] == 'css-styled') {
-		
-			$newName = str_replace('[', '-', $name);
-			$newName = str_replace(']', '', $newName);
-			$newName = str_replace('_', '-', $newName);
-			
-			$selector = '<ul id="' . $this->pi_getClassName('color-selector-' . $newName) . '"' . $this-> pi_classParam('color-selector') . '>' . chr(10);
-			for($currentValue = 0; $currentValue < count($values); $currentValue++) {
-				$selector .= '<li>' .chr(10);
-				$selector .= '<label for="' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . '" ' . 'class="' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . ' ' . $this->pi_getClassName($values[$currentValue]?'non-transparent':'transparent') . '"></label>' . chr(10);
-				$selector .= '<input type="radio" id="' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . '" name="' . $name . '" value="' . $values[$currentValue] . '"';
-				if ($valueChecked == $values[$currentValue]) {
-					$selector .= ' checked="checked"';
-				}
-				$selector .= ' />' .chr(10);
-				$selector .= '</li>' .chr(10);
-				$selectorStyle .= chr(10) . '.' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . ' { background-color:' . ($values[$currentValue]?$values[$currentValue]:'transparent') . '; }';
+		$selector = '<ul id="' . $this->pi_getClassName('color-selector-' . $newName) . '"' . $this-> pi_classParam('color-selector') . '>' . chr(10);
+		for($currentValue = 0; $currentValue < count($values); $currentValue++) {
+			$selector .= '<li>' .chr(10);
+			$selector .= '<label for="' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . '" ' . 'class="' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . ' ' . $this->pi_getClassName($values[$currentValue]?'non-transparent':'transparent') . '"></label>' . chr(10);
+			$selector .= '<input type="radio" id="' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . '" name="' . $name . '" value="' . $values[$currentValue] . '"';
+			if ($valueChecked == $values[$currentValue]) {
+				$selector .= ' checked="checked"';
 			}
-			
-			$selector .= '</ul>' . chr(10);
-			$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('color-selector-' . $newName)] = $selectorStyle;
-		
-		} else {
-		
-			$selector = "<table width=\"275\" border=\"0\" cellspacing=\"3\" cellpadding=\"0\">\n";
-			$selector .= "<tr align=\"center\">\n";
-			for($currentValue = 0; $currentValue < count($values); $currentValue++) {
-				$selector .= "<td bgcolor=\"$values[$currentValue]\"><font color=\"#FFFFFF\" size=\"-1\"><img src=\"clear.gif\" width=\"1\" height=\"15\"> </font></td>\n";
-			}
-			$selector .= "</tr><tr align=\"center\">\n";
-			for($currentValue = 0; $currentValue < count($values); $currentValue++) {
-				$selector .= "<td class=\"tx-srsendcard-pi1-radio\"><input class=\"tx-srsendcard-pi1-radio\" type=\"radio\" name=\"$name\" value=\"$values[$currentValue]\"";
-
-				if ($valueChecked == $values[$currentValue]) {
-					$selector .= ' checked';
-				}
-
-				$selector .= " /></td>\n";
-			}
-			$selector .= "</tr></table>\n\n";
-			
+			$selector .= ' />' .chr(10);
+			$selector .= '</li>' .chr(10);
+			$selectorStyle .= chr(10) . '.' . $this->pi_getClassName('color-selector-' . $newName. '-' . str_replace('#', '', $values[$currentValue]?$values[$currentValue]:'transparent')) . ' { background-color:' . ($values[$currentValue]?$values[$currentValue]:'transparent') . '; }';
 		}
+		
+		$selector .= '</ul>' . chr(10);
+		$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('color-selector-' . $newName)] = $selectorStyle;
 		return $selector;
 	}
 
@@ -1440,41 +1390,23 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	string		the generated HTML radio button font selector
 	 */
 	function fontFileSelector($name, $valueChecked, $fontFiles, $fontLabels, $fontSizes, $bgColor, $fontColor) {
-		
-		if($this->conf['templateStyle'] == 'css-styled') {
+		$newName = str_replace('[', '-', $name);
+		$newName = str_replace(']', '', $newName);
+		$newName = str_replace('_', '-', $newName);
 
-			$newName = str_replace('[', '-', $name);
-			$newName = str_replace(']', '', $newName);
-			$newName = str_replace('_', '-', $newName);
-
-			$selector = '<ul  id="' . $this->pi_getClassName('font-selector') . '"' . $this-> pi_classParam('font-selector') . '>' . chr(10);
-			for($currentValue = 0; $currentValue < count($fontFiles); $currentValue++) {
-				$selector .= '<li>';
-				$fontLabelImage = $this->makeTextImage($fontLabels[$currentValue], $fontSizes[$currentValue], substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$fontFiles[$currentValue]), strlen(PATH_site)), $fontColor, 130, $bgColor, 'left');
-				$selector .= '<input type="radio" id="' . $this->pi_getClassName('font-selector-' . $newName . '-' . htmlspecialchars($fontLabels[$currentValue])) . '" name="' . $name . '" value="' . $fontFiles[$currentValue] . '"';
-				if ($valueChecked == $fontFiles[$currentValue]) {
-					$selector .= ' checked="checked"';
-				}
-				$selector .= ' />';
-				$selector .= '<label for="' . $this->pi_getClassName('font-selector-' . $newName . '-' . htmlspecialchars($fontLabels[$currentValue])) . '"><span' . $this-> pi_classParam('text-font-label') . '>' . htmlspecialchars($fontLabels[$currentValue]) . ':</span><img src="' . $fontLabelImage[3] . '" style="width: ' . $fontLabelImage[0] . 'px; height: ' . $fontLabelImage[1] . 'px;" alt="' . htmlspecialchars($fontLabels[$currentValue]) . '" title="' . htmlspecialchars($fontLabels[$currentValue]) . '" /></label>' . chr(10);
-				$selector .= '</li>' . chr(10);
+		$selector = '<ul  id="' . $this->pi_getClassName('font-selector') . '"' . $this-> pi_classParam('font-selector') . '>' . chr(10);
+		for($currentValue = 0; $currentValue < count($fontFiles); $currentValue++) {
+			$selector .= '<li>';
+			$fontLabelImage = $this->makeTextImage($fontLabels[$currentValue], $fontSizes[$currentValue], substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$fontFiles[$currentValue]), strlen(PATH_site)), $fontColor, 130, $bgColor, 'left');
+			$selector .= '<input type="radio" id="' . $this->pi_getClassName('font-selector-' . $newName . '-' . htmlspecialchars($fontLabels[$currentValue])) . '" name="' . $name . '" value="' . $fontFiles[$currentValue] . '"';
+			if ($valueChecked == $fontFiles[$currentValue]) {
+				$selector .= ' checked="checked"';
 			}
-			$selector .= '</ul>' . chr(10);
-		} else {
-			
-			$selector = "<table width=\"275\" border=\"0\" cellspacing=\"3\" cellpadding=\"0\">\n";
-			for($currentValue = 0; $currentValue < count($fontFiles); $currentValue++) {
-				$selector .= "<tr>\n";
-				$fontLabelImage = $this->makeTextImage($fontLabels[$currentValue], $fontSizes[$currentValue], substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$fontFiles[$currentValue]), strlen(PATH_site)), $fontColor, 130, $bgColor, 'left');
-				$selector .= "<td align=\"left\" class=\"tx-srsendcard-pi1-radio\"><input class=\"tx-srsendcard-pi1-radio\" type=\"radio\" name=\"$name\" value=\"$fontFiles[$currentValue]\"";
-				if ($valueChecked == $fontFiles[$currentValue]) {
-					$selector .= ' checked';
-				}
-				$selector .= " /></td>\n";
-				$selector .= "<td align=\"left\"><img src=\"$fontLabelImage[3]\" width=\"$fontLabelImage[0]\" height=\"$fontLabelImage[1]\"></td></tr>\n";
-			}
-			$selector .= "</table>\n\n";
+			$selector .= ' />';
+			$selector .= '<label for="' . $this->pi_getClassName('font-selector-' . $newName . '-' . htmlspecialchars($fontLabels[$currentValue])) . '"><span' . $this-> pi_classParam('text-font-label') . '>' . htmlspecialchars($fontLabels[$currentValue]) . ':</span><img src="' . $fontLabelImage[3] . '" style="width: ' . $fontLabelImage[0] . 'px; height: ' . $fontLabelImage[1] . 'px;" alt="' . htmlspecialchars($fontLabels[$currentValue]) . '" title="' . htmlspecialchars($fontLabels[$currentValue]) . '" /></label>' . chr(10);
+			$selector .= '</li>' . chr(10);
 		}
+		$selector .= '</ul>' . chr(10);
 		return $selector;
 	}
 	

@@ -4,7 +4,6 @@ if (!defined ('TYPO3_MODE')) {
 }
 	
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/css_styled/', 'Send-A-Card CSS-styled');
-t3lib_extMgm::addStaticFile($_EXTKEY, 'static/old_style/', 'Send-A-Card Old Style');
 	
 $TCA['tx_srsendcard_card'] = Array (
 	'ctrl' => Array (

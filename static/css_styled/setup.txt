@@ -1,6 +1,5 @@
 plugin.tx_srsendcard_pi1 {
-	
-	templateStyle = css-styled
+
 	templateFile = {$plugin.tx_srsendcard_pi1.file.templateFile}
 	printIcon = {$plugin.tx_srsendcard_pi1.printIcon}
 	cardStamp = {$plugin.tx_srsendcard_pi1.cardStamp}
