@@ -1460,8 +1460,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 */
 	function linksInText($text, $stripslashes = false) {
 		$cleanedText = $stripslashes ? stripslashes($text) : $text;
-		$cleanedText = eregi_replace("\[([http|news|ftp]+://[^ >\n\t]+)\]", "<a href=\"\\1\" target=\"_blank\">\\1</a>", $cleanedText);
-		$cleanedText = eregi_replace("\[(mailto:)([^ >\n\t]+)\]", "<a href=\"\\1\\2\">\\2</a>", $cleanedText);
+		$cleanedText = preg_replace('/\[([http|news|ftp]+://[^ >\n\t]+)\]/i', '<a href="$1" target="_blank">$1</a>', $cleanedText);
+		$cleanedText = preg_replace('/\[(mailto:)([^ >\n\t]+)\]/i', '<a href="$1$2">$2</a>', $cleanedText);
 		return $cleanedText;
 	}
 	

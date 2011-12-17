@@ -8,6 +8,7 @@
 	* Added feature #32642: Fix globals references
 	* Added feature #32643: Eliminate reference to deprecated forceCharset
 	* Added feature #32644: Eliminate reference to deprecated makeInstanceClassName
+	* Added feature #32646: Eliminate reference to deprecated eregi_replace
 
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 
