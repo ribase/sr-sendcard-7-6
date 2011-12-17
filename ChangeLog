@@ -6,6 +6,7 @@
 	* Added feature #32640: Require TYPO3 4.5 and PHP 5.3
 	* Added feature #32640: Module compatibility with TYPO 4.6
 	* Added feature #32642: Fix globals references
+	* Added feature #32643: Eliminate reference to deprecated forceCharset
 
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 
