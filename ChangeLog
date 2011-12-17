@@ -4,6 +4,7 @@
 	* Added feature #32638: Remove deprecated card language overlay table
 	* Added feature #32639: Remove deprecated old-style template
 	* Added feature #32640: Require TYPO3 4.5 and PHP 5.3
+	* Added feature #32640: Module compatibility with TYPO 4.6
 
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 

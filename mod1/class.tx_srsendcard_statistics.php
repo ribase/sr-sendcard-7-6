@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2009 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -33,16 +33,6 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 	var $pageinfo;
 
 	/**
-	 * Initialize module
-	 *
-	 * @return void
-	 */
-	function init() {
-		global $AB, $BE_USER, $LANG, $BACK_PATH, $TCA_DESCR, $TCA, $HTTP_GET_VARS, $HTTP_POST_VARS, $CLIENT, $TYPO3_CONF_VARS;
-		parent::init();
-	}
-
-	/**
 	 * Adds items to the->MOD_MENU array. Used for the function menu selector.
 	 *
 	 * @return void
@@ -66,7 +56,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 	 * @return void
 	 */
 	function main() {
-		global $AB, $BE_USER, $LANG, $BACK_PATH, $TCA_DESCR, $TCA, $HTTP_GET_VARS, $HTTP_POST_VARS, $CLIENT, $TYPO3_CONF_VARS;
+		global $BE_USER, $LANG, $BACK_PATH;
 		
 			// Access check!
 			// The page will show only if there is a valid page and if this page may be viewed by the user
@@ -76,7 +66,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 		if (($this->id && $access) || ($BE_USER->user['admin'] && !$this->id)) {
 			
 				// Draw the header.
-			$this->doc = t3lib_div::makeInstance('mediumDoc');
+			$this->doc = t3lib_div::makeInstance('template');
 			$this->doc->backPath = $BACK_PATH;
 			$this->doc->form = '<form action="" method="POST">';
 			
@@ -105,44 +95,33 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				';
 			
 			$headerSection = $this->doc->getHeader('pages', $this->pageinfo, $this->pageinfo['_thePath']).'<br>'.$LANG->php3Lang['labels']['path'].': '.t3lib_div::fixed_lgd_cs($this->pageinfo['_thePath'], -50);
-			
-			$this->content .= $this->doc->startPage($LANG->getLL('title'));
-			$this->content .= $this->doc->header($LANG->getLL('title'));
-			$this->content .= $this->doc->spacer(5);
-			$this->content .= $this->doc->section('', $this->doc->funcMenu($headerSection, t3lib_BEfunc::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
-			$this->content .= $this->doc->divider(5);
-			
-				// Render content:
-			$this->moduleContent();
-			
+			$content .= $this->doc->header($LANG->getLL('title'));
+			$content .= $this->doc->spacer(5);
+			$content .= $this->doc->section('', $this->doc->funcMenu($headerSection, t3lib_BEfunc::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
+			$content .= $this->doc->divider(5);
+				// Render module content
+			$content .= $this->doc->section($GLOBALS['LANG']->getLL('title'), $this->moduleContent(), 0, 1);
 				// ShortCut
 			if ($BE_USER->mayMakeShortcut()) {
-				$this->content .= $this->doc->spacer(20).$this->doc->section('', $this->doc->makeShortcutIcon('id', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']));
+				$content .= $this->doc->spacer(20).$this->doc->section('', $this->doc->makeShortcutIcon('id', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']));
 			}
-			
-			$this->content .= $this->doc->spacer(10);
+			$content .= $this->doc->spacer(10);
+			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
 		} else {
 				// If no access or if ID == zero
-			$this->doc = t3lib_div::makeInstance('mediumDoc');
-			$this->doc->backPath = $BACK_PATH;
-				 
-			$this->content .= $this->doc->startPage($LANG->getLL('title'));
-			$this->content .= $this->doc->header($LANG->getLL('title'));
-			$this->content .= $this->doc->spacer(5);
-			$this->content .= $this->doc->spacer(10);
+			$this->doc = t3lib_div::makeInstance('template');
+			$this->doc->backPath = $GLOBALS['BACK_PATH'];
+			$content = $this->doc->header($LANG->getLL('title'));
+			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
 		}
 	}
-	
+
 	/**
 	 * Prints out the module HTML
 	 *
 	 * @return void
 	 */
 	function printContent() {
-		global $SOBE;
-		
-		$this->content .= $this->doc->middle();
-		$this->content .= $this->doc->endPage();
 		echo $this->content;
 	}
 	
@@ -153,7 +132,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 	 */
 	function moduleContent() {
 		global $LANG, $TYPO3_DB;
-		
+		$content = '';
 			// Get the sent cards
 		$res = $TYPO3_DB->exec_SELECTquery(
 			'caption,time_created',
@@ -188,7 +167,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				/* Sorted in alphabetial order*/
 				/*Ouput */
 				$index = 0;
-				$content = '<table style="border-style: solid; border-width: 1px;"><tr><td style="font-weight: bold; color: blue;">' . $LANG->getLL('cardTitle') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardTimes') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="font-weight: bold; color: blue;">' . $LANG->getLL('cardTitle') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardTimes') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardLastTime') . '</td></tr>';
 				break;
 				
 			case 2:
@@ -197,7 +176,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				
 				/*Output */
 				$index = 0;
-				$content = '<table style="border-style: solid; border-width: 1px;"><tr><td style="font-weight: bold;">' .$LANG->getLL('cardTitle') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardTimes') . '</td><td style="font-weight: bold; color: blue;">' . $LANG->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="font-weight: bold;">' .$LANG->getLL('cardTitle') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardTimes') . '</td><td style="font-weight: bold; color: blue;">' . $LANG->getLL('cardLastTime') . '</td></tr>';
 				break;
 				
 			case 3:
@@ -206,7 +185,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				
 				/*Output */
 				$index = 0;
-				$content = '<table style="border-style: solid; border-width: 1px;"><tr><td style="font-weight: bold;">' . $LANG->getLL('cardTitle') . '</td><td style="font-weight: bold; color: blue;">' . $LANG->getLL('cardTimes') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="font-weight: bold;">' . $LANG->getLL('cardTitle') . '</td><td style="font-weight: bold; color: blue;">' . $LANG->getLL('cardTimes') . '</td><td style="font-weight: bold;">' . $LANG->getLL('cardLastTime') . '</td></tr>';
 				break;
 		}
 			 
@@ -218,12 +197,10 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 			$index++;
 		}
 		$content .= '</table>';
-		$this->content .= $this->doc->section($LANG->getLL('title'), $content, 0, 1);
+		return $content;
 	}
 }
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sr_sendcard/mod1/class.tx_srsendcard_statistics.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sr_sendcard/mod1/class.tx_srsendcard_statistics.php']);
 }
-
 ?>
