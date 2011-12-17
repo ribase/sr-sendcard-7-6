@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2006 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -48,7 +48,6 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	var $extKey = 'sr_sendcard'; // The extension key.
 	var $conf = array();
 	var $charset = 'iso-8859-1'; // default charset to be used in html emails
-	var $typoVersion; // Typo3 version
 	
 	/**
 	 * Main function: send all the cards
@@ -69,18 +68,6 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		
 			// Load template
 		$this->templateCode = $this->fileResource($this->conf['templateFile']);
-		
-			// Substitute global markers, fonts and colors
-		$splitMark = md5(microtime());
-		$globalMarkerArray = array();
-		list($globalMarkerArray['###GW1B###'], $globalMarkerArray['###GW1E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $conf['wrap1.']));
-		list($globalMarkerArray['###GW2B###'], $globalMarkerArray['###GW2E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $conf['wrap2.']));
-		list($globalMarkerArray['###GW3B###'], $globalMarkerArray['###GW3E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $conf['wrap3.']));
-		list($globalMarkerArray['###GW4B###'], $globalMarkerArray['###GW4E###']) = explode($splitMark, $this->cObj->stdWrap($splitMark, $conf['wrap4.']));
-		$globalMarkerArray['###GC1###'] = $this->cObj->stdWrap($conf['color1'], $conf['color1.']);
-		$globalMarkerArray['###GC2###'] = $this->cObj->stdWrap($conf['color2'], $conf['color2.']);
-		$globalMarkerArray['###GC3###'] = $this->cObj->stdWrap($conf['color3'], $conf['color3.']);
-		$globalMarkerArray['###GC4###'] = $this->cObj->stdWrap($conf['color4'], $conf['color4.']);
 		
 			// Setting CSS style markers if required
 		if ($this->conf['enableHTMLMail']) {

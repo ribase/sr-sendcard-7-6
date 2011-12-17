@@ -54,16 +54,12 @@ require_once(PATH_t3lib.'class.t3lib_tstemplate.php');
 require_once(PATH_t3lib.'class.t3lib_page.php');
 require_once(PATH_tslib.'class.tslib_content.php');
 require_once(t3lib_extMgm::extPath('sr_sendcard').'pi1/class.tx_srsendcard_pi1_deferred.php');
-
-$typoVersion = t3lib_div::int_from_ver($GLOBALS['TYPO_VERSION']);
-if($typoVersion >= 3006000) require_once(PATH_t3lib.'class.t3lib_cs.php');   // are we are with Typo3 3.6.0?
+require_once(PATH_t3lib.'class.t3lib_cs.php');
 
 if (!defined ('TYPO3_db'))  die ('The configuration file was not included.');
 
-if($typoVersion >= 3006000) {   // are we are with Typo3 3.6.0?
-	require_once(PATH_t3lib.'class.t3lib_db.php');
-	$TYPO3_DB = t3lib_div::makeInstance('t3lib_DB');
-}
+require_once(PATH_t3lib.'class.t3lib_db.php');
+$TYPO3_DB = t3lib_div::makeInstance('t3lib_DB');
 
 require_once(PATH_t3lib.'class.t3lib_timetrack.php');
 $GLOBALS['TT'] = new t3lib_timeTrack;
@@ -85,7 +81,6 @@ $GLOBALS['TSFE']->forceTemplateParsing = 1;
 $GLOBALS['TSFE']->getConfigArray();
 $sendingCards = t3lib_div::makeInstance('tx_srsendcard_pi1_deferred');
 $sendingCards->cObj = t3lib_div::makeInstance('tslib_cObj');
-$sendingCards->typoVersion = $typoVersion;
 $conf = $GLOBALS['TSFE']->tmpl->setup['plugin.'][$sendingCards->prefixId.'.'];
 $sendingCards->main($conf);
 
