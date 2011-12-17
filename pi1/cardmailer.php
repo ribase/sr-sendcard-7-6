@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *	
-*  (c) 2003-2006 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -43,10 +43,10 @@ if (!defined('PATH_tslib')) {
 define('PATH_typo3conf', PATH_site.'typo3conf/');
 define('TYPO3_MODE','BE');
 
-require(PATH_t3lib.'class.t3lib_div.php');
-require(PATH_t3lib.'class.t3lib_extmgm.php');
-require(PATH_t3lib.'config_default.php');
-require(PATH_typo3conf.'localconf.php');
+require_once(PATH_t3lib.'class.t3lib_div.php');
+require_once(PATH_t3lib.'class.t3lib_extmgm.php');
+require_once(PATH_t3lib.'config_default.php');
+require_once(PATH_typo3conf.'localconf.php');
 require_once(PATH_tslib.'class.tslib_fe.php');
 require_once(PATH_t3lib.'class.t3lib_userauth.php');
 require_once(PATH_tslib.'class.tslib_feuserauth.php');

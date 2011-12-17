@@ -1,3 +1,7 @@
+2011-12-16  Stanislas Rolland  <typo3@sjbr.ca>
+
+	* Fixed bug #32247: Fatal error for redeclare class
+
 2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Fixed bug: Overlapping lines, sometimes, in text image (Thanks to Armin Günther)
