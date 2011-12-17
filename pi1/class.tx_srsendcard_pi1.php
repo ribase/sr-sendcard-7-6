@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2009 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -58,7 +58,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	var $siteUrl;
 	var $tbl_name = 'tx_srsendcard_sendcard';			// Card instances table
 	var $card_tbl_name = 'tx_srsendcard_card';			// Card table
-	var $overlay_tbl_name = 'tx_srsendcard_card_language_overlay';	// Card language overlay table (DEPRECATED)
 	
 	/**
 	 * Main class of Send-A-Card plugin for Typo3 CMS (sr_sendcard)
@@ -1236,11 +1235,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		
 		$selector .= (($this->conf['templateStyle'] == 'css-styled') ? '<div class="' . $this->pi_getClassName('image-selector') . '">': '<table cellspacing="5" cellpadding="0" width="100%" border="0"><tr>') . chr(10);
 		while ($row = $TYPO3_DB->sql_fetch_assoc($res)) {
-			
+				
+				// Get the localization of the card
 			$row = $this->pidRecord->getRecordOverlay($this->card_tbl_name, $row, $this->pidRecord->sys_language_uid);
-			if ($TYPO3_CONF_VARS['EXTCONF'][$this->extKey]['keepCardLanguageOverlay']) {
-				$row = $this->getCardOverlay($row);
-			}
 			
 			if ($colCount++ >= $maxCol) {
 				$selector .= ($this->conf['templateStyle'] == 'css-styled') ? str_replace('###SELECTOR_ROW_HEIGHT###', $selectorRowHeight, $selectorRow) : chr(10) . '</tr><tr>' . chr(10);
@@ -1683,58 +1680,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		}
 		return $cardid;
 	}
-	
-	/**
-	 * Returns the relevant card overlay record fields
-	 * Adapted from t3lib_page.php
-	 *
-	 * @param	mixed		If $cardInput is an integer, it's the pid of the card overlay record and thus the card overlay record is returned. If $cardInput is an array, it's a card-record and based on this card record the language record is found and OVERLAYED before the card record is returned.
-	 * @param	integer		Language UID if you want to set an alternative value to $this->sys_language_uid which is default. Should be >=0
-	 * @return	array		Card row which is overlayed with language_overlay record (or the overlay record alone)
-	 */
-	function getCardOverlay($cardInput, $lUid = -1) {
-		global $TYPO3_DB;
-		
-			// Initialize:
-		if ($lUid < 0) {
-			$lUid = $this->pidRecord->sys_language_uid;
-		}
-		
-			// If language UID is different from zero, do overlay:
-		if ($lUid) {
-			$fieldArr = array('card', 'cardaltText', 'selection_imagealtText');
-			if (is_array($cardInput)) {
-					// Was the whole record
-				$card_uid = $cardInput['uid'];
-					// Make sure that only fields which exist in the incoming record are overlaid!
-				$fieldArr = array_intersect($fieldArr, array_keys($cardInput));
-			} else {
-					// Was the uid
-				$card_uid = $cardInput;
-			}
-			if (count($fieldArr)) {
-				$whereClause = 'card_uid=' . intval($card_uid) . ' ' .
-					'AND sys_language_uid='.intval($lUid). ' ' .
-					$this->cObj->enableFields($this->overlay_tbl_name);
-				$res = $TYPO3_DB->exec_SELECTquery(
-					implode(',', $fieldArr),
-					$this->overlay_tbl_name,
-					$whereClause
-					);
-				$row = $TYPO3_DB->sql_fetch_assoc($res);
-			}
-		}
-		
-			// Create output:
-		if (is_array($cardInput)) {
-				// If the input was an array, simply overlay the newfound array and return.
-			return is_array($row) ? array_merge($cardInput, $row) : $cardInput;
-		} else {
-				// always an array in return.
-			return is_array($row) ? $row : array();
-		}
-	}
-	
+
 	/**
 	 * From the 'salutationswitcher' extension.
 	 *

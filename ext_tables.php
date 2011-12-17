@@ -1,5 +1,7 @@
 <?php
-if (!defined ('TYPO3_MODE')) die ('Access denied.');
+if (!defined ('TYPO3_MODE')) {
+	die ('Access denied.');
+}
 	
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/css_styled/', 'Send-A-Card CSS-styled');
 t3lib_extMgm::addStaticFile($_EXTKEY, 'static/old_style/', 'Send-A-Card Old Style');
@@ -26,27 +28,6 @@ $TCA['tx_srsendcard_card'] = Array (
 	 
 t3lib_extMgm::allowTableOnStandardPages('tx_srsendcard_card');
 t3lib_extMgm::addToInsertRecords('tx_srsendcard_card');
-
-if ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY]['keepCardLanguageOverlay']) {
-	$TCA['tx_srsendcard_card_language_overlay'] = Array (
-		'ctrl' => Array (
-		'title' => 'LLL:EXT:sr_sendcard/locallang_db.xml:tx_srsendcard_card_language_overlay',
-			'label' => 'card',
-			'default_sortby' => 'ORDER BY card_uid',
-			'sortby' => 'sorting',
-			'delete' => 'deleted',
-			'enablecolumns' => Array (
-				'disabled' => 'hidden',
-				'starttime' => 'starttime',
-				'endtime' => 'endtime',
-				),
-				'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
-				'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif',
-			)
-		);
-	t3lib_extMgm::allowTableOnStandardPages('tx_srsendcard_card_language_overlay');
-	t3lib_extMgm::addToInsertRecords('tx_srsendcard_card_language_overlay');
-}
 
 t3lib_div::loadTCA('tt_content');
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1'] = 'layout,select_key';

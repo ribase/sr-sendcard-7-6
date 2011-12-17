@@ -24,8 +24,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Alternate Image Width</label>
             <label index="tx_srsendcard_card.selection_image_height">Alternate Image Height</label>
             <label index="tx_srsendcard_card.link_pid">Linked Page</label>
-            <label index="tx_srsendcard_card_language_overlay">Postcard Translation</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Language</label>
             <label index="tt_content.list_type">Postcards</label>
         </languageKey>
         <languageKey index="dk" type="array">
@@ -44,8 +42,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Bredde af alternativt billede</label>
             <label index="tx_srsendcard_card.selection_image_height">Højde af alternativt billede</label>
             <label index="tx_srsendcard_card.link_pid">Link</label>
-            <label index="tx_srsendcard_card_language_overlay">Postkort oversættelse</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Sprog</label>
             <label index="tt_content.list_type">Postkort</label>
         </languageKey>
         <languageKey index="de" type="array">
@@ -84,8 +80,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Largeur de l'image alternative</label>
             <label index="tx_srsendcard_card.selection_image_height">Hauteur de l'image alternative</label>
             <label index="tx_srsendcard_card.link_pid">Page liée</label>
-            <label index="tx_srsendcard_card_language_overlay">Traduction de carte postale</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Langue</label>
             <label index="tt_content.list_type">Cartes postales</label>
         </languageKey>
         <languageKey index="es" type="array">
@@ -104,8 +98,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Anchura de la imagen alternativa</label>
             <label index="tx_srsendcard_card.selection_image_height">Altura de la imagen alternativa</label>
             <label index="tx_srsendcard_card.link_pid">Página vínculada</label>
-            <label index="tx_srsendcard_card_language_overlay">Traducción de tarjeta postal</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Idioma</label>
             <label index="tt_content.list_type">Tarjetas postales</label>
         </languageKey>
         <languageKey index="nl" type="array">
@@ -144,8 +136,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Vaihtoehtoinen kuvan leveys</label>
             <label index="tx_srsendcard_card.selection_image_height">Vaihtoehtoinen kuvan korkeus</label>
             <label index="tx_srsendcard_card.link_pid">Linkattu sivu</label>
-            <label index="tx_srsendcard_card_language_overlay">Postikortti käännökset</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Kieli</label>
             <label index="tt_content.list_type">Postikortit</label>
         </languageKey>
         <languageKey index="tr" type="array">
@@ -184,8 +174,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Ширина альтернативного изображения</label>
             <label index="tx_srsendcard_card.selection_image_height">Высота альтернативного изображения</label>
             <label index="tx_srsendcard_card.link_pid">Связанная страница</label>
-            <label index="tx_srsendcard_card_language_overlay">Перевод открытки</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Язык</label>
             <label index="tt_content.list_type">Открытки</label>
         </languageKey>
         <languageKey index="ro" type="array">
@@ -230,8 +218,6 @@
             <label index="tx_srsendcard_card.selection_image_width">Largura da imagem alternativa</label>
             <label index="tx_srsendcard_card.selection_image_height">Altura da imagem alternativa</label>
             <label index="tx_srsendcard_card.link_pid">Página linkada</label>
-            <label index="tx_srsendcard_card_language_overlay">Tradução do Cartão Postal</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid">Idioma</label>
             <label index="tt_content.list_type">Cartões Postais</label>
         </languageKey>
         <languageKey index="et" type="array">
@@ -292,8 +278,6 @@
             <label index="tx_srsendcard_card.selection_image_width" type="integer">155676119</label>
             <label index="tx_srsendcard_card.selection_image_height" type="integer">23965016</label>
             <label index="tx_srsendcard_card.link_pid" type="integer">47966017</label>
-            <label index="tx_srsendcard_card_language_overlay" type="integer">92068849</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid" type="integer">77154959</label>
             <label index="tt_content.list_type" type="integer">184541690</label>
         </languageKey>
         <languageKey index="dk" type="array">
@@ -312,8 +296,6 @@
             <label index="tx_srsendcard_card.selection_image_width" type="integer">155676119</label>
             <label index="tx_srsendcard_card.selection_image_height" type="integer">23965016</label>
             <label index="tx_srsendcard_card.link_pid" type="integer">47966017</label>
-            <label index="tx_srsendcard_card_language_overlay" type="integer">92068849</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid" type="integer">77154959</label>
             <label index="tt_content.list_type" type="integer">184541690</label>
         </languageKey>
         <languageKey index="de" type="array">
@@ -352,8 +334,6 @@
             <label index="tx_srsendcard_card.selection_image_width" type="integer">155676119</label>
             <label index="tx_srsendcard_card.selection_image_height" type="integer">23965016</label>
             <label index="tx_srsendcard_card.link_pid" type="integer">47966017</label>
-            <label index="tx_srsendcard_card_language_overlay" type="integer">92068849</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid" type="integer">77154959</label>
             <label index="tt_content.list_type" type="integer">184541690</label>
         </languageKey>
         <languageKey index="es" type="array">
@@ -372,8 +352,6 @@
             <label index="tx_srsendcard_card.selection_image_width" type="integer">155676119</label>
             <label index="tx_srsendcard_card.selection_image_height" type="integer">23965016</label>
             <label index="tx_srsendcard_card.link_pid" type="integer">47966017</label>
-            <label index="tx_srsendcard_card_language_overlay" type="integer">92068849</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid" type="integer">77154959</label>
             <label index="tt_content.list_type" type="integer">184541690</label>
         </languageKey>
         <languageKey index="nl" type="array">
@@ -412,8 +390,6 @@
             <label index="tx_srsendcard_card.selection_image_width" type="integer">155676119</label>
             <label index="tx_srsendcard_card.selection_image_height" type="integer">23965016</label>
             <label index="tx_srsendcard_card.link_pid" type="integer">47966017</label>
-            <label index="tx_srsendcard_card_language_overlay" type="integer">92068849</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid" type="integer">77154959</label>
             <label index="tt_content.list_type" type="integer">184541690</label>
         </languageKey>
         <languageKey index="tr" type="array">
@@ -480,8 +456,6 @@
             <label index="tx_srsendcard_card.selection_image_width" type="integer">155676119</label>
             <label index="tx_srsendcard_card.selection_image_height" type="integer">23965016</label>
             <label index="tx_srsendcard_card.link_pid" type="integer">47966017</label>
-            <label index="tx_srsendcard_card_language_overlay" type="integer">92068849</label>
-            <label index="tx_srsendcard_card_language_overlay.sys_language_uid" type="integer">77154959</label>
             <label index="tt_content.list_type" type="integer">184541690</label>
         </languageKey>
         <languageKey index="et" type="array">

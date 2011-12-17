@@ -28,24 +28,6 @@ CREATE TABLE tx_srsendcard_card (
 	KEY parent (pid)
 );
 
-CREATE TABLE tx_srsendcard_card_language_overlay (
-	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
-	pid int(11) unsigned DEFAULT '0' NOT NULL,
-	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
-	starttime int(11) unsigned DEFAULT '0' NOT NULL,
-	endtime int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(10) unsigned DEFAULT '0' NOT NULL,
-	card_uid int(11) unsigned DEFAULT '0' NOT NULL,
-	sys_language_uid int(11) unsigned DEFAULT '0' NOT NULL,
-	card tinytext NOT NULL,
-	cardaltText tinytext NOT NULL,
-	selection_imagealtText tinytext NOT NULL,
-	
-	PRIMARY KEY (uid),
-	KEY parent (pid)
-);
-
 CREATE TABLE tx_srsendcard_sendcard (
  	uid varchar(25) DEFAULT '' NOT NULL,
 	pid int(11) unsigned DEFAULT '0' NOT NULL,
