@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -37,10 +37,6 @@
  *  Copyright Peter Bowyer <peter@sendcard.org> 2000, 2001, 2002
  *  This script is released under the Artistic License
  */
-
-require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(PATH_t3lib.'class.t3lib_htmlmail.php');
-
 class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	var $cObj; // The backReference to the mother cObj object set at call time
 	var $prefixId = 'tx_srsendcard_pi1'; // Same as class name

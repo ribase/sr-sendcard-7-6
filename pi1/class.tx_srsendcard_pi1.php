@@ -40,13 +40,6 @@
 *  Some initial code was taken from Luke Chiam <luke@webesse.com>'s Webesse E-Card extension to build the image selector.
 *
 */
-
-require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(PATH_t3lib.'class.t3lib_page.php');			// To get the pid language overlay
-require_once(PATH_t3lib.'class.t3lib_htmlmail.php');			// To send HTML mails
-require_once(PATH_t3lib.'class.t3lib_stdgraphic.php');			// To brand the images
-require_once(PATH_t3lib.'class.t3lib_extmgm.php');
-
 class tx_srsendcard_pi1 extends tslib_pibase {
 	
 	var $cObj;							// The backReference to the mother cObj object set at call time
