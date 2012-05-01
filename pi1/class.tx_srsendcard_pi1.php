@@ -1047,52 +1047,49 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				);
 		}
 	}
-	
 	/**
-	 * Send an email message, invokink htmlmail class
+	 * Send an email message
 	 *
-	 * @param	array		$emailData: email data variables
-	 * @param	string		$emailTemplateKey: key to compose the HTML template name
-	 * @return	void
+	 * @param array $emailData: email data variables
+	 * @param string $emailTemplateKey: template key
+	 * @return void
 	 */
 	function sendEmail($emailData, $emailTemplateKey) {
-		
 			// Get templates
-		$subpart = $this->cObj->getSubpart($this->templateCode, '###'.$emailTemplateKey.'###');
+		$subpart = $this->cObj->getSubpart($this->templateCode, '###' . $emailTemplateKey . '###');
 		if ($this->conf['enableHTMLMail']) {
-			$HTMLSubpart = $this->cObj->getSubpart($this->templateCode, '###'.$emailTemplateKey.'_HTML'.'###');
+			$htmlSubpart = $this->cObj->getSubpart($this->templateCode, '###' . $emailTemplateKey . '_HTML' . '###');
 		}
-		
 			// Set markers
 		$markerArray = array();
-		$markerArray['###EMAIL_CARDSENT_SUBJECT1###'] = $this->pi_getLL('email_cardSent_subject1');
-		$markerArray['###EMAIL_CARDSENT_SUBJECT2###'] = $this->pi_getLL('email_cardSent_subject2');
-		$markerArray['###EMAIL_CARDSENT_TITLE1###'] = $this->pi_getLL('email_cardSent_title1');
-		$markerArray['###EMAIL_CARDSENT_TITLE2###'] = $this->pi_getLL('email_cardSent_title2');
-		$markerArray['###EMAIL_CARDSENT_TEXT1###'] = $this->pi_getLL('email_cardSent_text1');
-		$markerArray['###EMAIL_CARDSENT_TEXT2###'] = $this->pi_getLL('email_cardSent_text2');
-		$markerArray['###EMAIL_CARDSENT_TEXT3###'] = $this->pi_getLL('email_cardSent_text3');
-		$markerArray['###EMAIL_CARDSENT_TEXT4###'] = $this->pi_getLL('email_cardSent_text4');
-		$markerArray['###EMAIL_CARDVIEWED_SUBJECT1###'] = $this->pi_getLL('email_cardViewed_subject1');
-		$markerArray['###EMAIL_CARDVIEWED_SUBJECT2###'] = $this->pi_getLL('email_cardViewed_subject2');
-		$markerArray['###EMAIL_CARDVIEWED_TITLE1###'] = $this->pi_getLL('email_cardViewed_title1');
-		$markerArray['###EMAIL_CARDVIEWED_TITLE2###'] = $this->pi_getLL('email_cardViewed_title2');
-		$markerArray['###EMAIL_CARDVIEWED_TEXT1###'] = $this->pi_getLL('email_cardViewed_text1');
-		$markerArray['###EMAIL_CARDVIEWED_TEXT2###'] = $this->pi_getLL('email_cardViewed_text2');
-		$markerArray['###EMAIL_CARDVIEWED_TEXT3###'] = $this->pi_getLL('email_cardViewed_text3');
-		$markerArray['###EMAIL_SIGNATURE###'] = $this->pi_getLL('email_signature');
-		$markerArray['###TO_NAME###'] = $emailData['to_name'];
-		$markerArray['###TO_EMAIL###'] = $emailData['to_email'];
-		$markerArray['###FROM_EMAIL###'] = $emailData['from_email'];
-		$markerArray['###FROM_NAME###'] = $emailData['from_name'];
-		$markerArray['###CARD_URL###'] = $emailData['card_url'];
-		$markerArray['###DATE###'] = $emailData['date'];
+			// Localize labels
+		$labels = array(
+			'email_cardSent_subject1', 'email_cardSent_subject2',
+			'email_cardSent_title1', 'email_cardSent_title2',
+			'email_cardSent_text1', 'email_cardSent_text2', 'email_cardSent_text3', 'email_cardSent_text4',
+			'email_cardViewed_subject1', 'email_cardViewed_subject2',
+			'email_cardViewed_title1', 'email_cardViewed_title2',
+			'email_cardViewed_text1', 'email_cardViewed_text2', 'email_cardViewed_text3',
+			'email_signature'
+		);
+		foreach ($labels as $label) {
+			$markerArray['###' . strtoupper($label) . '###'] = $this->pi_getLL($label);
+		}
+			// Set data markers
+		$dataMarkers = array(
+			'to_name', 'to_email',
+			'from_email', 'from_name',
+			'card_url',
+			'date'
+		);
+		foreach ($dataMarkers as $dataMarker) {
+			$markerArray['###' . strtoupper($dataMarker) . '###'] = $emailData[$dataMarker];;
+		}
 		$markerArray['###SITE_NAME###'] = $this->conf['siteName'];
 		$markerArray['###SITE_WWW###'] = t3lib_div::getIndpEnv('TYPO3_HOST_ONLY');
 		$markerArray['###SITE_URL###'] = $this->siteUrl;
 		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
-		
-			// Substitute in template
+			// Substitute markers in templates
 		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, array(), array());
 		if ($this->conf['enableHTMLMail']) {
 			$HTMLContent = $this->cObj->substituteMarkerArrayCached($HTMLSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
@@ -1444,7 +1441,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 */
 	function linksInText($text, $stripslashes = false) {
 		$cleanedText = $stripslashes ? stripslashes($text) : $text;
-		$cleanedText = preg_replace('/\[([http|news|ftp]+://[^ >\n\t]+)\]/i', '<a href="$1" target="_blank">$1</a>', $cleanedText);
+		$cleanedText = preg_replace('/\[([http|news|ftp]+:\/\/[^ >\n\t]+)\]/i', '<a href="$1" target="_blank">$1</a>', $cleanedText);
 		$cleanedText = preg_replace('/\[(mailto:)([^ >\n\t]+)\]/i', '<a href="$1$2">$2</a>', $cleanedText);
 		return $cleanedText;
 	}
