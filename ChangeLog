@@ -1,3 +1,6 @@
+2012-05-01  Stanislas Rolland  <typo3@sjbr.ca>
+	* Always use utf-8 by default
+
 2012-04-23  Stanislas Rolland  <typo3@sjbr.ca>
 	* Add extension autoload
 

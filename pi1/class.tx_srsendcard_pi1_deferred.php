@@ -43,8 +43,8 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	var $scriptRelPath = 'pi1/class.tx_srsendcard_pi1_deferred.php'; // Path to this script relative to the extension dir.
 	var $extKey = 'sr_sendcard'; // The extension key.
 	var $conf = array();
-	var $charset = 'iso-8859-1'; // default charset to be used in html emails
-	
+		 // Default charset to be used in html emails
+	var $charset = 'utf-8';
 	/**
 	 * Main function: send all the cards
 	 *

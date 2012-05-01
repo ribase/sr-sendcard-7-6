@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -70,7 +70,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		
 			// Setting charset
 		$globalMarkerArray = array();
-		$globalMarkerArray['###CHARSET###'] = $GLOBALS['TSFE']->metaCharset;
+		$globalMarkerArray['###CHARSET###'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
 		
 			// Setting CSS style markers if required
 		if ($this->conf['enableHTMLMail']) {
@@ -142,14 +142,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		if ($this->conf['locale_all']) {
 			setlocale(LC_ALL, $this->conf['locale_all']);
 		}
-		if ($GLOBALS['TYPO3_CONF_VARS']['SYS']['t3lib_cs_utils'] == 'mbstring' && $GLOBALS['TSFE']->metaCharset != 'windows-1250' ) {
-			$current_internal_encoding = mb_internal_encoding();
-			mb_internal_encoding($GLOBALS['TSFE']->metaCharset);
-			$this->date = strftime($this->conf['date_stdWrap']);
-			mb_internal_encoding($current_internal_encoding);
-		} else {
-			$this->date = strftime($this->conf['date_stdWrap']);
-		}
+		$this->date = strftime($this->conf['date_stdWrap']);
 		
 			// Initialise language overlay of cards series
 		$this->pidRecord = t3lib_div::makeInstance('t3lib_pageSelect');
@@ -631,7 +624,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				}
 				$cardData['pid'] = $sentCardsFolderPID;
 				$cardData['language'] = $language;
-				$cardData['charset'] = $GLOBALS['TSFE']->metaCharset;
+				$cardData['charset'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
 				
 					// Collect ip address in case we want to investigate some possile abuse
 				$cardData['ip_address'] = t3lib_div::getIndpEnv('REMOTE_ADDR');
@@ -1102,9 +1095,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			// Substitute in template
 		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, array(), array());
 		if ($this->conf['enableHTMLMail']) {
-			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset);
 			$HTMLContent = $this->cObj->substituteMarkerArrayCached($HTMLSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
-			$HTMLContent = $GLOBALS['TSFE']->csConvObj->conv($HTMLContent, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset,1);
 		} else {
 			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, ($GLOBALS['TSFE']->config['config']['notification_email_charset'] ? $GLOBALS['TSFE']->config['config']['notification_email_charset'] : 'utf-8'));
 		}
