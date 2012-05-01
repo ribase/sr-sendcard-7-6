@@ -2,6 +2,7 @@
 	* Always use utf-8 by default
 	* Fix for tslib_pibase TYPO3 4.6+ and PHP 5.3+
 	* Code cleanup
+	* Use Swift mail API
 
 2012-04-23  Stanislas Rolland  <typo3@sjbr.ca>
 	* Add extension autoload

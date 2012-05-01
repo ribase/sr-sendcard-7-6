@@ -41,8 +41,8 @@
 *
 */
 class tx_srsendcard_pi1 extends tslib_pibase {
-	
-	var $cObj;							// The backReference to the mother cObj object set at call time
+		// The back reference to the content cObj object
+	var $cObj;
 	var $prefixId = 'tx_srsendcard_pi1';  				// Same as class name
 	var $scriptRelPath = 'pi1/class.tx_srsendcard_pi1.php';		// Path to this script relative to the extension dir.
 	var $extKey = 'sr_sendcard';					// The extension key.
@@ -59,15 +59,15 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @param	array		$conf: TS setup for the plugin
 	 * @return	string		content produced by the plugin
 	 */
-	function main($content, $conf) {
+	function main ($content, $conf) {
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
 		$this->pi_USER_INT_obj = 1;  // Disable caching
-		
+
 			// Load template
 		$this->templateCode = $this->cObj->fileResource($this->conf['templateFile']);
-		
+
 			// Setting charset
 		$globalMarkerArray = array();
 		$globalMarkerArray['###CHARSET###'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
@@ -158,7 +158,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$invalid_captcha_response = 1;
 			}
 		}
-		
+
 			// We are not going to preview if there are errors
 		if ($cardData['cmd'] == 'preview' ) {
 			if (trim($cardData['to_name']) == '' ) {
@@ -188,7 +188,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				/*
 				* Display choice of cards
 				*/
-				
 					// Get cards series
 				$cardSeriesUid = array();
 				$cardSeriesTitle = array();
@@ -238,15 +237,14 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					
 						// Prepare image selector as array of thumbnails
 					$image_selector = $this->imageSelector($res);
-					
+			
 					if ($this->conf['enableAlternateSelectionTemplate'] ) {
 							// we build multiple selectors for multiple series
 						$seriesMarkerArray['###CARDS_SERIES_TITLE###'] = $cardSeriesTitle;
 						$seriesMarkerArray['###IMAGE_SELECTOR###'] = $image_selector;
 						$seriesOut .= $this->cObj->substituteMarkerArrayCached($this->seriesSubpart, $seriesMarkerArray, $seriesSubpartArray, $wrappedSubpartArray);
 					}
-				} // end of cards series loop
-
+				}
 					// Display form
 				if ($this->conf['enableAlternateSelectionTemplate'] ) {
 					$this->subpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_ALTERNATE_SELECTION_PAGE###');
@@ -833,7 +831,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		}
 		
 		return $this->pi_wrapInBaseClass($content);
-	}  // end of function main
+	}
 
 	/**
 	 * Display card.
@@ -975,7 +973,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @param	string		uid of card instance
 	 * @return	array		table row of card instance
 	 */
-	
 	function getCard($uid) {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
@@ -1047,6 +1044,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				);
 		}
 	}
+
 	/**
 	 * Send an email message
 	 *
@@ -1054,7 +1052,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @param string $emailTemplateKey: template key
 	 * @return void
 	 */
-	function sendEmail($emailData, $emailTemplateKey) {
+	function sendEmail ($emailData, $emailTemplateKey) {
+		$content = '';
+		$htmlContent = '';
 			// Get templates
 		$subpart = $this->cObj->getSubpart($this->templateCode, '###' . $emailTemplateKey . '###');
 		if ($this->conf['enableHTMLMail']) {
@@ -1092,60 +1092,42 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			// Substitute markers in templates
 		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, array(), array());
 		if ($this->conf['enableHTMLMail']) {
-			$HTMLContent = $this->cObj->substituteMarkerArrayCached($HTMLSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
+			$htmlContent = $this->cObj->substituteMarkerArrayCached($htmlSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
+		}
+			// Create mail
+		$mail = t3lib_div::makeInstance('t3lib_mail_Message');
+			// Set subject
+		$defaultSubject = 'Send-A-Card message';
+		if ($htmlContent) {
+			$parts = preg_split('/<title>|<\\/title>/i', $htmlContent, 3);
+			$subject = trim($parts[1]) ? strip_tags(trim($parts[1])) : $defaultSubject;
 		} else {
-			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, ($GLOBALS['TSFE']->config['config']['notification_email_charset'] ? $GLOBALS['TSFE']->config['config']['notification_email_charset'] : 'utf-8'));
+				// First line is subject
+			$parts = explode(LF, $content, 2);
+			$subject = trim($parts[0]) ? trim($parts[0]) : $defaultSubject;
+			$content = trim($parts[1]);
 		}
-		
-			// Set subject, content and headers
-		$headers = array();
-		$headers[] = 'FROM: '.$this->conf['siteName'].' <'.$this->conf['siteEmail'].'>';
-		list($subject, $plain_message) = explode(chr(10), trim($content), 2);
-		if ($this->conf['enableHTMLMail']) {
-			$parts = spliti('<title>|</title>', $HTMLContent, 3);
-			$subject = trim($parts[1]) ? strip_tags(trim($parts[1])) : 'Send-A-Card message';
+		$mail->setSubject($subject);
+			// Set 'from' addresses
+		$fromName = str_replace('"', '\'', $fromName);
+		if (preg_match('#[/\(\)\\<>,;:@\.\]\[\s]#', $fromName)) {
+			$fromName = '"' . $fromName . '"';
 		}
-		
-		if ($this->conf['enableHTMLMail']) {
-			
-			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
-			$Typo3_htmlmail->start();
-// t3lib_htmlmail checks $GLOBALS['TSFE']->config['metaCharset'] instead of $GLOBALS['TSFE']->metaCharset
-			$Typo3_htmlmail->charset = $GLOBALS['TSFE']->metaCharset;
-			$Typo3_htmlmail->useQuotedPrintable();
-//
-			if ($this->conf['forceBase64Encoding']) {
-				$Typo3_htmlmail->useBase64();
-			}
-			$Typo3_htmlmail->mailer = 'Typo3 HTMLMail';
-			$Typo3_htmlmail->subject = $subject;
-			$Typo3_htmlmail->from_email = $this->conf['siteEmail'];
-			$Typo3_htmlmail->from_name = $this->conf['siteName'];
-			$Typo3_htmlmail->replyto_email = $this->conf['siteEmail'];
-			$Typo3_htmlmail->replyto_name = $this->conf['siteName'];
-			$Typo3_htmlmail->organisation = '';
-			$Typo3_htmlmail->priority = 3;
-				// HTML
-			if (trim($HTMLContent)) {
-				$Typo3_htmlmail->theParts['html']['content'] = $HTMLContent;
-				$Typo3_htmlmail->theParts['html']['path'] = '';
-				$Typo3_htmlmail->extractMediaLinks();
-				$Typo3_htmlmail->extractHyperLinks();
-				$Typo3_htmlmail->fetchHTMLMedia();
-				$Typo3_htmlmail->substMediaNamesInHTML(0); // 0 = relative
-				$Typo3_htmlmail->substHREFsInHTML();
-				$Typo3_htmlmail->setHTML($Typo3_htmlmail->encodeMsg($Typo3_htmlmail->theParts['html']['content']));
-			}
-
-				// PLAIN
-			$Typo3_htmlmail->addPlain($plain_message);
-			$Typo3_htmlmail->setHeaders();
-			$Typo3_htmlmail->setContent();
-			$Typo3_htmlmail->setRecipient($emailData['to_email']);
-			$Typo3_htmlmail->sendtheMail();
-		} else {
-			$this->cObj->sendNotifyEmail($content, $emailData['to_email'], '', $this->conf['siteEmail'], $this->conf['siteName']);
+		$fromEmail = $this->conf['siteEmail'];
+		$mail->setFrom(array($fromEmail => $fromName));
+		$mail->setSender($fromEmail);
+		$mail->setReturnPath($fromEmail);
+		$mail->setReplyTo(array($fromEmail => $fromName));
+		$mail->setPriority(3);
+			// Set 'to' address
+		$mail->setTo(array($emailData['to_email'] => $emailData['to_name']));
+			// HTML
+		if ($htmlContent) {
+			$mail->setBody($htmlContent, 'text/html');
 		}
+			// Plain text
+		$mail->addPart($content, 'text/plain');
+		$mail->send();
 	}
 
 	/**
@@ -1618,7 +1600,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		}
 		return parent::pi_getLL($key, $alt, $hsc);
 	}
-} // end of class
+}
 
 /**
  * Extension of t3lib_stdGraphic.
@@ -1626,7 +1608,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
  * This version of the combineExec function provided by Martin Kutschker (Martin.Kutschker@blackbox.at)
  * Used in tx_srsendcard_pi1 to brand images
  */
-
 class tx_srsendcard_pi1_t3lib_stdGraphic extends t3lib_stdGraphic {
 
 	function combineExec($input, $overlay, $mask, $output, $geometry = '') {
@@ -1640,10 +1621,8 @@ class tx_srsendcard_pi1_t3lib_stdGraphic extends t3lib_stdGraphic {
 		}
 	}
 
-} // end of class
-
+}
 if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']) {
 	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']);
 }
-
 ?>
