@@ -38,26 +38,37 @@
  *  This script is released under the Artistic License
  */
 class tx_srsendcard_pi1_deferred extends tslib_pibase {
-	var $cObj; // The backReference to the mother cObj object set at call time
-	var $prefixId = 'tx_srsendcard_pi1'; // Same as class name
-	var $scriptRelPath = 'pi1/class.tx_srsendcard_pi1_deferred.php'; // Path to this script relative to the extension dir.
-	var $extKey = 'sr_sendcard'; // The extension key.
+		// The backReference to the parent cObj
+	var $cObj;
+		// Same as class name
+	var $prefixId = 'tx_srsendcard_pi1';
+		// Path to this script relative to the extension directory
+	var $scriptRelPath = 'pi1/class.tx_srsendcard_pi1_deferred.php';
+		// The extension key
+	var $extKey = 'sr_sendcard';
+		// Configuration array
 	var $conf = array();
 		 // Default charset to be used in html emails
 	var $charset = 'utf-8';
 	/**
 	 * Main function: send all the cards
 	 *
-	 * @param array  $conf: the TS configuration array
+	 * @param array $conf: the TS configuration array
 	 * @return void
 	 */
-	 
-	function main($conf) {
+	function main ($conf) {
+			// Invoke parent constructor
+		if (method_exists($this, '__construct')) {
+			parent::__construct();
+		} else {
+				// Before TYPO3 4.6+ and PHP 5.3+
+			parent::tslib_pibase();
+		}
 		$this->conf = $conf;
-		$this->tslib_pibase();
 		$this->pi_loadLL();
 		$tbl_name = 'tx_srsendcard_sendcard';
-		$this->pi_USER_INT_obj = 1; // Disable caching
+			// Disable caching
+		$this->pi_USER_INT_obj = 1;
 		$GLOBALS['TSFE']->set_no_cache();
 		
 			// Load template
