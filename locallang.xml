@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <T3locallang>
     <meta type="array">
-        <description>nnn</description>
+        <description>Labels for Send-A-Card (sr_sendcard) extension</description>
         <type></type>
         <csh_table></csh_table>
         <labelContext type="array">
@@ -11,6 +11,10 @@
         <languageKey index="default" type="array">
             <label index="pi1_title">Postcards</label>
             <label index="pi1_plus_wiz_description">Adds electronic postcards on the page.</label>
+            <label index="cardMailer.name">Send-A-Card: Send deferred cards</label>
+            <label index="cardMailer.description">Sends cards that where scheduled to be sent on a specific date by the sender.</label>
+            <label index="label.tx_srsendcard_viewCardPid">Page id where the card may be viewed.</label>
+            <label index="msg.tx_srsendcard_viewCardPid">The page id must be an integer greater than 0.</label>
         </languageKey>
         <languageKey index="dk" type="array">
             <label index="pi1_title">Postkort</label>
@@ -27,6 +31,10 @@
         <languageKey index="fr" type="array">
             <label index="pi1_title">Cartes postales</label>
             <label index="pi1_plus_wiz_description">Permet l'envoi de cartes postales.</label>
+            <label index="cardMailer.name">Send-A-Card: Envoi de cartes en différé</label>
+            <label index="cardMailer.description">Envoie les cartes pour lesquelles l'expéditeur a spécifié une date d'envoi.</label>
+            <label index="label.tx_srsendcard_viewCardPid">Numéro de la page où la carte sera présentée.</label>
+            <label index="msg.tx_srsendcard_viewCardPid">Le numéro de la page doit être un entier plus grand que 0.</label>
         </languageKey>
         <languageKey index="es" type="array">
             <label index="pi1_title">Tarjetas postales</label>

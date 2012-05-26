@@ -66,76 +66,66 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		}
 		$this->conf = $conf;
 		$this->pi_loadLL();
-		$tbl_name = 'tx_srsendcard_sendcard';
+		$tableName = 'tx_srsendcard_sendcard';
 			// Disable caching
 		$this->pi_USER_INT_obj = FALSE;
 		$GLOBALS['TSFE']->set_no_cache();
-			// Create mail object
-		$mail = t3lib_div::makeInstance('tx_srsendcard_email', $this);
-		
 			// Load template
 		$this->templateCode = $this->fileResource($this->conf['templateFile']);
-		
 			// Setting CSS style markers if required
 		if ($this->conf['enableHTMLMail']) {
 			$globalMarkerArray['###CSS_STYLES###'] = $this->fileResource($this->conf['HTMLMailCSS']);
 		}
-		
 		$this->templateCode = $this->cObj->substituteMarkerArray($this->templateCode, $globalMarkerArray);
-		
+			// Initialize markers arrays
 		$wrappedSubpartArray = array();
 		$subpartArray = array();
 		$markerArray = array();
-		
+			// Get the cards it is time to send
 		$time = time();
-		
-		/*
-		 * Send the cards
-		 */
 		$whereClause = 'emailsent = 0';
 		$whereClause .= ' AND send_time < ' . intval($time);
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
-			$tbl_name,
+			$tableName,
 			$whereClause
 			);
+			// Create mail object
+		$mail = t3lib_div::makeInstance('tx_srsendcard_email', $this);
+			// Send the cards
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$emailData['from_name'] = $row['fromwho'];
 			$emailData['from_email'] = $row['from_email'];
 			$emailData['to_name'] = $row['towho'];
 			$emailData['to_email'] = $row['to_email'];
 			$emailData['card_url'] = $row['card_url'];
-			
 				// Setting language and charsets
 			$GLOBALS['TSFE']->config['config']['language'] = $row['language'];
 			$GLOBALS['TSFE']->initLLvars();
 			$this->LLkey = $row['language'];
 			$this->charset = $row['charset'];
-			
 			$mail->sendEmail($emailData, 'TEMPLATE_EMAIL_CARD_SENT');
 		}
-			
 			// Mark cards sent
 		$whereClause = 'send_time < ' . intval($time) . ' AND emailsent = 0';
 		$fields_values = array();
 		$fields_values['emailsent'] = '1';
 		$res = $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
-			$tbl_name,
+			$tableName,
 			$whereClause,
 			$fields_values
 			);
-
 			// Cards were sent
 		return TRUE;
 	}
-	
+
 	/**
 	 * From the 'salutationswitcher' extension.
 	 *
 	 * @author	Oliver Klee <typo-coding@oliverklee.de>
 	 */
-	    // list of allowed suffixes
-	var $allowedSuffixes = array('formal', 'informal');
+	 	// List of allowed suffixes
+	public $allowedSuffixes = array('formal', 'informal');
 	
 	/**
 	 * Returns the localized label of the LOCAL_LANG key, $key
@@ -153,7 +143,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	 * @param    boolean        If true, the output label is passed through htmlspecialchars()
 	 * @return    string        The value from LOCAL_LANG.
 	 */
-	function pi_getLL($key, $alt = '', $hsc = FALSE) {
+	public function pi_getLL($key, $alt = '', $hsc = FALSE) {
 			// If the suffix is allowed and we have a localized string for the desired salutation, we'll take that.
 		if (isset($this->conf['salutation']) && in_array($this->conf['salutation'], $this->allowedSuffixes, 1)) {
 			$expandedKey = $key.'_'.$this->conf['salutation'];
@@ -163,22 +153,21 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		}
 		return parent::pi_getLL($key, $alt, $hsc);
 	}
-	
+
 	/**
 	 * Get the content of a file resource using the full path to the file resource because we are a cron job
 	 *
 	 * @param	string	$fName: the name of the file
 	 * @return	string	the content of the file
 	 */
-	function fileResource($fName) {
+	protected function fileResource($fName) {
 		$content = '';
 		$incFile = PATH_site . $GLOBALS['TSFE']->tmpl->getFileName($fName);
 		if ($incFile) {
 			$content = t3lib_div::getURL($incFile);
 		}
 		return $content;
-	}
-	
+	}	
 }
 if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']) {
 	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']);
