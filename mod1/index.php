@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -26,15 +26,9 @@
 *
 * @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-	// Initialization of the module
-unset($MCONF);
-require('conf.php');
-require($GLOBALS['BACK_PATH'] . 'init.php');
-require($GLOBALS['BACK_PATH'] . 'template.php');
 $GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'mod1/locallang.xml');
-require_once(t3lib_extMgm::extPath('sr_sendcard') . 'mod1/class.tx_srsendcard_statistics.php');
-
-$GLOBALS['BE_USER']->modAccess($MCONF, 1); // This checks permissions and exits if the users has no permission for entry.
+	// This checks permissions and exits if the users has no permission for entry.
+$GLOBALS['BE_USER']->modAccess($MCONF, 1);
 
 	// Make instance:
 $GLOBALS['SOBE'] = t3lib_div::makeInstance('tx_srsendcard_statistics');
@@ -48,5 +42,4 @@ while (list(, $INC_FILE) = each($GLOBALS['SOBE']->include_once)) {
 
 $GLOBALS['SOBE']->main();
 $GLOBALS['SOBE']->printContent();
-
 ?>

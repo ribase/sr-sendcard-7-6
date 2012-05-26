@@ -1,6 +1,7 @@
 2012-05-26  Stanislas Rolland  <typo3@sjbr.ca>
 	* Add class tx_srsendcard_email
 	* Add scheduler task for sending deferred cards
+	* Convert statistics module to typo3/mod.php
 
 2012-05-01  Stanislas Rolland  <typo3@sjbr.ca>
 	* Always use utf-8 by default

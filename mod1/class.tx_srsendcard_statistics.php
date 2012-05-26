@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2011 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -26,9 +26,6 @@
 *
 * @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-
-require_once(PATH_t3lib.'class.t3lib_scbase.php');
-
 class tx_srsendcard_statistics extends t3lib_SCbase {
 	var $pageinfo;
 
@@ -164,7 +161,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				/* Sorted in alphabetial order*/
 				/*Ouput */
 				$index = 0;
-				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="padding: 1px 3px; font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
 				break;
 				
 			case 2:
@@ -173,7 +170,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				
 				/*Output */
 				$index = 0;
-				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="padding: 1px 3px; font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
 				break;
 				
 			case 3:
@@ -182,7 +179,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 				
 				/*Output */
 				$index = 0;
-				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="padding: 1px 3px; font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
 				break;
 		}
 			 
@@ -190,7 +187,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 		while ($cardsCaption[$index]) {
 			$date = getdate($cardsDate[$index]);
 			$date_output = substr('0'.$date[mday], -2).'.'.substr('0'.$date[mon], -2).'.'.$date[year];
-			$content .= '<tr><td>'.$cardsCaption[$index].'</td><td style="text-align: right;">'.$cardsCount[$index].'</td><td style="text-align: right;">'.$date_output.'</td></tr>';
+			$content .= '<tr><td style="padding: 1px 3px;">'.$cardsCaption[$index].'</td><td style="padding: 1px 3px; text-align: right;">'.$cardsCount[$index].'</td><td style="padding: 1px 3px; text-align: right;">'.$date_output.'</td></tr>';
 			$index++;
 		}
 		$content .= '</table>';
