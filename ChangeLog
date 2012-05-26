@@ -1,3 +1,6 @@
+2012-05-26  Stanislas Rolland  <typo3@sjbr.ca>
+	* Add class tx_srsendcard_email
+
 2012-05-01  Stanislas Rolland  <typo3@sjbr.ca>
 	* Always use utf-8 by default
 	* Fix for tslib_pibase TYPO3 4.6+ and PHP 5.3+

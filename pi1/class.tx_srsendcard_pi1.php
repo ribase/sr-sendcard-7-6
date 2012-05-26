@@ -51,6 +51,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	var $siteUrl;
 	var $tbl_name = 'tx_srsendcard_sendcard';			// Card instances table
 	var $card_tbl_name = 'tx_srsendcard_card';			// Card table
+		// Mail object
+	protected $mail;
 	
 	/**
 	 * Main class of Send-A-Card plugin for Typo3 CMS (sr_sendcard)
@@ -63,7 +65,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
-		$this->pi_USER_INT_obj = 1;  // Disable caching
+			// Disable caching
+		$this->pi_USER_INT_obj = FALSE;
+		$GLOBALS['TSFE']->set_no_cache();
 
 			// Load template
 		$this->templateCode = $this->cObj->fileResource($this->conf['templateFile']);
@@ -127,6 +131,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		
 		$printPID = $this->conf['printPID'] ? $this->conf['printPID'] : $viewPID;
 		$printType = ($this->conf['printType'] == '') ? $viewType : $this->conf['printType'];
+
+			// Create mail object
+		$this->mail = t3lib_div::makeInstance('tx_srsendcard_email', $this);
 		
 			// Initialise image parameters and functions
 		$imgInfo = '';
@@ -1012,7 +1019,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			$emailData['to_email'] = $row['to_email'];
 			$emailData['card_url'] = $row['card_url'];
 			$emailData['date'] = $this->date;
-			$this->sendEmail($emailData, $emailTemplateKey);
+			$this->mail->sendEmail($emailData, $emailTemplateKey);
 		}
 	}
 
@@ -1033,7 +1040,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			$emailData['to_email'] = $row['from_email'];
 			$emailData['card_url'] = $row['card_url'];
 			$emailData['date'] = $this->date;
-			$this->sendEmail($emailData, $emailTemplateKey);
+			$this->mail->sendEmail($emailData, $emailTemplateKey);
 			
 			$fields_values = array();
 			$fields_values['notify'] = '0';
@@ -1043,91 +1050,6 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$fields_values
 				);
 		}
-	}
-
-	/**
-	 * Send an email message
-	 *
-	 * @param array $emailData: email data variables
-	 * @param string $emailTemplateKey: template key
-	 * @return void
-	 */
-	function sendEmail ($emailData, $emailTemplateKey) {
-		$content = '';
-		$htmlContent = '';
-			// Get templates
-		$subpart = $this->cObj->getSubpart($this->templateCode, '###' . $emailTemplateKey . '###');
-		if ($this->conf['enableHTMLMail']) {
-			$htmlSubpart = $this->cObj->getSubpart($this->templateCode, '###' . $emailTemplateKey . '_HTML' . '###');
-		}
-			// Set markers
-		$markerArray = array();
-			// Localize labels
-		$labels = array(
-			'email_cardSent_subject1', 'email_cardSent_subject2',
-			'email_cardSent_title1', 'email_cardSent_title2',
-			'email_cardSent_text1', 'email_cardSent_text2', 'email_cardSent_text3', 'email_cardSent_text4',
-			'email_cardViewed_subject1', 'email_cardViewed_subject2',
-			'email_cardViewed_title1', 'email_cardViewed_title2',
-			'email_cardViewed_text1', 'email_cardViewed_text2', 'email_cardViewed_text3',
-			'email_signature'
-		);
-		foreach ($labels as $label) {
-			$markerArray['###' . strtoupper($label) . '###'] = $this->pi_getLL($label);
-		}
-			// Set data markers
-		$dataMarkers = array(
-			'to_name', 'to_email',
-			'from_email', 'from_name',
-			'card_url',
-			'date'
-		);
-		foreach ($dataMarkers as $dataMarker) {
-			$markerArray['###' . strtoupper($dataMarker) . '###'] = $emailData[$dataMarker];;
-		}
-		$markerArray['###SITE_NAME###'] = $this->conf['siteName'];
-		$markerArray['###SITE_WWW###'] = t3lib_div::getIndpEnv('TYPO3_HOST_ONLY');
-		$markerArray['###SITE_URL###'] = $this->siteUrl;
-		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
-			// Substitute markers in templates
-		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, array(), array());
-		if ($this->conf['enableHTMLMail']) {
-			$htmlContent = $this->cObj->substituteMarkerArrayCached($htmlSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
-		}
-			// Create mail
-		$mail = t3lib_div::makeInstance('t3lib_mail_Message');
-			// Set subject
-		$defaultSubject = 'Send-A-Card message';
-		if ($htmlContent) {
-			$parts = preg_split('/<title>|<\\/title>/i', $htmlContent, 3);
-			$subject = trim($parts[1]) ? strip_tags(trim($parts[1])) : $defaultSubject;
-		} else {
-				// First line is subject
-			$parts = explode(LF, $content, 2);
-			$subject = trim($parts[0]) ? trim($parts[0]) : $defaultSubject;
-			$content = trim($parts[1]);
-		}
-		$mail->setSubject($subject);
-			// Set 'from' addresses
-		$fromName = str_replace('"', '\'', $fromName);
-		if (preg_match('#[/\(\)\\<>,;:@\.\]\[\s]#', $fromName)) {
-			$fromName = '"' . $fromName . '"';
-		}
-		$fromEmail = $this->conf['siteEmail'];
-		$mail->setFrom(array($fromEmail => $fromName));
-		$mail->setSender($fromEmail);
-		$mail->setReturnPath($fromEmail);
-		$mail->setReplyTo(array($fromEmail => $fromName));
-		$mail->setPriority(3);
-			// Set 'to' address
-		$mail->setTo(array($emailData['to_email'] => $emailData['to_name']));
-			// HTML
-		if ($htmlContent) {
-			$mail->setBody($htmlContent, 'text/html');
-		}
-			// Plain text
-		$mail->addPart($content, 'text/plain');
-		$mail->send();
 	}
 
 	/**

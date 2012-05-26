@@ -68,8 +68,10 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		$this->pi_loadLL();
 		$tbl_name = 'tx_srsendcard_sendcard';
 			// Disable caching
-		$this->pi_USER_INT_obj = 1;
+		$this->pi_USER_INT_obj = FALSE;
 		$GLOBALS['TSFE']->set_no_cache();
+			// Create mail object
+		$mail = t3lib_div::makeInstance('tx_srsendcard_email', $this);
 		
 			// Load template
 		$this->templateCode = $this->fileResource($this->conf['templateFile']);
@@ -91,7 +93,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		 * Send the cards
 		 */
 		$whereClause = 'emailsent = 0';
-		$whereClause .= ' AND send_time < ' . intval($time); //can't wait to test!!
+		$whereClause .= ' AND send_time < ' . intval($time);
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
 			$tbl_name,
@@ -110,7 +112,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 			$this->LLkey = $row['language'];
 			$this->charset = $row['charset'];
 			
-			$this->sendEmail($emailData, 'TEMPLATE_EMAIL_CARD_SENT');
+			$mail->sendEmail($emailData, 'TEMPLATE_EMAIL_CARD_SENT');
 		}
 			
 			// Mark cards sent
@@ -122,110 +124,9 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 			$whereClause,
 			$fields_values
 			);
-		
-	}
-	
-	/**
-	 * Get the content of a file  resource using the full path to the file resource because we are a cron job
-	 *
-	 * @param	string	$emailData: content of the mail
-	 * @param	string	$emailTemplateKey: key of the email html template
-	 * @return	void
-	 */
-	 
-	function sendEmail($emailData, $emailTemplateKey) {		
-			// Get templates
-		$subpart = $this->cObj->getSubpart($this->templateCode, '###'.$emailTemplateKey.'###');
-		if ($this->conf['enableHTMLMail']) {
-			$HTMLSubpart = $this->cObj->getSubpart($this->templateCode, '###'.$emailTemplateKey.'_HTML'.'###');
-		}
-		
-			// Set markers
-		$markerArray['###EMAIL_CARDSENT_SUBJECT1###'] = $this->pi_getLL('email_cardSent_subject1');
-		$markerArray['###EMAIL_CARDSENT_SUBJECT2###'] = $this->pi_getLL('email_cardSent_subject2');
-		$markerArray['###EMAIL_CARDSENT_TITLE1###'] = $this->pi_getLL('email_cardSent_title1');
-		$markerArray['###EMAIL_CARDSENT_TITLE2###'] = $this->pi_getLL('email_cardSent_title2');
-		$markerArray['###EMAIL_CARDSENT_TEXT1###'] = $this->pi_getLL('email_cardSent_text1');
-		$markerArray['###EMAIL_CARDSENT_TEXT2###'] = $this->pi_getLL('email_cardSent_text2');
-		$markerArray['###EMAIL_CARDSENT_TEXT3###'] = $this->pi_getLL('email_cardSent_text3');
-		$markerArray['###EMAIL_CARDSENT_TEXT4###'] = $this->pi_getLL('email_cardSent_text4');
-		$markerArray['###EMAIL_CARDVIEWED_SUBJECT1###'] = $this->pi_getLL('email_cardViewed_subject1');
-		$markerArray['###EMAIL_CARDVIEWED_SUBJECT2###'] = $this->pi_getLL('email_cardViewed_subject2');
-		$markerArray['###EMAIL_CARDVIEWED_TITLE1###'] = $this->pi_getLL('email_cardViewed_title1');
-		$markerArray['###EMAIL_CARDVIEWED_TITLE2###'] = $this->pi_getLL('email_cardViewed_title2');
-		$markerArray['###EMAIL_CARDVIEWED_TEXT1###'] = $this->pi_getLL('email_cardViewed_text1');
-		$markerArray['###EMAIL_CARDVIEWED_TEXT2###'] = $this->pi_getLL('email_cardViewed_text2');
-		$markerArray['###EMAIL_CARDVIEWED_TEXT3###'] = $this->pi_getLL('email_cardViewed_text3');
-		$markerArray['###EMAIL_SIGNATURE###'] = $this->pi_getLL('email_signature');
-		$markerArray['###TO_NAME###'] = $emailData['to_name'];
-		$markerArray['###TO_EMAIL###'] = $emailData['to_email'];
-		$markerArray['###FROM_EMAIL###'] = $emailData['from_email'];
-		$markerArray['###FROM_NAME###'] = $emailData['from_name'];
-		$markerArray['###CARD_URL###'] = $emailData['card_url'];
-		$markerArray['###DATE###'] = $emailData['date'];
-		$markerArray['###SITE_NAME###'] = $this->conf['siteName'];
-		$markerArray['###SITE_WWW###'] = t3lib_div::getIndpEnv('TYPO3_HOST_ONLY');
-		$markerArray['###SITE_URL###'] = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
-		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
-		$markerArray['###CHARSET###'] = $GLOBALS['TSFE']->metaCharset;
 
-			// Substitute in template
-		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
-		if ($this->conf['enableHTMLMail']) {
-			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset);
-			$HTMLContent = $this->cObj->substituteMarkerArrayCached($HTMLSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
-			$HTMLContent = $GLOBALS['TSFE']->csConvObj->conv($HTMLContent, $GLOBALS['TSFE']->renderCharset, $GLOBALS['TSFE']->metaCharset,1);
-		} else {
-			$content = $GLOBALS['TSFE']->csConvObj->conv($content, $GLOBALS['TSFE']->renderCharset, ($GLOBALS['TSFE']->config['config']['notification_email_charset'] ? $GLOBALS['TSFE']->config['config']['notification_email_charset'] : 'utf-8'));
-		}
-
-			// Set subject, content and headers
-		$headers = array();
-		$headers[] = 'FROM: '.$this->conf['siteName'].' <'.$this->conf['siteEmail'].'>';
-		list($subject, $plain_message) = explode(chr(10), trim($content), 2);
-		if ($this->conf['enableHTMLMail']) {
-			$parts = spliti('<title>|</title>', $HTMLContent, 3);
-			$subject = trim($parts[1]) ? strip_tags(trim($parts[1])) : 'Send-A-Card message';
-		}
-
-		if ($this->conf['enableHTMLMail']) {
-			$Typo3_htmlmail = t3lib_div::makeInstance('t3lib_htmlmail');
-			$Typo3_htmlmail->start();
-			$Typo3_htmlmail->charset = $GLOBALS['TSFE']->metaCharset;
-			$Typo3_htmlmail->useQuotedPrintable();
-			if($this->conf['forceBase64Encoding']) {
-				$Typo3_htmlmail->useBase64();
-			}
-			$Typo3_htmlmail->mailer = 'Typo3 HTMLMail';
-			$Typo3_htmlmail->subject = $subject;
-			$Typo3_htmlmail->from_email = $this->conf['siteEmail'];
-			$Typo3_htmlmail->from_name = $this->conf['siteName'];
-			$Typo3_htmlmail->replyto_email = $this->conf['siteEmail'];
-			$Typo3_htmlmail->replyto_name = $this->conf['siteName'];
-			$Typo3_htmlmail->organisation = '';
-			$Typo3_htmlmail->priority = 3;
-
-				// HTML
-			if ($this->conf['enableHTMLMail'] && trim($HTMLContent)) {
-				$Typo3_htmlmail->theParts['html']['content'] = $HTMLContent;
-				$Typo3_htmlmail->theParts['html']['path'] = '';
-				$Typo3_htmlmail->extractMediaLinks();
-				$Typo3_htmlmail->extractHyperLinks();
-				$Typo3_htmlmail->fetchHTMLMedia();
-				$Typo3_htmlmail->substMediaNamesInHTML(0); // 0 = relative
-				$Typo3_htmlmail->substHREFsInHTML();
-				$Typo3_htmlmail->setHTML($Typo3_htmlmail->encodeMsg($Typo3_htmlmail->theParts['html']['content']));
-			}
-
-				// PLAIN
-			$Typo3_htmlmail->addPlain($plain_message);
-			$Typo3_htmlmail->setHeaders();
-			$Typo3_htmlmail->setContent();
-			$Typo3_htmlmail->setRecipient($emailData['to_email']);
-			$Typo3_htmlmail->sendtheMail();
-		} else {
-			$this->cObj->sendNotifyEmail($content, $emailData['to_email'], '', $this->conf['siteEmail'], $this->conf['siteName'], '');
-		}
+			// Cards were sent
+		return TRUE;
 	}
 	
 	/**
@@ -271,7 +172,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	 */
 	function fileResource($fName) {
 		$content = '';
-		$incFile = PATH_site.$GLOBALS['TSFE']->tmpl->getFileName($fName);
+		$incFile = PATH_site . $GLOBALS['TSFE']->tmpl->getFileName($fName);
 		if ($incFile) {
 			$content = t3lib_div::getURL($incFile);
 		}
