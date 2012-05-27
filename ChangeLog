@@ -1,3 +1,6 @@
+2012-05-27  Stanislas Rolland  <typo3@sjbr.ca>
+	* Update manual
+
 2012-05-26  Stanislas Rolland  <typo3@sjbr.ca>
 	* Add class tx_srsendcard_email
 	* Add scheduler task for sending deferred cards
