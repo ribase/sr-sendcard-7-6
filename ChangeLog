@@ -1,3 +1,7 @@
+2012-06-09  Stanislas Rolland  <typo3@sjbr.ca>
+	* Fixed bug #37866: Incorrect localization of informal labels
+	* Version 3.0.1
+
 2012-05-27  Stanislas Rolland  <typo3@sjbr.ca>
 	* Update manual
 	* Version 3.0.0
