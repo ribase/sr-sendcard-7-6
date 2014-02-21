@@ -115,7 +115,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		
 		$createPID = $this->conf['createPID'] ? $this->conf['createPID'] : $GLOBALS['TSFE']->id;
 		$createType = ($this->conf['createType'] == '') ? $GLOBALS['TSFE']->type : $this->conf['createType'];
-		$create_url = $this->get_url('', $createPID.','.$Type);
+		$create_url = $this->get_url('', $createPID.','.$createType);
 		$markerArray['###FORM_URL###'] = $create_url;
 		
 		$this->formPID = $this->conf['formPID'] ? $this->conf['formPID'] : $GLOBALS['TSFE']->id;
@@ -473,21 +473,15 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				}
 
 				$card_message_present = $this->linksInText($cardData['card_message']);
-
-					// Prepare the card caption
-				$link_vars = array();
-				$link_unsetVars = array();
-				$link_usePiVars = false;
+				// Prepare the card caption
 				if ($cardData['link_pid']) {
-					 $card_caption_present = '<a href="'.$site_url.htmlspecialchars($this->get_url('', $cardData['link_pid'], $link_vars, $link_unsetVars, $link_usePiVars)).'">'.$cardData['card_caption'].'</a>' ;
+					 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $cardData['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$cardData['card_caption'].'</a>' ;
 				} else {
 					$card_caption_present = $cardData['card_caption'];
 				}
-
-					// Display preview
+				// Display preview
 				$subpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_PREVIEW_CARD###');
-
-					// Default image data
+				// Default image data
 				$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($this->imgObj->tempPath);
 				$markerArray['###CARD_IMAGE###'] = $cardData['card_image'];
 				$markerArray['###IMAGEALTTEXT###'] = $cardData['cardaltText'];
@@ -623,10 +617,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$cardData['uid'] = $this->make_cardid();
 				$vars[$this->prefixId . '[cardid]'] = $cardData['uid'];
 				$vars[$this->prefixId . '[cmd]'] = 'view';
-				$cardData['card_url'] = $this->cObj->getTypoLink_URL($viewPID.','.$viewType, $vars);
-				if (!trim($GLOBALS['TSFE']->config['config']['absRefPrefix'])) {
-					$cardData['card_url'] = $site_url.$cardData['card_url'];
-				}
+				$cardData['card_url'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . $this->cObj->getTypoLink_URL($viewPID.','.$viewType, $vars);
 				$cardData['pid'] = $sentCardsFolderPID;
 				$cardData['language'] = $language;
 				$cardData['charset'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
@@ -662,11 +653,10 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$this->notifyRecipient($cardData, 'TEMPLATE_EMAIL_CARD_SENT');
 				
 					// Display card sent thank you message
-				$createcard_url = $site_url.$this->cObj->getTypoLink_URL($createPID);
 				$subpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_CARD_SENT###');
 				$markerArray['###CARDSENT_THANK_YOU###'] = $this->pi_getLL('cardSent_thank_you');
 				$markerArray['###CARDSENT_SEND_ANOTHER###'] = $this->pi_getLL('cardSent_send_another');
-				$markerArray['###FORM_URL###'] = htmlspecialchars($createcard_url);
+				$markerArray['###FORM_URL###'] = htmlspecialchars($this->get_url('', $createPID.','.$createType, array(), array(), FALSE));
 				
 				$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 				break;
@@ -686,7 +676,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$print_vars['cardid'] = $cardid;
 					$print_vars['cmd'] = 'print';
 					$print_unsetVars = array();
-					$print_usePiVars = true;
+					$print_usePiVars = TRUE;
 					$savedLinkVars = $GLOBALS['TSFE']->linkVars;
 					$linkVarsArr = t3lib_div::trimExplode('&', $GLOBALS['TSFE']->linkVars,1);
 					reset($linkVarsArr);
@@ -696,10 +686,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 						}
 					}
 					$GLOBALS['TSFE']->linkVars = implode('&', $linkVarsArr);
-					$printcard_url = $site_url.htmlspecialchars($this->get_url('', $printPID.','.$printType, $print_vars, $print_unsetVars, $print_usePiVars));
-					$create_vars['cmd'] = '';
-					$create_usePiVars = 0;
-					$createcard_url = $site_url.htmlspecialchars($this->get_url('', $createPID, $create_vars, $create_unsetVars, $create_usePiVars));
+					$printcard_url = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID.','.$printType, $print_vars, $print_unsetVars, $print_usePiVars));
 					$GLOBALS['TSFE']->linkVars = $savedLinkVars;
 
 					$card_message_present = $this->linksInText($row['message']);
@@ -745,11 +732,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					}
 
 						// Prepare the card caption
-					$link_vars = array();
-					$link_unsetVars = array();
-					$link_usePiVars = false;
 					if ($row['link_pid']) {
-						 $card_caption_present = '<a href="'.$site_url.htmlspecialchars($this->get_url('', $row['link_pid'], $link_vars, $link_unsetVars, $link_usePiVars)).'">'.$row['caption'].'</a>' ;
+						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$row['caption'].'</a>' ;
 					} else {
 						$card_caption_present = $row['caption'];
 					}
@@ -799,7 +783,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$markerArray['###PRINT_ICON###'] = $this->cObj->fileResource($this->conf['printIcon']);
 					$markerArray['###PRINT_WINDOW_PARAMS###'] = $this->conf['printWindowParams'];
 					$markerArray['###SENDCARD_PROMPT###'] = $this->pi_getLL('sendCard_prompt');
-					$markerArray['###FORM_URL###'] = htmlspecialchars($createcard_url);
+					$markerArray['###FORM_URL###'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $createPID . ',' . $createType, array('cmd' => '', 'cardid' => ''), array(), FALSE));
 					if ($row['music'] == '' ) {
 						$subpartArray['###MUSIC_INSERT###'] = '';
 					} else {
@@ -1320,12 +1304,11 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		
 		if ($usePiVars) {
 			$vars = array_merge($this->piVars, $vars);	//vars override pivars
-			while (list(, $key) = each($unsetVars)) {
+			foreach ($unsetVars as $key => $val) {
 				unset($vars[$key]);	// unsetvars override anything
 			}
 		}
-		
-		while (list($key, $val) = each($vars)) {
+		foreach ($vars as $key => $val) {
 			$piVars[$this->prefixId . '['. $key . ']'] = $val;
 		}
 		
