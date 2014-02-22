@@ -110,10 +110,10 @@ class tx_srsendcard_email {
 			$parts = preg_split('/<title>|<\\/title>/i', $htmlContent, 3);
 			$subject = trim($parts[1]) ? strip_tags(trim($parts[1])) : $defaultSubject;
 		} else {
-				// First line is subject
-			$parts = explode(LF, $content, 2);
-			$subject = trim($parts[0]) ? trim($parts[0]) : $defaultSubject;
-			$content = trim($parts[1]);
+			// First line is subject
+			$parts = explode(LF, $content, 3);
+			$subject = trim($parts[1]) ? trim($parts[1]) : $defaultSubject;
+			$content = trim($parts[2]);
 		}
 		$mail->setSubject($subject);
 			// Set 'from' addresses
@@ -129,13 +129,15 @@ class tx_srsendcard_email {
 		$mail->setPriority(3);
 			// Set 'to' address
 		$mail->setTo(array($emailData['to_email'] => $emailData['to_name']));
-			// HTML
 		if ($htmlContent) {
+			// HTML
 			$htmlContent = $this->embedMedia($mail, $htmlContent);
 			$mail->setBody($htmlContent, 'text/html');
-		}
+			$mail->addPart($content, 'text/plain');
+		} else {
 			// Plain text
-		$mail->addPart($content, 'text/plain');
+			$mail->setBody($content, 'text/plain');
+		}
 		$mail->send();
 	}
 	
