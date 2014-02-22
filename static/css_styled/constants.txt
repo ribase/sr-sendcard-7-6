@@ -18,7 +18,7 @@ plugin.tx_srsendcard_pi1 {
     # cat=plugin.tx_srsendcard_pi1/enable; type=boolean; label= Force base64 encoding of HTML emails: If set, HTML emails will be base64 encoded. The default encoding is quoted-printable.
   forceBase64Encoding = 0
 
-    # cat=plugin.tx_srsendcard_pi1//; type=string; label= Site enquiry email: Enter the site enquiry email address here. May be used as ###SITE_EMAIL### in email templates.
+    # cat=plugin.tx_srsendcard_pi1//; type=string; label= Site enquiry email: Enter the site enquiry email address here. May be used as ###SITE_EMAIL### in email templates. If wrong domain, Swift Mailer may raise an exception.
   siteEmail = MyTypo3Site@mydomain.org
 
     # cat=plugin.tx_srsendcard_pi1//; type=string; label= Site name: Enter the name of the card sending site here. May be usedas ###SITE_NAME### in email templates.

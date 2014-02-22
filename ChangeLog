@@ -2,6 +2,7 @@
 
 	* Resolves #56202: Some links are wrong when absRefPrefix is configured
 	* Resolves #42339: Text-Mails are wrong
+	* Add warning in TS constants and manual regarding domain of site email address
 
 2012-06-09  Stanislas Rolland  <typo3@sjbr.ca>
 	* Fixed bug #37866: Incorrect localization of informal labels
