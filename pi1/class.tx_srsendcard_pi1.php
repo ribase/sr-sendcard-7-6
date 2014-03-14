@@ -1496,9 +1496,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return    string        The value from LOCAL_LANG.
 	 */
 	function pi_getLL($key, $alt = '', $hsc = FALSE) {
-			// If the suffix is allowed and we have a localized string for the desired salutation, we'll take that.
+		// If the suffix is allowed and we have a localized string for the desired salutation, we'll take that.
 		if (isset($this->conf['salutation']) && in_array($this->conf['salutation'], $this->allowedSuffixes, 1)) {
-			$expandedKey = $key.'_'.$this->conf['salutation'];
+			$expandedKey = $key . '_' . $this->conf['salutation'];
 			if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) >= 4006000) {
 				if ($this->LOCAL_LANG[$this->LLkey][$expandedKey][0]['target'] != '') {
 					$key = $expandedKey;

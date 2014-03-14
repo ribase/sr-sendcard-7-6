@@ -1,6 +1,7 @@
 2014-03-14  Stanislas Rolland  <typo3@sjbr.ca
 
 	* Remove reference to deprecated method
+	* Fix informal salutation in TYPO3 4.6+
 
 2014-02-21  Stanislas Rolland  <typo3@sjbr.ca
 
