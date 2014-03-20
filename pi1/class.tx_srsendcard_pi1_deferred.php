@@ -70,14 +70,15 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 			// Disable caching
 		$this->pi_USER_INT_obj = FALSE;
 		$GLOBALS['TSFE']->set_no_cache();
-			// Load template
+		// Load template
 		$this->templateCode = $this->fileResource($this->conf['templateFile']);
-			// Setting CSS style markers if required
+		// Setting CSS style markers if required
+		$globalMarkerArray = array();
 		if ($this->conf['enableHTMLMail']) {
 			$globalMarkerArray['###CSS_STYLES###'] = $this->fileResource($this->conf['HTMLMailCSS']);
 		}
 		$this->templateCode = $this->cObj->substituteMarkerArray($this->templateCode, $globalMarkerArray);
-			// Initialize markers arrays
+		// Initialize markers arrays
 		$wrappedSubpartArray = array();
 		$subpartArray = array();
 		$markerArray = array();

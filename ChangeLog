@@ -1,3 +1,7 @@
+2014-03-20  Stanislas Rolland  <typo3@sjbr.ca
+
+	* Resolves #57101: Fatal Error on Execution of Scheduler Task
+
 2014-03-14  Stanislas Rolland  <typo3@sjbr.ca
 
 	* Remove reference to deprecated method
