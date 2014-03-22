@@ -1,6 +1,7 @@
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 
 	* Fix charset setting for emails set in deferred mode
+	* Update version to 3.1.0
 
 2014-03-20  Stanislas Rolland  <typo3@sjbr.ca
 

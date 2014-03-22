@@ -1,21 +1,21 @@
 <?php
 
-########################################################################
-# Extension Manager/Repository config file for ext "sr_sendcard".
-#
-# Auto generated 09-06-2012 20:53
-#
-# Manual updates:
-# Only the data in the array - everything else is removed by next
-# writing. "version" and "dependencies" must not be touched!
-########################################################################
+/***************************************************************
+ * Extension Manager/Repository config file for ext "sr_sendcard".
+ *
+ * Auto generated 22-03-2014 18:15
+ *
+ * Manual updates:
+ * Only the data in the array - everything else is removed by next
+ * writing. "version" and "dependencies" must not be touched!
+ ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = array (
 	'title' => 'Send-A-Card',
-	'description' => 'Sender selects, formats, previews and sends a postcard. Recipient receives an email at a set date (sent by cron job if future) with link to the postcard. Sender may be notified that the card was viewed.',
+	'description' => 'Sender selects, formats, previews and sends a postcard. Recipient receives an email at a set date with link to the postcard. Sender may be notified that the card was viewed.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '3.0.1',
+	'version' => '3.1.0',
 	'priority' => '',
 	'loadOrder' => '',
 	'module' => '',
@@ -30,16 +30,20 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_company' => 'SJBR',
 	'CGLcompliance' => '',
 	'CGLcompliance_note' => '',
-	'constraints' => array(
-		'depends' => array(
+	'constraints' => 
+	array (
+		'depends' => 
+		array (
 			'scheduler' => '',
 			'php' => '5.3.0-0.0.0',
 			'typo3' => '4.5.0-6.2.99',
 		),
-		'conflicts' => array(
+		'conflicts' => 
+		array (
 			'cc_cbrowse' => '',
 		),
-		'suggests' => array(
+		'suggests' => 
+		array (
 			'sr_freecap' => '',
 		),
 	),
