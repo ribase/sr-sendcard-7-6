@@ -1,3 +1,7 @@
+2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
+
+	* Fix charset setting for emails set in deferred mode
+
 2014-03-20  Stanislas Rolland  <typo3@sjbr.ca
 
 	* Resolves #57101: Fatal Error on Execution of Scheduler Task

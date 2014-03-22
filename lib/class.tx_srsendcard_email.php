@@ -96,7 +96,7 @@ class tx_srsendcard_email {
 		$markerArray['###SITE_WWW###'] = t3lib_div::getIndpEnv('TYPO3_HOST_ONLY');
 		$markerArray['###SITE_URL###'] = $this->siteUrl;
 		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
-		$markerArray['###CHARSET###'] = 'utf-8';
+		$markerArray['###CHARSET###'] = $GLOBALS['TSFE']->renderCharset ?: 'utf-8';
 			// Substitute markers in templates
 		$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, array(), array());
 		if ($this->conf['enableHTMLMail']) {
