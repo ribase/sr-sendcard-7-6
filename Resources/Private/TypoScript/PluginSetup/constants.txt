@@ -13,7 +13,7 @@ plugin.tx_srsendcard_pi1 {
   enableHTMLMail = 0
 
     # cat=plugin.tx_srsendcard_pi1/file; type=file[css]; label= HTML emails stylesheet: If HTML emails are enabled, this file contains the CSS stylesheet to be incorporated in these mails.
-  HTMLMailCSS = EXT:sr_sendcard/pi1/tx_srsendcard_htmlmail.css
+  HTMLMailCSS = EXT:sr_sendcard/Resources/Private/StyleSheets/htmlmail.css
 
     # cat=plugin.tx_srsendcard_pi1/enable; type=boolean; label= Force base64 encoding of HTML emails: If set, HTML emails will be base64 encoded. The default encoding is quoted-printable.
   forceBase64Encoding = 0

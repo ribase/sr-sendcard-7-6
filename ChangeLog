@@ -3,6 +3,7 @@
 	* Move TypoScript configuration to Configuration and Resources folders
 	* Move music files to Resources/Public/Audio folder
 	* Move font files to Resources/Private/Fonts folder
+	* Move html email stylesheet Resources/Private/StyleSheets folder
 
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 
