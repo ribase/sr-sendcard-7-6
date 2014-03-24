@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'description' => 'Sender selects, formats, previews and sends a postcard. Recipient receives an email at a set date with link to the postcard. Sender may be notified that the card was viewed.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '3.1.0',
+	'version' => '6.2.0-dev',
 	'priority' => '',
 	'loadOrder' => '',
 	'module' => '',
@@ -36,7 +36,7 @@ $EM_CONF[$_EXTKEY] = array (
 		array (
 			'scheduler' => '',
 			'php' => '5.3.0-0.0.0',
-			'typo3' => '4.5.0-6.2.99',
+			'typo3' => '6.2.0-6.2.99',
 		),
 		'conflicts' => 
 		array (

@@ -5,6 +5,7 @@
 	* Move font files to Resources/Private/Fonts folder
 	* Move html email stylesheet Resources/Private/StyleSheets folder
 	* Move table configuration to Configuration/TCA folder
+	* Require TYPO3 6.2
 
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 
