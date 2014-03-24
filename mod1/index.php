@@ -26,7 +26,7 @@
 *
 * @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'mod1/locallang.xml');
+$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'Resources/Private/Language/locallang_mod.xlf');
 	// This checks permissions and exits if the users has no permission for entry.
 $GLOBALS['BE_USER']->modAccess($MCONF, 1);
 
