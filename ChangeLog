@@ -4,6 +4,7 @@
 	* Move music files to Resources/Public/Audio folder
 	* Move font files to Resources/Private/Fonts folder
 	* Move html email stylesheet Resources/Private/StyleSheets folder
+	* Move table configuration to Configuration/TCA folder
 
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 

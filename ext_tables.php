@@ -8,26 +8,6 @@ $typo3Version = t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/PluginSetup', 'Send-A-Card Setup');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/DefaultStyles', 'Send-A-Card CSS Styles');
 
-$GLOBALS['TCA']['tx_srsendcard_card'] = Array (
-	'ctrl' => Array (
-	'title' => 'LLL:EXT:sr_sendcard/locallang_db.xml:tx_srsendcard_card',
-		'label' => 'card',
-		'default_sortby' => 'ORDER BY sorting',
-		'sortby' => 'sorting',
-		'delete' => 'deleted',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l18n_parent',
-		'transOrigDiffSourceField' => 'l18n_diffsource',
-		'enablecolumns' => Array (
-			'disabled' => 'hidden',
-			'starttime' => 'starttime',
-			'endtime' => 'endtime',
-		),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY).'ext_icon.gif',
-		)
-	);
-
 t3lib_extMgm::allowTableOnStandardPages('tx_srsendcard_card');
 t3lib_extMgm::addToInsertRecords('tx_srsendcard_card');
 
