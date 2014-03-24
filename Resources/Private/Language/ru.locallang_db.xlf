@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="ru" datatype="plaintext" original="messages" date="2014-03-24T22:33:55Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="tx_srsendcard_sendcard" xml:space="preserve" approved="yes">
+				<source>Sent card</source>
+				<target>Отправленные открытки</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.uid" xml:space="preserve" approved="yes">
+				<source>Card Uid</source>
+				<target>Отправить открытку</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+				<target>Изображение</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.ip_address" xml:space="preserve" approved="yes">
+				<source>IP Address</source>
+				<target>IP адрес</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card" xml:space="preserve" approved="yes">
+				<source>Postcard</source>
+				<target>Открытка</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.card" xml:space="preserve" approved="yes">
+				<source>PostCard Title</source>
+				<target>Заголовок открытки</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.image" xml:space="preserve" approved="yes">
+				<source>PostCard Image</source>
+				<target>Изображение открытки</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.altText" xml:space="preserve" approved="yes">
+				<source>Alternate text for the image</source>
+				<target>Альтернативный текст для изображения</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_width" xml:space="preserve" approved="yes">
+				<source>Image Width</source>
+				<target>Ширина изображения</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_height" xml:space="preserve" approved="yes">
+				<source>Image Height</source>
+				<target>Высота изображения</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image" xml:space="preserve" approved="yes">
+				<source>Alternate Image</source>
+				<target>Альтернативное изображение</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selectionaltText" xml:space="preserve" approved="yes">
+				<source>Alternate text for the alternate image</source>
+				<target>Альтернативный текст для альтернативного изображения</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_width" xml:space="preserve" approved="yes">
+				<source>Alternate Image Width</source>
+				<target>Ширина альтернативного изображения</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_height" xml:space="preserve" approved="yes">
+				<source>Alternate Image Height</source>
+				<target>Высота альтернативного изображения</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.link_pid" xml:space="preserve" approved="yes">
+				<source>Linked Page</source>
+				<target>Связанная страница</target>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type" xml:space="preserve" approved="yes">
+				<source>Postcards</source>
+				<target>Открытки</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

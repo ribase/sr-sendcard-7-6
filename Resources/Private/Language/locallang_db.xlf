@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-03-24T22:33:55Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="tx_srsendcard_sendcard" xml:space="preserve">
+				<source>Sent card</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.uid" xml:space="preserve">
+				<source>Card Uid</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.image" xml:space="preserve">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.ip_address" xml:space="preserve">
+				<source>IP Address</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card" xml:space="preserve">
+				<source>Postcard</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.card" xml:space="preserve">
+				<source>PostCard Title</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.image" xml:space="preserve">
+				<source>PostCard Image</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.altText" xml:space="preserve">
+				<source>Alternate text for the image</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_width" xml:space="preserve">
+				<source>Image Width</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_height" xml:space="preserve">
+				<source>Image Height</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image" xml:space="preserve">
+				<source>Alternate Image</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selectionaltText" xml:space="preserve">
+				<source>Alternate text for the alternate image</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_width" xml:space="preserve">
+				<source>Alternate Image Width</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_height" xml:space="preserve">
+				<source>Alternate Image Height</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.link_pid" xml:space="preserve">
+				<source>Linked Page</source>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type" xml:space="preserve">
+				<source>Postcards</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

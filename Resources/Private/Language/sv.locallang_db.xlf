@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="sv" datatype="plaintext" original="messages" date="2014-03-24T22:33:55Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="tx_srsendcard_sendcard" xml:space="preserve" approved="yes">
+				<source>Sent card</source>
+				<target>Skicka kort</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.uid" xml:space="preserve" approved="yes">
+				<source>Card Uid</source>
+				<target>Kort ID</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+				<target>Bild</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.ip_address" xml:space="preserve" approved="yes">
+				<source>IP Address</source>
+				<target>IP adress</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card" xml:space="preserve" approved="yes">
+				<source>Postcard</source>
+				<target>Postkort</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.card" xml:space="preserve" approved="yes">
+				<source>PostCard Title</source>
+				<target>Postkortsrubrik</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.image" xml:space="preserve" approved="yes">
+				<source>PostCard Image</source>
+				<target>Postkortsbild</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.altText" xml:space="preserve" approved="yes">
+				<source>Alternate text for the image</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_width" xml:space="preserve" approved="yes">
+				<source>Image Width</source>
+				<target>Bildens bredd</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_height" xml:space="preserve" approved="yes">
+				<source>Image Height</source>
+				<target>Bildens höjd</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image" xml:space="preserve" approved="yes">
+				<source>Alternate Image</source>
+				<target>Alternativ bild</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selectionaltText" xml:space="preserve" approved="yes">
+				<source>Alternate text for the alternate image</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_width" xml:space="preserve" approved="yes">
+				<source>Alternate Image Width</source>
+				<target>Alternativ bildbredd</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_height" xml:space="preserve" approved="yes">
+				<source>Alternate Image Height</source>
+				<target>Alternativ bildhöjd</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.link_pid" xml:space="preserve" approved="yes">
+				<source>Linked Page</source>
+				<target>Länkad sida</target>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type" xml:space="preserve" approved="yes">
+				<source>Postcards</source>
+				<target>Postkort</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

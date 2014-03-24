@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="nl" datatype="plaintext" original="messages" date="2014-03-24T22:33:55Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="tx_srsendcard_sendcard" xml:space="preserve" approved="yes">
+				<source>Sent card</source>
+				<target>Verstuur kaart</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.uid" xml:space="preserve" approved="yes">
+				<source>Card Uid</source>
+				<target>Kaart nummer</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.image" xml:space="preserve" approved="yes">
+				<source>Image</source>
+				<target>Afbeelding</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.ip_address" xml:space="preserve" approved="yes">
+				<source>IP Address</source>
+				<target>IP Adres</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card" xml:space="preserve" approved="yes">
+				<source>Postcard</source>
+				<target>Postkaart</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.card" xml:space="preserve" approved="yes">
+				<source>PostCard Title</source>
+				<target>Postkaart Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.image" xml:space="preserve" approved="yes">
+				<source>PostCard Image</source>
+				<target>Postkaart Afbeelding</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.altText" xml:space="preserve" approved="yes">
+				<source>Alternate text for the image</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_width" xml:space="preserve" approved="yes">
+				<source>Image Width</source>
+				<target>Afbeelding Breedte</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.img_height" xml:space="preserve" approved="yes">
+				<source>Image Height</source>
+				<target>Afbeelding Hoogte</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image" xml:space="preserve" approved="yes">
+				<source>Alternate Image</source>
+				<target>Alternatieve Afbeelding</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selectionaltText" xml:space="preserve" approved="yes">
+				<source>Alternate text for the alternate image</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_width" xml:space="preserve" approved="yes">
+				<source>Alternate Image Width</source>
+				<target>Alternatieve Afbeelding Breedte</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.selection_image_height" xml:space="preserve" approved="yes">
+				<source>Alternate Image Height</source>
+				<target>Alternatieve Afbeelding Hoogte</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_card.link_pid" xml:space="preserve" approved="yes">
+				<source>Linked Page</source>
+				<target>Gekoppelde pagina</target>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type" xml:space="preserve" approved="yes">
+				<source>Postcards</source>
+				<target>Postkaarten</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
