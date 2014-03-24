@@ -297,6 +297,24 @@
 			<trans-unit id="email_cardViewed_text3_informal" xml:space="preserve">
 				<source> .</source>
 			</trans-unit>
+			<trans-unit id="pi1_title" xml:space="preserve">
+				<source>Postcards</source>
+			</trans-unit>
+			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve">
+				<source>Adds electronic postcards on the page.</source>
+			</trans-unit>
+			<trans-unit id="cardMailer.name" xml:space="preserve">
+				<source>Send-A-Card: Send deferred cards</source>
+			</trans-unit>
+			<trans-unit id="cardMailer.description" xml:space="preserve">
+				<source>Sends cards that where scheduled to be sent on a specific date by the sender.</source>
+			</trans-unit>
+			<trans-unit id="label.tx_srsendcard_viewCardPid" xml:space="preserve">
+				<source>Page id where the card may be viewed.</source>
+			</trans-unit>
+			<trans-unit id="msg.tx_srsendcard_viewCardPid" xml:space="preserve">
+				<source>The page id must be an integer greater than 0.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

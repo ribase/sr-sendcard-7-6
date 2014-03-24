@@ -62,7 +62,7 @@ class tx_srsendcard_cardMailer_AdditionalFieldProvider implements tx_scheduler_A
 		$additionalFields = array();
 		$additionalFields[$fieldID] = array(
 			'code'     => $fieldCode,
-			'label'    => 'LLL:EXT:sr_sendcard/locallang.xml:label.tx_srsendcard_viewCardPid',
+			'label'    => 'LLL:EXT:sr_sendcard/Resources/Private/Language/locallang.xlf:label.tx_srsendcard_viewCardPid',
 			'cshKey'   => '_MOD_tools_txschedulerM1',
 			'cshLabel' => $fieldID
 		);
@@ -80,7 +80,7 @@ class tx_srsendcard_cardMailer_AdditionalFieldProvider implements tx_scheduler_A
 	public function validateAdditionalFields(array &$submittedData, tx_scheduler_Module $parentObject) {
 		$submittedData['tx_srsendcard_viewCardPid'] = intval($submittedData['tx_srsendcard_viewCardPid']);
 		if ($submittedData['tx_srsendcard_viewCardPid'] <= 0) {
-			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:sr_sendcard/locallang.xml:msg.tx_srsendcard_viewCardPid'), t3lib_FlashMessage::ERROR);
+			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:sr_sendcard/Resources/Private/Language/locallang.xlf:msg.tx_srsendcard_viewCardPid'), t3lib_FlashMessage::ERROR);
 			$result = FALSE;
 		} else {
 			$result = TRUE;

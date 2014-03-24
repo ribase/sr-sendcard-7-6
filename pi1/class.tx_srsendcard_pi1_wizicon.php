@@ -34,7 +34,7 @@ class tx_srsendcard_pi1_wizicon {
 	 * @return array  Wizard items
 	 */
 	function proc($wizardItems) {
-		$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard').'locallang.xml');
+		$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'Resources/Private/Language/locallang.xlf');
 
 		$wizardItems['plugins_tx_srsendcard_pi1'] = array(
 			'icon' => t3lib_extMgm::extRelPath('sr_sendcard').'pi1/ce_wiz.gif',

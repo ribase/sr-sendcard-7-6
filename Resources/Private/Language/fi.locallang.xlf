@@ -395,6 +395,30 @@
 				<source> .</source>
 				<target></target>
 			</trans-unit>
+			<trans-unit id="pi1_title" xml:space="preserve" approved="yes">
+				<source>Postcards</source>
+				<target>Postikortit</target>
+			</trans-unit>
+			<trans-unit id="pi1_plus_wiz_description" xml:space="preserve" approved="yes">
+				<source>Adds electronic postcards on the page.</source>
+				<target>Lisää elektrooninen postikortti sivulle</target>
+			</trans-unit>
+			<trans-unit id="cardMailer.name" xml:space="preserve" approved="yes">
+				<source>Send-A-Card: Send deferred cards</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="cardMailer.description" xml:space="preserve" approved="yes">
+				<source>Sends cards that where scheduled to be sent on a specific date by the sender.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="label.tx_srsendcard_viewCardPid" xml:space="preserve" approved="yes">
+				<source>Page id where the card may be viewed.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="msg.tx_srsendcard_viewCardPid" xml:space="preserve" approved="yes">
+				<source>The page id must be an integer greater than 0.</source>
+				<target></target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
