@@ -28,7 +28,7 @@ plugin.tx_srsendcard_pi1 {
   dir = uploads/tx_srsendcard
 
     # cat=plugin.tx_srsendcard_pi1/file; type=string; label= Music directory: This is the directory in which the music files are stored.
-  musicDir = EXT:sr_sendcard/music
+  musicDir = EXT:sr_sendcard/Resources/Public/Audio
 
     # cat=plugin.tx_srsendcard_pi1/file; type=string; label= Music files: This is the list (comma ',' separated) of music files from which the card sender can choose. Must be the same length as the list of music labels 'card_music_labels' in pi1/locallang.php. Some example files are provided in the default music directory.
   cardMusicFiles = ,autumnleaves.mid, OverTheRainbow.mid, Pomp_and_Circumstance.mid
