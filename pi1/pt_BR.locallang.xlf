@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="br" datatype="plaintext" original="messages" date="2014-03-24T06:45:26Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="select_image_prompt" xml:space="preserve" approved="yes">
+				<source>What image would you like to include on your postcard?</source>
+				<target>Qual imagem você gostaria de incluir no seu cartão?</target>
+			</trans-unit>
+			<trans-unit id="select_image_prompt_informal" xml:space="preserve" approved="yes">
+				<source>What image would you like to include on your postcard?</source>
+				<target>Qual imagem você gostaria de incluir no seu cartão?</target>
+			</trans-unit>
+			<trans-unit id="video_clip_highlight" xml:space="preserve" approved="yes">
+				<source>Video clip!</source>
+				<target>Vídeo-clip!</target>
+			</trans-unit>
+			<trans-unit id="flash_clip_highlight" xml:space="preserve" approved="yes">
+				<source>Flash animation!</source>
+				<target>Animação em flash!</target>
+			</trans-unit>
+			<trans-unit id="to_who_prompt" xml:space="preserve" approved="yes">
+				<source>Who do you want to send this postcard to?</source>
+				<target>Para quem você deseja enviar este cartão?</target>
+			</trans-unit>
+			<trans-unit id="to_who_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Who do you want to send this postcard to?</source>
+				<target>Para quem você deseja enviar este cartão?</target>
+			</trans-unit>
+			<trans-unit id="to_name_label" xml:space="preserve" approved="yes">
+				<source>Name:</source>
+				<target>Nome:</target>
+			</trans-unit>
+			<trans-unit id="to_email_label" xml:space="preserve" approved="yes">
+				<source>Email address:</source>
+				<target>E-mail:</target>
+			</trans-unit>
+			<trans-unit id="from_who_prompt" xml:space="preserve" approved="yes">
+				<source>Enter your name and email</source>
+				<target>Forneça seu nome e e-mail</target>
+			</trans-unit>
+			<trans-unit id="from_who_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Enter your name and email</source>
+				<target>Forneça seu nome e e-mail</target>
+			</trans-unit>
+			<trans-unit id="from_name_label" xml:space="preserve" approved="yes">
+				<source>Your name:</source>
+				<target>Seu nome:</target>
+			</trans-unit>
+			<trans-unit id="from_name_label_informal" xml:space="preserve" approved="yes">
+				<source>Your name:</source>
+				<target>Seu nome:</target>
+			</trans-unit>
+			<trans-unit id="from_email_label" xml:space="preserve" approved="yes">
+				<source>Your email address:</source>
+				<target>Seu e-mail:</target>
+			</trans-unit>
+			<trans-unit id="from_email_label_informal" xml:space="preserve" approved="yes">
+				<source>Your email address:</source>
+				<target>Seu e-mail:</target>
+			</trans-unit>
+			<trans-unit id="send_date_prompt" xml:space="preserve" approved="yes">
+				<source>When do you want your card to be sent?</source>
+				<target>Quando você quer que seu cartão seja enviado?</target>
+			</trans-unit>
+			<trans-unit id="send_date_prompt_informal" xml:space="preserve" approved="yes">
+				<source>When do you want your card to be sent?</source>
+				<target>Quando você quer que seu cartão seja enviado?</target>
+			</trans-unit>
+			<trans-unit id="month_names" xml:space="preserve" approved="yes">
+				<source>January, February, March, April, May, June, July, August, September, October, November, December</source>
+				<target>Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro</target>
+			</trans-unit>
+			<trans-unit id="card_options_prompt" xml:space="preserve" approved="yes">
+				<source>Adjust these options to your taste</source>
+				<target>Ajuste estas opções a seu gosto</target>
+			</trans-unit>
+			<trans-unit id="card_options_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Adjust these options to your taste</source>
+				<target>Ajuste estas opções a seu gosto</target>
+			</trans-unit>
+			<trans-unit id="card_font_label" xml:space="preserve" approved="yes">
+				<source>Font:</source>
+				<target>Fonte:</target>
+			</trans-unit>
+			<trans-unit id="fontface_labels" xml:space="preserve" approved="yes">
+				<source>Verdana, Comic Sans MS, Arial, Georgia</source>
+				<target>Verdana, Comic Sana MS, Arial, Georgia</target>
+			</trans-unit>
+			<trans-unit id="fontfile_labels" xml:space="preserve" approved="yes">
+				<source>Kids, Koala</source>
+				<target>Kids, Koala</target>
+			</trans-unit>
+			<trans-unit id="card_fontColor_label" xml:space="preserve" approved="yes">
+				<source>Text color:</source>
+				<target>Cor do texto:</target>
+			</trans-unit>
+			<trans-unit id="card_bgColor_label" xml:space="preserve" approved="yes">
+				<source>Background color:</source>
+				<target>Cor de fundo:</target>
+			</trans-unit>
+			<trans-unit id="music_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to include music in your card?</source>
+				<target>Você quer incluir uma música no seu cartão?</target>
+			</trans-unit>
+			<trans-unit id="music_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to include music in your card?</source>
+				<target>Você quer incluir uma música no seu cartão?</target>
+			</trans-unit>
+			<trans-unit id="card_music_labels" xml:space="preserve" approved="yes">
+				<source>No music, Autumn Leaves, Over The Rainbow, Pomp and Circumstance</source>
+				<target>Sem música, Autumn Leaves, Over the Rainbow, Pomp and Circumstance</target>
+			</trans-unit>
+			<trans-unit id="message_prompt" xml:space="preserve" approved="yes">
+				<source>Write the text of the card</source>
+				<target>Escreva aqui o texto do seu cartão</target>
+			</trans-unit>
+			<trans-unit id="message_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Write the text of the card</source>
+				<target>Escreva aqui o texto do seu cartão</target>
+			</trans-unit>
+			<trans-unit id="message_link_instruction" xml:space="preserve" approved="yes">
+				<source>To include a link, insert it between brackets [ ].</source>
+				<target>Para incluir um link, escreva entre &amp;lt; &amp;gt;.</target>
+			</trans-unit>
+			<trans-unit id="message_link_instruction_informal" xml:space="preserve" approved="yes">
+				<source>To include a link, insert it between brackets[ ].</source>
+				<target>Para incluir um link, escreva entre &amp;lt; &amp;gt;.</target>
+			</trans-unit>
+			<trans-unit id="card_title_label" xml:space="preserve" approved="yes">
+				<source>Title:</source>
+				<target>Título:</target>
+			</trans-unit>
+			<trans-unit id="card_message_label" xml:space="preserve" approved="yes">
+				<source>Message:</source>
+				<target>Mensagem:</target>
+			</trans-unit>
+			<trans-unit id="card_message_label_informal" xml:space="preserve" approved="yes">
+				<source>Message:</source>
+				<target>Mensagem:</target>
+			</trans-unit>
+			<trans-unit id="card_signature_label" xml:space="preserve" approved="yes">
+				<source>Signature:</source>
+				<target>Assinatura:</target>
+			</trans-unit>
+			<trans-unit id="card_signature_label_informal" xml:space="preserve" approved="yes">
+				<source>Signature:</source>
+				<target>Assinatura:</target>
+			</trans-unit>
+			<trans-unit id="stamp_altText" xml:space="preserve" approved="yes">
+				<source>Postage stamp</source>
+				<target>Selo postal</target>
+			</trans-unit>
+			<trans-unit id="stamp_title" xml:space="preserve" approved="yes">
+				<source>Postage stamp</source>
+				<target>Selo postal</target>
+			</trans-unit>
+			<trans-unit id="notify_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to be notified by email when the card will been seen?</source>
+				<target>Você quer receber um aviso quando o cartão for visto?</target>
+			</trans-unit>
+			<trans-unit id="notify_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to be notified by email when the card will been seen?</source>
+				<target>Você quer receber um aviso quando o cartão for visto?</target>
+			</trans-unit>
+			<trans-unit id="missing_to_name" xml:space="preserve" approved="yes">
+				<source>Please enter the name of the recipient</source>
+				<target>Por favor insira o nome do destinatário</target>
+			</trans-unit>
+			<trans-unit id="missing_to_name_informal" xml:space="preserve" approved="yes">
+				<source>Please enter the name of the recipient</source>
+				<target>Por favor insira o nome do destinatário</target>
+			</trans-unit>
+			<trans-unit id="invalid_to_email" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Por favor insira um e-mail válido</target>
+			</trans-unit>
+			<trans-unit id="invalid_to_email_informal" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Por favor insira um e-mail válido</target>
+			</trans-unit>
+			<trans-unit id="missing_from_name" xml:space="preserve" approved="yes">
+				<source>Please enter your name</source>
+				<target>Por favor insira seu nome</target>
+			</trans-unit>
+			<trans-unit id="missing_from_name_informal" xml:space="preserve" approved="yes">
+				<source>Please enter your name</source>
+				<target>Por favor insira seu nome</target>
+			</trans-unit>
+			<trans-unit id="invalid_from_email" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Por favor insira um e-mail válido</target>
+			</trans-unit>
+			<trans-unit id="invalid_from_email_informal" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Por favor insira um e-mail válido</target>
+			</trans-unit>
+			<trans-unit id="missing_card_message" xml:space="preserve" approved="yes">
+				<source>Please enter your message</source>
+				<target>Por favor escreva uma mensagem</target>
+			</trans-unit>
+			<trans-unit id="missing_card_message_informal" xml:space="preserve" approved="yes">
+				<source>Please enter your message</source>
+				<target>Por favor escreva uma mensagem</target>
+			</trans-unit>
+			<trans-unit id="preview_button_label" xml:space="preserve" approved="yes">
+				<source>Preview the card</source>
+				<target>Visualizar o cartão</target>
+			</trans-unit>
+			<trans-unit id="send_button_label" xml:space="preserve" approved="yes">
+				<source>Send this card</source>
+				<target>Enviar o cartão</target>
+			</trans-unit>
+			<trans-unit id="captcha_try_again" xml:space="preserve" approved="yes">
+				<source>The word you entered did not match the word on the image. Please try again!</source>
+				<target>A palavra inserida não confere com a contida na imagem. Por favor tente novamente!</target>
+			</trans-unit>
+			<trans-unit id="captcha_try_again_informal" xml:space="preserve" approved="yes">
+				<source>The word you entered did not match the word on the image. Please try again!</source>
+				<target>A palavra inserida não confere com a contida na imagem. Por favor tente novamente!</target>
+			</trans-unit>
+			<trans-unit id="modify_button_label" xml:space="preserve" approved="yes">
+				<source>Modify the card</source>
+				<target>Modificar o cartão</target>
+			</trans-unit>
+			<trans-unit id="cardSent_thank_you" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Obrigado por enviar um cartão eletrônico!</target>
+			</trans-unit>
+			<trans-unit id="cardSent_send_another" xml:space="preserve" approved="yes">
+				<source>Click here to send another one!</source>
+				<target>Clique aqui para enviar outro!</target>
+			</trans-unit>
+			<trans-unit id="cardSent_send_another_informal" xml:space="preserve" approved="yes">
+				<source>Click here to send another one!</source>
+				<target>Clique aqui para enviar outro!</target>
+			</trans-unit>
+			<trans-unit id="printCard_prompt" xml:space="preserve" approved="yes">
+				<source>Print the card</source>
+				<target>Imprimir o cartão</target>
+			</trans-unit>
+			<trans-unit id="sendCard_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to send an electonic card?</source>
+				<target>Você quer enviar um cartão eletrônico?</target>
+			</trans-unit>
+			<trans-unit id="sendCard_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to send an electonic card?</source>
+				<target>Você quer enviar um cartão eletrônico?</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_sorry" xml:space="preserve" approved="yes">
+				<source>We are sorry that we could not find your card.</source>
+				<target>Desculpe, mas não conseguimos encontrar seu cartão.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_sorry_informal" xml:space="preserve" approved="yes">
+				<source>We are sorry that we could not find your card.</source>
+				<target>Desculpe, mas não conseguimos encontrar seu cartão.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_instructions" xml:space="preserve" approved="yes">
+				<source>Please make sure that you copied the complete link or that the conservation period has not expired.</source>
+				<target>Por favor certifique-se de ter copiado o link corretamente ou se a data de conservação não venceu.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_instructions_informal" xml:space="preserve" approved="yes">
+				<source>Please make sure that you copied the complete link or that the conservation period has not expired.</source>
+				<target>Por favor certifique-se de ter copiado o link corretamente ou se a data de conservação não venceu.</target>
+			</trans-unit>
+			<trans-unit id="need_quicktime_message" xml:space="preserve" approved="yes">
+				<source>You need QuickTime to view this card. You may download QuickTime from this address:</source>
+				<target>Você precisa de QuickTime para ver este cartão. Você pode baixar o QuickTime neste endereço:</target>
+			</trans-unit>
+			<trans-unit id="need_quicktime_message_informal" xml:space="preserve" approved="yes">
+				<source>You need QuickTime to view this card. You may download QuickTime from this address:</source>
+				<target>Você precisa de QuickTime para ver este cartão. Você pode baixar o QuickTime neste endereço:</target>
+			</trans-unit>
+			<trans-unit id="need_flash_message" xml:space="preserve" approved="yes">
+				<source>You need Flash to view this card. You may download Flash from this address:</source>
+				<target>Você precisa de Flash para ver este cartão. Você pode baixar o Flash neste endereço:</target>
+			</trans-unit>
+			<trans-unit id="need_flash_message_informal" xml:space="preserve" approved="yes">
+				<source>You need Flash to view this card. You may download Flash from this address:</source>
+				<target>Você precisa de Flash para ver este cartão. Você pode baixar o Flash neste endereço:</target>
+			</trans-unit>
+			<trans-unit id="loading_card_music" xml:space="preserve" approved="yes">
+				<source>The music file is being loaded.</source>
+				<target>O arquivo musical está sendo carregado.</target>
+			</trans-unit>
+			<trans-unit id="loading_video_clip" xml:space="preserve" approved="yes">
+				<source>The video clip is being loaded.</source>
+				<target>O vídeo-clip está sendo carregado.</target>
+			</trans-unit>
+			<trans-unit id="loading_flash_animation" xml:space="preserve" approved="yes">
+				<source>The flash animation is being loaded.</source>
+				<target>A animação está sendo carregada.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_subject2" xml:space="preserve" approved="yes">
+				<source> sent you a postcard</source>
+				<target>lhe enviou um cartão</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_subject2_informal" xml:space="preserve" approved="yes">
+				<source> sent you a postcard</source>
+				<target>lhe enviou um cartão</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title1" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Querido (a)</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title1_informal" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Querido (a)</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title2" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title2_informal" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text2" xml:space="preserve" approved="yes">
+				<source> sent you a postcard.</source>
+				<target>lhe enviou um cartão.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text2_informal" xml:space="preserve" approved="yes">
+				<source> sent you a postcard.</source>
+				<target>lhe enviou um cartão.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text3" xml:space="preserve" approved="yes">
+				<source>You can see it here: </source>
+				<target>Você pode vê-lo aqui:</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text3_informal" xml:space="preserve" approved="yes">
+				<source>You can see it here: </source>
+				<target>Você pode vê-lo aqui:</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text4" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target>.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text4_informal" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target>.</target>
+			</trans-unit>
+			<trans-unit id="email_signature" xml:space="preserve" approved="yes">
+				<source>Kind regards,</source>
+				<target>Um abraço,</target>
+			</trans-unit>
+			<trans-unit id="email_signature_informal" xml:space="preserve" approved="yes">
+				<source>Kind regards,</source>
+				<target>Um abraço,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_subject1" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Obrigado por enviar um cartão eletrônico!</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_subject1_informal" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Obrigado por enviar um cartão eletrônico!</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title1" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Querido (a)</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title1_informal" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Querido (a)</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title2" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title2_informal" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text1" xml:space="preserve" approved="yes">
+				<source>Thank you for sending one of our electronic postcards. </source>
+				<target>Obrigado por enviar um de nossos cartões eletrônicos.</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text1_informal" xml:space="preserve" approved="yes">
+				<source>Thank you for sending one of our electronic postcards. </source>
+				<target>Obrigado por enviar um de nossos cartões eletrônicos.</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text2" xml:space="preserve" approved="yes">
+				<source> saw your card </source>
+				<target>viu seu cartão</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text2_informal" xml:space="preserve" approved="yes">
+				<source> saw your card </source>
+				<target>viu seu cartão</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text3" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target>.</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text3_informal" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target>.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

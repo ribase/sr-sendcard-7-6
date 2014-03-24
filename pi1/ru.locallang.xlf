@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="ru" datatype="plaintext" original="messages" date="2014-03-24T06:45:26Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="select_image_prompt" xml:space="preserve" approved="yes">
+				<source>What image would you like to include on your postcard?</source>
+				<target>Какую картинку вы хотите добавить в свою открытку?</target>
+			</trans-unit>
+			<trans-unit id="select_image_prompt_informal" xml:space="preserve" approved="yes">
+				<source>What image would you like to include on your postcard?</source>
+				<target>Какую картинку ты хочешь добавить в свою открытку?</target>
+			</trans-unit>
+			<trans-unit id="video_clip_highlight" xml:space="preserve" approved="yes">
+				<source>Video clip!</source>
+				<target>Видеоклип!</target>
+			</trans-unit>
+			<trans-unit id="flash_clip_highlight" xml:space="preserve" approved="yes">
+				<source>Flash animation!</source>
+				<target>Флэш анимация!</target>
+			</trans-unit>
+			<trans-unit id="to_who_prompt" xml:space="preserve" approved="yes">
+				<source>Who do you want to send this postcard to?</source>
+				<target>Кому вы хотите послать эту открытку?</target>
+			</trans-unit>
+			<trans-unit id="to_who_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Who do you want to send this postcard to?</source>
+				<target>Кому ты хочешь послать эту открытку?</target>
+			</trans-unit>
+			<trans-unit id="to_name_label" xml:space="preserve" approved="yes">
+				<source>Name:</source>
+				<target>Имя:</target>
+			</trans-unit>
+			<trans-unit id="to_email_label" xml:space="preserve" approved="yes">
+				<source>Email address:</source>
+				<target>Арес e-mail:</target>
+			</trans-unit>
+			<trans-unit id="from_who_prompt" xml:space="preserve" approved="yes">
+				<source>Enter your name and email</source>
+				<target>Введите свое имя и e-mail</target>
+			</trans-unit>
+			<trans-unit id="from_who_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Enter your name and email</source>
+				<target>Введи свое имя и e-mail</target>
+			</trans-unit>
+			<trans-unit id="from_name_label" xml:space="preserve" approved="yes">
+				<source>Your name:</source>
+				<target>Ваше имя:</target>
+			</trans-unit>
+			<trans-unit id="from_name_label_informal" xml:space="preserve" approved="yes">
+				<source>Your name:</source>
+				<target>Твое имя:</target>
+			</trans-unit>
+			<trans-unit id="from_email_label" xml:space="preserve" approved="yes">
+				<source>Your email address:</source>
+				<target>Ваш е-мейл:</target>
+			</trans-unit>
+			<trans-unit id="from_email_label_informal" xml:space="preserve" approved="yes">
+				<source>Your email address:</source>
+				<target>Твой емейл:</target>
+			</trans-unit>
+			<trans-unit id="send_date_prompt" xml:space="preserve" approved="yes">
+				<source>When do you want your card to be sent?</source>
+				<target>Когда вы хотите, чтоб открытка была послана?</target>
+			</trans-unit>
+			<trans-unit id="send_date_prompt_informal" xml:space="preserve" approved="yes">
+				<source>When do you want your card to be sent?</source>
+				<target>Когда ты хочешь, чтоб открытка была послана?</target>
+			</trans-unit>
+			<trans-unit id="month_names" xml:space="preserve" approved="yes">
+				<source>January, February, March, April, May, June, July, August, September, October, November, December</source>
+				<target>Январь, Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь</target>
+			</trans-unit>
+			<trans-unit id="card_options_prompt" xml:space="preserve" approved="yes">
+				<source>Adjust these options to your taste</source>
+				<target>Установите настройки по своему вкусу</target>
+			</trans-unit>
+			<trans-unit id="card_options_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Adjust these options to your taste</source>
+				<target>Установи настройки по своему вкусу</target>
+			</trans-unit>
+			<trans-unit id="card_font_label" xml:space="preserve" approved="yes">
+				<source>Font:</source>
+				<target>Шрифт:</target>
+			</trans-unit>
+			<trans-unit id="fontface_labels" xml:space="preserve" approved="yes">
+				<source>Verdana, Comic Sans MS, Arial, Georgia</source>
+				<target>Verdana, Comic Sans MS, Arial, Georgia</target>
+			</trans-unit>
+			<trans-unit id="fontfile_labels" xml:space="preserve" approved="yes">
+				<source>Kids, Koala</source>
+				<target>Kids, Koala</target>
+			</trans-unit>
+			<trans-unit id="card_fontColor_label" xml:space="preserve" approved="yes">
+				<source>Text color:</source>
+				<target>Цвет текста:</target>
+			</trans-unit>
+			<trans-unit id="card_bgColor_label" xml:space="preserve" approved="yes">
+				<source>Background color:</source>
+				<target>Цвет фона:</target>
+			</trans-unit>
+			<trans-unit id="music_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to include music in your card?</source>
+				<target>Вы хотите включить музыку в открытку?</target>
+			</trans-unit>
+			<trans-unit id="music_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to include music in your card?</source>
+				<target>Ты хочешь включить музыку в открытку?</target>
+			</trans-unit>
+			<trans-unit id="card_music_labels" xml:space="preserve" approved="yes">
+				<source>No music, Autumn Leaves, Over The Rainbow, Pomp and Circumstance</source>
+				<target>Без музыки, Autumn Leaves, Over The Rainbow, Pomp and Circumstance</target>
+			</trans-unit>
+			<trans-unit id="message_prompt" xml:space="preserve" approved="yes">
+				<source>Write the text of the card</source>
+				<target>Напишите текст открытки</target>
+			</trans-unit>
+			<trans-unit id="message_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Write the text of the card</source>
+				<target>Напиши текст открытки</target>
+			</trans-unit>
+			<trans-unit id="message_link_instruction" xml:space="preserve" approved="yes">
+				<source>To include a link, insert it between brackets [ ].</source>
+				<target>Чтоб добавить ссылку, напишите еще между квадратными скобками [ ].</target>
+			</trans-unit>
+			<trans-unit id="message_link_instruction_informal" xml:space="preserve" approved="yes">
+				<source>To include a link, insert it between brackets[ ].</source>
+				<target>Чтоб добавить ссылку, напишите еще между квадратными скобками [ ].</target>
+			</trans-unit>
+			<trans-unit id="card_title_label" xml:space="preserve" approved="yes">
+				<source>Title:</source>
+				<target>Заголовок:</target>
+			</trans-unit>
+			<trans-unit id="card_message_label" xml:space="preserve" approved="yes">
+				<source>Message:</source>
+				<target>Сообщение:</target>
+			</trans-unit>
+			<trans-unit id="card_message_label_informal" xml:space="preserve" approved="yes">
+				<source>Message:</source>
+				<target>Сообщение:</target>
+			</trans-unit>
+			<trans-unit id="card_signature_label" xml:space="preserve" approved="yes">
+				<source>Signature:</source>
+				<target>Подпись:</target>
+			</trans-unit>
+			<trans-unit id="card_signature_label_informal" xml:space="preserve" approved="yes">
+				<source>Signature:</source>
+				<target>Подпись:</target>
+			</trans-unit>
+			<trans-unit id="stamp_altText" xml:space="preserve" approved="yes">
+				<source>Postage stamp</source>
+				<target>Почтовый штамп</target>
+			</trans-unit>
+			<trans-unit id="stamp_title" xml:space="preserve" approved="yes">
+				<source>Postage stamp</source>
+				<target>Почтовый штамп</target>
+			</trans-unit>
+			<trans-unit id="notify_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to be notified by email when the card will been seen?</source>
+				<target>Вы хотите, чтоб вам сообщили, когда открытка будет просмотрена?</target>
+			</trans-unit>
+			<trans-unit id="notify_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to be notified by email when the card will been seen?</source>
+				<target>Хочешь, чтоб тебе сообщили, когда открытка будет просмотрена?</target>
+			</trans-unit>
+			<trans-unit id="missing_to_name" xml:space="preserve" approved="yes">
+				<source>Please enter the name of the recipient</source>
+				<target>Введите пожалуйста имя получателя</target>
+			</trans-unit>
+			<trans-unit id="missing_to_name_informal" xml:space="preserve" approved="yes">
+				<source>Please enter the name of the recipient</source>
+				<target>Введи пожалуйста имя получателя</target>
+			</trans-unit>
+			<trans-unit id="invalid_to_email" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Введите правильный адрес e-mail</target>
+			</trans-unit>
+			<trans-unit id="invalid_to_email_informal" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Введи правильный адрес e-mail</target>
+			</trans-unit>
+			<trans-unit id="missing_from_name" xml:space="preserve" approved="yes">
+				<source>Please enter your name</source>
+				<target>Введите пожалуйста свое имя</target>
+			</trans-unit>
+			<trans-unit id="missing_from_name_informal" xml:space="preserve" approved="yes">
+				<source>Please enter your name</source>
+				<target>Введи пожалуйста свое имя</target>
+			</trans-unit>
+			<trans-unit id="invalid_from_email" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Введите правильный адрес e-mail</target>
+			</trans-unit>
+			<trans-unit id="invalid_from_email_informal" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Введи правильный адрес e-mail</target>
+			</trans-unit>
+			<trans-unit id="missing_card_message" xml:space="preserve" approved="yes">
+				<source>Please enter your message</source>
+				<target>Пожалуйста добавьте текст открытки</target>
+			</trans-unit>
+			<trans-unit id="missing_card_message_informal" xml:space="preserve" approved="yes">
+				<source>Please enter your message</source>
+				<target>Пожалуйста добавьте текст открытки</target>
+			</trans-unit>
+			<trans-unit id="preview_button_label" xml:space="preserve" approved="yes">
+				<source>Preview the card</source>
+				<target>Просмотреть открытку</target>
+			</trans-unit>
+			<trans-unit id="send_button_label" xml:space="preserve" approved="yes">
+				<source>Send this card</source>
+				<target>Отправить открытку</target>
+			</trans-unit>
+			<trans-unit id="captcha_try_again" xml:space="preserve" approved="yes">
+				<source>The word you entered did not match the word on the image. Please try again!</source>
+				<target>Введенные вами буквы не соответствуют буквам на картинке. Попробуйте снова!</target>
+			</trans-unit>
+			<trans-unit id="captcha_try_again_informal" xml:space="preserve" approved="yes">
+				<source>The word you entered did not match the word on the image. Please try again!</source>
+				<target>Введенные тобой буквы не соответствуют буквам на картинке. Попробуй снова!</target>
+			</trans-unit>
+			<trans-unit id="modify_button_label" xml:space="preserve" approved="yes">
+				<source>Modify the card</source>
+				<target>Изменить открытку</target>
+			</trans-unit>
+			<trans-unit id="cardSent_thank_you" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Спасибо, что отправили электронную открытку!</target>
+			</trans-unit>
+			<trans-unit id="cardSent_send_another" xml:space="preserve" approved="yes">
+				<source>Click here to send another one!</source>
+				<target>Кликните тут, чтоб отправить еще одну!</target>
+			</trans-unit>
+			<trans-unit id="cardSent_send_another_informal" xml:space="preserve" approved="yes">
+				<source>Click here to send another one!</source>
+				<target>Кликни тут, чтоб отправить еще одну!</target>
+			</trans-unit>
+			<trans-unit id="printCard_prompt" xml:space="preserve" approved="yes">
+				<source>Print the card</source>
+				<target>Распечатать открытку</target>
+			</trans-unit>
+			<trans-unit id="sendCard_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to send an electonic card?</source>
+				<target>Вы хотите отправить электронную открытку?</target>
+			</trans-unit>
+			<trans-unit id="sendCard_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to send an electonic card?</source>
+				<target>Хочешь отправить электронную открытку?</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_sorry" xml:space="preserve" approved="yes">
+				<source>We are sorry that we could not find your card.</source>
+				<target>Нам очень жаль, но мы не можем найти вашу открытку.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_sorry_informal" xml:space="preserve" approved="yes">
+				<source>We are sorry that we could not find your card.</source>
+				<target>Нам очень жаль, но мы не можем найти твою открытку.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_instructions" xml:space="preserve" approved="yes">
+				<source>Please make sure that you copied the complete link or that the conservation period has not expired.</source>
+				<target>Пожалуйста убедитесь, что вы скопировали ссылку полностью и срок хранения открытки не истек.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_instructions_informal" xml:space="preserve" approved="yes">
+				<source>Please make sure that you copied the complete link or that the conservation period has not expired.</source>
+				<target>Пожалуйста убедись, что ты скопировал ссылку полностью и срок хранения открытки не истек.</target>
+			</trans-unit>
+			<trans-unit id="need_quicktime_message" xml:space="preserve" approved="yes">
+				<source>You need QuickTime to view this card. You may download QuickTime from this address:</source>
+				<target>Вам нужен QuickTime, чтоб посмотреть открытку.Вы можете скачать QuickTime с этого адреса:</target>
+			</trans-unit>
+			<trans-unit id="need_quicktime_message_informal" xml:space="preserve" approved="yes">
+				<source>You need QuickTime to view this card. You may download QuickTime from this address:</source>
+				<target>Тебе нужен QuickTime, чтоб посмотреть открытку.Ты можешь скачать QuickTime с этого адреса:</target>
+			</trans-unit>
+			<trans-unit id="need_flash_message" xml:space="preserve" approved="yes">
+				<source>You need Flash to view this card. You may download Flash from this address:</source>
+				<target>Вам необходима поддержка Flash, чтоб просмотреть открытку. Вы можете скачать Flash с этого адреса:</target>
+			</trans-unit>
+			<trans-unit id="need_flash_message_informal" xml:space="preserve" approved="yes">
+				<source>You need Flash to view this card. You may download Flash from this address:</source>
+				<target>Тебе необходима поддержка Flash, чтоб просмотреть открытку. Ты можешь скачать Flash с этого адреса:</target>
+			</trans-unit>
+			<trans-unit id="loading_card_music" xml:space="preserve" approved="yes">
+				<source>The music file is being loaded.</source>
+				<target>Загружается музыкальный файл.</target>
+			</trans-unit>
+			<trans-unit id="loading_video_clip" xml:space="preserve" approved="yes">
+				<source>The video clip is being loaded.</source>
+				<target>Загружается видео-клип.</target>
+			</trans-unit>
+			<trans-unit id="loading_flash_animation" xml:space="preserve" approved="yes">
+				<source>The flash animation is being loaded.</source>
+				<target>Загружается флэш-анимация.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_subject2" xml:space="preserve" approved="yes">
+				<source> sent you a postcard</source>
+				<target> отравил вам открытку</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_subject2_informal" xml:space="preserve" approved="yes">
+				<source> sent you a postcard</source>
+				<target> отправил тебе открытку</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title1" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Дорогой(ая) </target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title1_informal" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Дорогой(ая) </target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title2" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title2_informal" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text2" xml:space="preserve" approved="yes">
+				<source> sent you a postcard.</source>
+				<target> отправил вам открытку.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text2_informal" xml:space="preserve" approved="yes">
+				<source> sent you a postcard.</source>
+				<target> отправил тебе открытку.</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text3" xml:space="preserve" approved="yes">
+				<source>You can see it here: </source>
+				<target>Вы можете посмотреть ее по этому адресу: </target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text3_informal" xml:space="preserve" approved="yes">
+				<source>You can see it here: </source>
+				<target>Ты можешь посмотреть ее по этому адресу: </target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text4" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target> .</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text4_informal" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target> .</target>
+			</trans-unit>
+			<trans-unit id="email_signature" xml:space="preserve" approved="yes">
+				<source>Kind regards,</source>
+				<target>С уважением,</target>
+			</trans-unit>
+			<trans-unit id="email_signature_informal" xml:space="preserve" approved="yes">
+				<source>Kind regards,</source>
+				<target>С уважением,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_subject1" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Спасибо вам за то, что отравили электронную открытку!</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_subject1_informal" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Спасибо тебе за то, что отравил электронную открытку!</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title1" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Дорогой(ая) </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title1_informal" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Дорогой(ая) </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title2" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title2_informal" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text1" xml:space="preserve" approved="yes">
+				<source>Thank you for sending one of our electronic postcards. </source>
+				<target>Спасибо вам за то, что отправили одну из наших электронных открыток. </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text1_informal" xml:space="preserve" approved="yes">
+				<source>Thank you for sending one of our electronic postcards. </source>
+				<target>Спасибо за то, что отправил одну из наших электронных открыток. </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text2" xml:space="preserve" approved="yes">
+				<source> saw your card </source>
+				<target> посмотрел вашу открытку </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text2_informal" xml:space="preserve" approved="yes">
+				<source> saw your card </source>
+				<target> посмотрел вашу открытку </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text3" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target> .</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text3_informal" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target> .</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

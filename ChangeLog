@@ -6,6 +6,7 @@
 	* Move html email stylesheet Resources/Private/StyleSheets folder
 	* Move table configuration to Configuration/TCA folder
 	* Require TYPO3 6.2
+	* Convert pi1/locallang.xml to xlf and copy to Resources/Private/Language folder
 
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 

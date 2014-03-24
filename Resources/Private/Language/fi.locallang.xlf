@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="fi" datatype="plaintext" original="messages" date="2014-03-24T06:45:26Z" product-name="sr_sendcard">
+		<header/>
+		<body>
+			<trans-unit id="select_image_prompt" xml:space="preserve" approved="yes">
+				<source>What image would you like to include on your postcard?</source>
+				<target>Minkä kuvan haluat liittää postikorttiin?</target>
+			</trans-unit>
+			<trans-unit id="select_image_prompt_informal" xml:space="preserve" approved="yes">
+				<source>What image would you like to include on your postcard?</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="video_clip_highlight" xml:space="preserve" approved="yes">
+				<source>Video clip!</source>
+				<target>Videoleike!</target>
+			</trans-unit>
+			<trans-unit id="flash_clip_highlight" xml:space="preserve" approved="yes">
+				<source>Flash animation!</source>
+				<target>Flash-animaatio!</target>
+			</trans-unit>
+			<trans-unit id="to_who_prompt" xml:space="preserve" approved="yes">
+				<source>Who do you want to send this postcard to?</source>
+				<target>Kenelle haluat lähettää tämän postikortin?</target>
+			</trans-unit>
+			<trans-unit id="to_who_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Who do you want to send this postcard to?</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="to_name_label" xml:space="preserve" approved="yes">
+				<source>Name:</source>
+				<target>Nimi:</target>
+			</trans-unit>
+			<trans-unit id="to_email_label" xml:space="preserve" approved="yes">
+				<source>Email address:</source>
+				<target>Email-osoite:</target>
+			</trans-unit>
+			<trans-unit id="from_who_prompt" xml:space="preserve" approved="yes">
+				<source>Enter your name and email</source>
+				<target>Anna nimesi ja email-osoitteesi</target>
+			</trans-unit>
+			<trans-unit id="from_who_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Enter your name and email</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="from_name_label" xml:space="preserve" approved="yes">
+				<source>Your name:</source>
+				<target>Nimesi:</target>
+			</trans-unit>
+			<trans-unit id="from_name_label_informal" xml:space="preserve" approved="yes">
+				<source>Your name:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="from_email_label" xml:space="preserve" approved="yes">
+				<source>Your email address:</source>
+				<target>Email-osoitteesi:</target>
+			</trans-unit>
+			<trans-unit id="from_email_label_informal" xml:space="preserve" approved="yes">
+				<source>Your email address:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="send_date_prompt" xml:space="preserve" approved="yes">
+				<source>When do you want your card to be sent?</source>
+				<target>Koska haluat lähettää tämän postikortin?</target>
+			</trans-unit>
+			<trans-unit id="send_date_prompt_informal" xml:space="preserve" approved="yes">
+				<source>When do you want your card to be sent?</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="month_names" xml:space="preserve" approved="yes">
+				<source>January, February, March, April, May, June, July, August, September, October, November, December</source>
+				<target>Tammikuu, Helmikuu, Maaliskuu, Huhtikuu, Toukokuu, Kesäkuu, Heinäkuu, Elokuu, Syyskuu, Lokakuu, Marraskuu, Joulukuu</target>
+			</trans-unit>
+			<trans-unit id="card_options_prompt" xml:space="preserve" approved="yes">
+				<source>Adjust these options to your taste</source>
+				<target>Aseta nämä vaihtoehdot makusi mukaan</target>
+			</trans-unit>
+			<trans-unit id="card_options_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Adjust these options to your taste</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="card_font_label" xml:space="preserve" approved="yes">
+				<source>Font:</source>
+				<target>Kirjasin:</target>
+			</trans-unit>
+			<trans-unit id="fontface_labels" xml:space="preserve" approved="yes">
+				<source>Verdana, Comic Sans MS, Arial, Georgia</source>
+				<target>Verdana, Comic Sans MS, Arial, Georgia</target>
+			</trans-unit>
+			<trans-unit id="fontfile_labels" xml:space="preserve" approved="yes">
+				<source>Kids, Koala</source>
+				<target>Kids, Koala</target>
+			</trans-unit>
+			<trans-unit id="card_fontColor_label" xml:space="preserve" approved="yes">
+				<source>Text color:</source>
+				<target>Tekstin väri:</target>
+			</trans-unit>
+			<trans-unit id="card_bgColor_label" xml:space="preserve" approved="yes">
+				<source>Background color:</source>
+				<target>Taustaväri:</target>
+			</trans-unit>
+			<trans-unit id="music_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to include music in your card?</source>
+				<target>Haluatko lisätä musiikkia kortille?</target>
+			</trans-unit>
+			<trans-unit id="music_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to include music in your card?</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="card_music_labels" xml:space="preserve" approved="yes">
+				<source>No music, Autumn Leaves, Over The Rainbow, Pomp and Circumstance</source>
+				<target>Ei musiikkia, Syyslehdet, Sateenkaaren toissa puolen, Pomp and Circumstance</target>
+			</trans-unit>
+			<trans-unit id="message_prompt" xml:space="preserve" approved="yes">
+				<source>Write the text of the card</source>
+				<target>Kirjoita viesti kortille</target>
+			</trans-unit>
+			<trans-unit id="message_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Write the text of the card</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="message_link_instruction" xml:space="preserve" approved="yes">
+				<source>To include a link, insert it between brackets [ ].</source>
+				<target>Lisätäksesi linkin laita se [ ] merkkien väliin</target>
+			</trans-unit>
+			<trans-unit id="message_link_instruction_informal" xml:space="preserve" approved="yes">
+				<source>To include a link, insert it between brackets[ ].</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="card_title_label" xml:space="preserve" approved="yes">
+				<source>Title:</source>
+				<target>Otsikko:</target>
+			</trans-unit>
+			<trans-unit id="card_message_label" xml:space="preserve" approved="yes">
+				<source>Message:</source>
+				<target>Viesti:</target>
+			</trans-unit>
+			<trans-unit id="card_message_label_informal" xml:space="preserve" approved="yes">
+				<source>Message:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="card_signature_label" xml:space="preserve" approved="yes">
+				<source>Signature:</source>
+				<target>Allekirjoitus:</target>
+			</trans-unit>
+			<trans-unit id="card_signature_label_informal" xml:space="preserve" approved="yes">
+				<source>Signature:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="stamp_altText" xml:space="preserve" approved="yes">
+				<source>Postage stamp</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="stamp_title" xml:space="preserve" approved="yes">
+				<source>Postage stamp</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="notify_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to be notified by email when the card will been seen?</source>
+				<target>Haluatko saada kuittauksen kun kortti on luettu?</target>
+			</trans-unit>
+			<trans-unit id="notify_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to be notified by email when the card will been seen?</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="missing_to_name" xml:space="preserve" approved="yes">
+				<source>Please enter the name of the recipient</source>
+				<target>Anna vastaanottajan nimi</target>
+			</trans-unit>
+			<trans-unit id="missing_to_name_informal" xml:space="preserve" approved="yes">
+				<source>Please enter the name of the recipient</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="invalid_to_email" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Anna vastaanottajan email-osoite</target>
+			</trans-unit>
+			<trans-unit id="invalid_to_email_informal" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="missing_from_name" xml:space="preserve" approved="yes">
+				<source>Please enter your name</source>
+				<target>Anna oma nimesi</target>
+			</trans-unit>
+			<trans-unit id="missing_from_name_informal" xml:space="preserve" approved="yes">
+				<source>Please enter your name</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="invalid_from_email" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target>Anna oma email-osoitteesi</target>
+			</trans-unit>
+			<trans-unit id="invalid_from_email_informal" xml:space="preserve" approved="yes">
+				<source>Please enter a valid email address</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="missing_card_message" xml:space="preserve" approved="yes">
+				<source>Please enter your message</source>
+				<target>Anna viestisi vastaanottajalle</target>
+			</trans-unit>
+			<trans-unit id="missing_card_message_informal" xml:space="preserve" approved="yes">
+				<source>Please enter your message</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="preview_button_label" xml:space="preserve" approved="yes">
+				<source>Preview the card</source>
+				<target>Esikatsele korttia</target>
+			</trans-unit>
+			<trans-unit id="send_button_label" xml:space="preserve" approved="yes">
+				<source>Send this card</source>
+				<target>Lähetä postikortti</target>
+			</trans-unit>
+			<trans-unit id="captcha_try_again" xml:space="preserve" approved="yes">
+				<source>The word you entered did not match the word on the image. Please try again!</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="captcha_try_again_informal" xml:space="preserve" approved="yes">
+				<source>The word you entered did not match the word on the image. Please try again!</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="modify_button_label" xml:space="preserve" approved="yes">
+				<source>Modify the card</source>
+				<target>Muotoile korttia</target>
+			</trans-unit>
+			<trans-unit id="cardSent_thank_you" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Kiitos kun lähetit kortin!</target>
+			</trans-unit>
+			<trans-unit id="cardSent_send_another" xml:space="preserve" approved="yes">
+				<source>Click here to send another one!</source>
+				<target>Näpsäytä tästä nähdäksesi seuraavan.</target>
+			</trans-unit>
+			<trans-unit id="cardSent_send_another_informal" xml:space="preserve" approved="yes">
+				<source>Click here to send another one!</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="printCard_prompt" xml:space="preserve" approved="yes">
+				<source>Print the card</source>
+				<target>Tulosta kortti</target>
+			</trans-unit>
+			<trans-unit id="sendCard_prompt" xml:space="preserve" approved="yes">
+				<source>Do you want to send an electonic card?</source>
+				<target>Haluatko lähettää elektronisen postikortin!</target>
+			</trans-unit>
+			<trans-unit id="sendCard_prompt_informal" xml:space="preserve" approved="yes">
+				<source>Do you want to send an electonic card?</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_sorry" xml:space="preserve" approved="yes">
+				<source>We are sorry that we could not find your card.</source>
+				<target>Olemme pahoillamme, ettemme löytäneet korttiasi.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_sorry_informal" xml:space="preserve" approved="yes">
+				<source>We are sorry that we could not find your card.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_instructions" xml:space="preserve" approved="yes">
+				<source>Please make sure that you copied the complete link or that the conservation period has not expired.</source>
+				<target>Varmista että kopiot koko osoitteen tai ettei säilytysaika ole umpeutunut.</target>
+			</trans-unit>
+			<trans-unit id="cardNotFound_instructions_informal" xml:space="preserve" approved="yes">
+				<source>Please make sure that you copied the complete link or that the conservation period has not expired.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="need_quicktime_message" xml:space="preserve" approved="yes">
+				<source>You need QuickTime to view this card. You may download QuickTime from this address:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="need_quicktime_message_informal" xml:space="preserve" approved="yes">
+				<source>You need QuickTime to view this card. You may download QuickTime from this address:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="need_flash_message" xml:space="preserve" approved="yes">
+				<source>You need Flash to view this card. You may download Flash from this address:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="need_flash_message_informal" xml:space="preserve" approved="yes">
+				<source>You need Flash to view this card. You may download Flash from this address:</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="loading_card_music" xml:space="preserve" approved="yes">
+				<source>The music file is being loaded.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="loading_video_clip" xml:space="preserve" approved="yes">
+				<source>The video clip is being loaded.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="loading_flash_animation" xml:space="preserve" approved="yes">
+				<source>The flash animation is being loaded.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_subject2" xml:space="preserve" approved="yes">
+				<source> sent you a postcard</source>
+				<target>lähetti Sinulle postikortin</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_subject2_informal" xml:space="preserve" approved="yes">
+				<source> sent you a postcard</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title1" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Hyvä </target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title1_informal" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title2" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_title2_informal" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text2" xml:space="preserve" approved="yes">
+				<source> sent you a postcard.</source>
+				<target> lähetti Sinulle postikortin</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text2_informal" xml:space="preserve" approved="yes">
+				<source> sent you a postcard.</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text3" xml:space="preserve" approved="yes">
+				<source>You can see it here: </source>
+				<target>Voit nähdä sen osoitteessa: </target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text3_informal" xml:space="preserve" approved="yes">
+				<source>You can see it here: </source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text4" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target> .</target>
+			</trans-unit>
+			<trans-unit id="email_cardSent_text4_informal" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_signature" xml:space="preserve" approved="yes">
+				<source>Kind regards,</source>
+				<target>Käy sivuillamme!</target>
+			</trans-unit>
+			<trans-unit id="email_signature_informal" xml:space="preserve" approved="yes">
+				<source>Kind regards,</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_subject1" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target>Kiitos kun lähetit kortin!</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_subject1_informal" xml:space="preserve" approved="yes">
+				<source>Thank you for sending an electronic card!</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title1" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target>Hyvä </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title1_informal" xml:space="preserve" approved="yes">
+				<source>Dear </source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title2" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_title2_informal" xml:space="preserve" approved="yes">
+				<source>,</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text1" xml:space="preserve" approved="yes">
+				<source>Thank you for sending one of our electronic postcards. </source>
+				<target>Kiitos kun lähetit elektronisen postikortin!</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text1_informal" xml:space="preserve" approved="yes">
+				<source>Thank you for sending one of our electronic postcards. </source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text2" xml:space="preserve" approved="yes">
+				<source> saw your card </source>
+				<target> näki lähettämäsi kortin </target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text2_informal" xml:space="preserve" approved="yes">
+				<source> saw your card </source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text3" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target>..</target>
+			</trans-unit>
+			<trans-unit id="email_cardViewed_text3_informal" xml:space="preserve" approved="yes">
+				<source> .</source>
+				<target></target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
