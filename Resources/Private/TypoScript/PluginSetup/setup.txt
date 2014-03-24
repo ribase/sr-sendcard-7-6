@@ -1,0 +1,64 @@
+plugin.tx_srsendcard_pi1 {
+
+	templateFile = {$plugin.tx_srsendcard_pi1.file.templateFile}
+	printIcon = {$plugin.tx_srsendcard_pi1.printIcon}
+	cardStamp = {$plugin.tx_srsendcard_pi1.cardStamp}
+	enableHTMLMail = {$plugin.tx_srsendcard_pi1.enableHTMLMail}
+	HTMLMailCSS = {$plugin.tx_srsendcard_pi1.HTMLMailCSS}
+	forceBase64Encoding = {$plugin.tx_srsendcard_pi1.forceBase64Encoding}
+	siteName = {$plugin.tx_srsendcard_pi1.siteName}
+	siteEmail = {$plugin.tx_srsendcard_pi1.siteEmail}
+	dir = {$plugin.tx_srsendcard_pi1.dir}
+	musicDir = {$plugin.tx_srsendcard_pi1.musicDir}
+	disableMusic = {$plugin.tx_srsendcard_pi1.disableMusic}
+	maxCol = {$plugin.tx_srsendcard_pi1.maxCol}
+	imageSmallWidth = {$plugin.tx_srsendcard_pi1.imageSmallWidth}
+	imageSmallHeight = {$plugin.tx_srsendcard_pi1.imageSmallHeight}
+	imageBigWidth = {$plugin.tx_srsendcard_pi1.imageBigWidth}
+	imageBigHeight = {$plugin.tx_srsendcard_pi1.imageBigHeight}
+	disableImageScaling = {$plugin.tx_srsendcard_pi1.disableImageScaling}
+	doNotShowCardCaptions = {$plugin.tx_srsendcard_pi1.doNotShowCardCaptions}
+	cardPresentationOrder = {$plugin.tx_srsendcard_pi1.cardPresentationOrder}
+	useAlternateImageOnPrint  = {$plugin.tx_srsendcard_pi1.useAlternateImageOnPrint}
+	logo = {$plugin.tx_srsendcard_pi1.logo}
+	logoAlignHor = {$plugin.tx_srsendcard_pi1.logoAlignHor}
+	logoAlignVert = {$plugin.tx_srsendcard_pi1.logoAlignVert}
+	
+	createPID = {$plugin.tx_srsendcard_pi1.createPID}
+	createType = {$plugin.tx_srsendcard_pi1.createType}
+	formPID = {$plugin.tx_srsendcard_pi1.formPID}
+	formType = {$plugin.tx_srsendcard_pi1.formType}
+	previewPID = {$plugin.tx_srsendcard_pi1.previewPID}
+	previewType = {$plugin.tx_srsendcard_pi1.previewType}
+	useCAPTCHA = {$plugin.tx_srsendcard_pi1.useCAPTCHA}
+	viewPID = {$plugin.tx_srsendcard_pi1.viewPID}
+	viewType = {$plugin.tx_srsendcard_pi1.viewType}
+	printPID = {$plugin.tx_srsendcard_pi1.printPID}
+	printType = {$plugin.tx_srsendcard_pi1.printType}
+	printWindowParams = {$plugin.tx_srsendcard_pi1.printWindowParams}
+	
+	oldDay = {$plugin.tx_srsendcard_pi1.oldDay}
+	oldMonth = {$plugin.tx_srsendcard_pi1.oldMonth}
+	oldYear = {$plugin.tx_srsendcard_pi1.oldYear}
+	locale_all = {$plugin.tx_srsendcard_pi1.locale_all}
+	date_stdWrap = {$plugin.tx_srsendcard_pi1.date_stdWrap}
+	disableSendDate = {$plugin.tx_srsendcard_pi1.disableSendDate}
+	
+	disableCardOptions = {$plugin.tx_srsendcard_pi1.disableCardOptions}
+	disableBgcolors = {$plugin.tx_srsendcard_pi1.disableBgcolors}
+	cardBgcolors = {$plugin.tx_srsendcard_pi1.cardBgcolors}
+	disableFontcolors = {$plugin.tx_srsendcard_pi1.disableFontcolors}
+	cardFontcolors = {$plugin.tx_srsendcard_pi1.cardFontcolors}
+	disableFontfaces = {$plugin.tx_srsendcard_pi1.disableFontfaces}
+	cardFontfaces = {$plugin.tx_srsendcard_pi1.cardFontfaces}
+	cardMusicFiles = {$plugin.tx_srsendcard_pi1.cardMusicFiles}
+	graphicMess = {$plugin.tx_srsendcard_pi1.graphicMess}
+	useGraphicalMessageEvenOnCardPrint = {$plugin.tx_srsendcard_pi1.useGraphicalMessageEvenOnCardPrint}
+	graphicMessWidth = {$plugin.tx_srsendcard_pi1.graphicMessWidth}
+	graphicMessFontFiles = {$plugin.tx_srsendcard_pi1.graphicMessFontFiles}
+	graphicMessFontSizes = {$plugin.tx_srsendcard_pi1.graphicMessFontSizes}
+	fontDir = {$plugin.tx_srsendcard_pi1.fontDir}
+	enableAlternateSelectionTemplate = {$plugin.tx_srsendcard_pi1.enableAlternateSelectionTemplate}
+	
+	salutation = {$plugin.tx_srsendcard_pi1.salutation}
+}

@@ -1,0 +1,3 @@
+# Include default styles for SrSendcard
+
+page.includeCSS.tx_srsendcard = EXT:sr_sendcard/Resources/Public/StyleSheets/SrSendcard.css

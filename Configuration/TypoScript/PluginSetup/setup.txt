@@ -1,0 +1,1 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:sr_sendcard/Resources/Private/TypoScript/PluginSetup/setup.txt">

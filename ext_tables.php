@@ -4,7 +4,9 @@ if (!defined ('TYPO3_MODE')) {
 }
 $typo3Version = t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version);
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'static/css_styled/', 'Send-A-Card CSS-styled');
+// Register Send-A-Card static templates
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/PluginSetup', 'Send-A-Card Setup');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript/DefaultStyles', 'Send-A-Card CSS Styles');
 
 $GLOBALS['TCA']['tx_srsendcard_card'] = Array (
 	'ctrl' => Array (
