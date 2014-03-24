@@ -163,7 +163,7 @@ plugin.tx_srsendcard_pi1 {
   graphicMessFontSizes = 14,22
 
     # cat=plugin.tx_srsendcard_pi1/file; type=string; label= Graphical message font directory: This is the directory in which the font files are stored. Used only when 'Graphical message' is enabled.
-  fontDir = EXT:sr_sendcard/fonts
+  fontDir = EXT:sr_sendcard/Resources/Private/Fonts
 
     # cat=plugin.tx_srsendcard_pi1/enable; type=boolean; label= Enable alternate selection template: If set, multiple cards series of cards may be displayed in a single content element on the card selection page. See 'Card selection PID'.
   enableAlternateSelectionTemplate=0

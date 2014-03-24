@@ -1,7 +1,8 @@
 2014-03-24  Stanislas Rolland  <typo3@sjbr.ca
 
 	* Move TypoScript configuration to Configuration and Resources folders
-	* Move music files to Resources/Audio folder
+	* Move music files to Resources/Public/Audio folder
+	* Move font files to Resources/Private/Fonts folder
 
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 
