@@ -4,10 +4,10 @@ plugin.tx_srsendcard_pi1 {
   file.templateFile = EXT:sr_sendcard/pi1/tx_srsendcard_xhtml.tmpl
 
     # cat=plugin.tx_srsendcard_pi1/file; type=file[gif,jpg,jpeg,png]; label= Print icon: A print icon presented when viewing the card. Used in the default HTML template.
-  printIcon = EXT:sr_sendcard/pi1/imprimir.gif
+  printIcon = EXT:sr_sendcard/Resources/Public/Images/imprimir.gif
 
     # cat=plugin.tx_srsendcard_pi1/file; type=file[gif,jpg,jpeg,png]; label= Stamp Image: A stamp image file presented when viewing the card. Used in the default HTML template.
-  cardStamp = EXT:sr_sendcard/pi1/sello-la-matatena100x61.jpg
+  cardStamp = EXT:sr_sendcard/Resources/Public/Images/sello-la-matatena100x61.jpg
 
     # cat=plugin.tx_srsendcard_pi1/enable; type=boolean; label= Enable HTML emails: If set, emails sent to the card recipient and card sender will be sent in HTML format.
   enableHTMLMail = 0

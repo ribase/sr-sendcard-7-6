@@ -10,6 +10,7 @@
 	* Convert locallang_db.xml to xlf and move to Resources/Private/Language folder
 	* Convert locallang.xml to xlf and merge to Resources/Private/Language folder
 	* Convert mod1/locallang.xml and mod1/locallang_mod.xml to xlf and merge into Resources/Private/Language folder
+	* Move images to Resources/Public/Images
 
 2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
 

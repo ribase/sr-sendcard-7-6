@@ -15,7 +15,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'iconfile' => t3lib_extMgm::extRelPath('sr_sendcard') . 'ext_icon.gif',
+		'iconfile' => t3lib_extMgm::extRelPath('sr_sendcard') . 'Resources/Public/Images/moduleicon.gif',
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,card,image,cardaltText,img_width,img_height,selection_image,selection_imagealtText,selection_image_width,selection_image_height,link_pid'

@@ -37,7 +37,7 @@ class tx_srsendcard_pi1_wizicon {
 		$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'Resources/Private/Language/locallang.xlf');
 
 		$wizardItems['plugins_tx_srsendcard_pi1'] = array(
-			'icon' => t3lib_extMgm::extRelPath('sr_sendcard').'pi1/ce_wiz.gif',
+			'icon' => t3lib_extMgm::extRelPath('sr_sendcard') . 'Resources/Public/Images/moduleicon.gif',
 			'title' => $GLOBALS['LANG']->getLL('pi1_title'),
 			'description' => $GLOBALS['LANG']->getLL('pi1_plus_wiz_description'),
 			'params' => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=sr_sendcard_pi1'
