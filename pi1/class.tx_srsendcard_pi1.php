@@ -1420,12 +1420,12 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				if ($this->conf['logoAlignHor'] == 'left') {
 					$geometry = '+0';
 				} else {
-					$geometry = '+'.t3lib_div::intval_positive($width-$logoImgInfo[0]);
+					$geometry = '+' . t3lib_utility_Math::convertToPositiveInteger($width-$logoImgInfo[0]);
 				}
 				if ($this->conf['logoAlignVert'] == 'top') {
 					$geometry .= '+0';
 				} else {
-					$geometry .= '+'.t3lib_div::intval_positive($height-$logoImgInfo[1]);
+					$geometry .= '+' . t3lib_utility_Math::convertToPositiveInteger($height-$logoImgInfo[1]);
 				}
 				$ifile = $this->imgObj->tempPath.$imageFile;
 				$ofile = $this->extKey.'_'.t3lib_div::shortMD5($this->extKey.$ifile.filemtime($ifile).$logoResource.$geometry).'.'.$extension;
