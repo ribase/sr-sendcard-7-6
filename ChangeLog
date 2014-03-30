@@ -1,4 +1,8 @@
-2014-03-24  Stanislas Rolland  <typo3@sjbr.ca
+2014-03-30  Stanislas Rolland  <typo3@sjbr.ca>
+
+	* Add missing label
+
+2014-03-24  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Move TypoScript configuration to Configuration and Resources folders
 	* Move music files to Resources/Public/Audio folder
@@ -12,21 +16,21 @@
 	* Convert mod1/locallang.xml and mod1/locallang_mod.xml to xlf and merge into Resources/Private/Language folder
 	* Move images to Resources/Public/Images
 
-2014-03-22  Stanislas Rolland  <typo3@sjbr.ca
+2014-03-22  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Fix charset setting for emails set in deferred mode
 	* Update version to 3.1.0
 
-2014-03-20  Stanislas Rolland  <typo3@sjbr.ca
+2014-03-20  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Resolves #57101: Fatal Error on Execution of Scheduler Task
 
-2014-03-14  Stanislas Rolland  <typo3@sjbr.ca
+2014-03-14  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Remove reference to deprecated method
 	* Fix informal salutation in TYPO3 4.6+
 
-2014-02-21  Stanislas Rolland  <typo3@sjbr.ca
+2014-02-21  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Resolves #56202: Some links are wrong when absRefPrefix is configured
 	* Resolves #42339: Text-Mails are wrong
