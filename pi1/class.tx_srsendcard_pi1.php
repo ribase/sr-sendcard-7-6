@@ -1499,14 +1499,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		// If the suffix is allowed and we have a localized string for the desired salutation, we'll take that.
 		if (isset($this->conf['salutation']) && in_array($this->conf['salutation'], $this->allowedSuffixes, 1)) {
 			$expandedKey = $key . '_' . $this->conf['salutation'];
-			if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) >= 4006000) {
-				if ($this->LOCAL_LANG[$this->LLkey][$expandedKey][0]['target'] != '') {
-					$key = $expandedKey;
-				}
-			} else {
-				if (isset($this->LOCAL_LANG[$this->LLkey][$expandedKey])) {
-					$key = $expandedKey;
-				}
+			if ($this->LOCAL_LANG[$this->LLkey][$expandedKey][0]['target'] != '') {
+				$key = $expandedKey;
 			}
 		}
 		return parent::pi_getLL($key, $alt, $hsc);
@@ -1533,7 +1527,3 @@ class tx_srsendcard_pi1_t3lib_stdGraphic extends t3lib_stdGraphic {
 	}
 
 }
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1.php']);
-}
-?>
