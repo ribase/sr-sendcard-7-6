@@ -26,12 +26,12 @@
 *
 * @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-$GLOBALS['LANG']->includeLLFile(t3lib_extMgm::extPath('sr_sendcard') . 'Resources/Private/Language/locallang_mod.xlf');
-	// This checks permissions and exits if the users has no permission for entry.
+$GLOBALS['LANG']->includeLLFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('sr_sendcard') . 'Resources/Private/Language/locallang_mod.xlf');
+// This checks permissions and exits if the users has no permission for entry.
 $GLOBALS['BE_USER']->modAccess($MCONF, 1);
 
 	// Make instance:
-$GLOBALS['SOBE'] = t3lib_div::makeInstance('tx_srsendcard_statistics');
+$GLOBALS['SOBE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srsendcard_statistics');
 $GLOBALS['SOBE']->init();
 
 	// Include files?
