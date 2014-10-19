@@ -1,8 +1,9 @@
 <?php
+namespace SJBR\SrSendcard\Task;
 /***************************************************************
 *  Copyright notice
 *	
-*  (c) 2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2012-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -25,7 +26,7 @@
  * This is the card mailer task of extension Send-A-Card (sr_sendcard) that sends the deferred cards
  *
  */
-class tx_srsendcard_cardMailer extends tx_scheduler_Task {
+class CardMailerTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 	/**
 	 * Page id on which the card will be viewed
@@ -41,11 +42,11 @@ class tx_srsendcard_cardMailer extends tx_scheduler_Task {
 	public function execute() {
 		$success = FALSE;
 		if (!empty($this->viewCardPid)) {
-			$GLOBALS['TT'] = new t3lib_timeTrack;
+			$GLOBALS['TT'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TimeTracker\\TimeTracker');
 			// ***********************************
 			// Creating a fake $TSFE object
 			// ***********************************
-			$GLOBALS['TSFE'] = t3lib_div::makeInstance('tslib_fe', $GLOBALS['TYPO3_CONF_VARS'], $this->viewCardPid, '0', 1, '', '', '', '');
+			$GLOBALS['TSFE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', $GLOBALS['TYPO3_CONF_VARS'], $this->viewCardPid, '0', 1, '', '', '', '');
 			$GLOBALS['TSFE']->connectToDB();
 			$GLOBALS['TSFE']->initFEuser();
 			$GLOBALS['TSFE']->fetch_the_id();
@@ -54,15 +55,11 @@ class tx_srsendcard_cardMailer extends tx_scheduler_Task {
 			$GLOBALS['TSFE']->tmpl->getFileName_backPath = PATH_site;
 			$GLOBALS['TSFE']->forceTemplateParsing = 1;
 			$GLOBALS['TSFE']->getConfigArray();
-			$sendingCards = t3lib_div::makeInstance('tx_srsendcard_pi1_deferred');
-			$sendingCards->cObj = t3lib_div::makeInstance('tslib_cObj');
+			$sendingCards = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srsendcard_pi1_deferred');
+			$sendingCards->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
 			$conf = $GLOBALS['TSFE']->tmpl->setup['plugin.'][$sendingCards->prefixId . '.'];
 			$success = $sendingCards->main($conf);
 		}
 		return $success;
 	}
 }
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/tasks/class.tx_srsendcard_cardmailer.php']) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/tasks/class.tx_srsendcard_cardmailer.php']);
-}
-?>

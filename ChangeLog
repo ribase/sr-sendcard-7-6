@@ -4,6 +4,7 @@
 	* Fix some Spanish labels
 	* Fix reference to .xml language file
 	* Remove reference to version of TYPO3 before 6.2
+	* Move tasks to Classes/Task folder
 
 2014-03-30  Stanislas Rolland  <typo3@sjbr.ca>
 

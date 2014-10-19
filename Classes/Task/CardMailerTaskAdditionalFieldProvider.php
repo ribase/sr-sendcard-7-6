@@ -1,8 +1,9 @@
 <?php
+namespace SJBR\SrSendcard\Task;
 /***************************************************************
 *  Copyright notice
 *	
-*  (c) 2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2012-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -25,14 +26,13 @@
  * This is the card mailer task additional field provider of extension Send-A-Card (sr_sendcard)
  *
  */
-class tx_srsendcard_cardMailer_AdditionalFieldProvider implements tx_scheduler_AdditionalFieldProvider {
+class CardMailerTaskAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
 	/**
 	 * This method is used to define new fields for adding or editing a task
-	 * In this case, it adds an sleep time field
 	 *
 	 * @param array $taskInfo Reference to the array containing the info used in the add/edit form
 	 * @param object $task When editing, reference to the current task object. Null when adding.
-	 * @param tx_scheduler_Module $parentObject Reference to the calling object (Scheduler's BE module)
+	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject Reference to the calling object (Scheduler's BE module)
 	 * @return array	Array containing all the information pertaining to the additional fields
 	 *					The array is multidimensional, keyed to the task class name and each field's id
 	 *					For each field it provides an associative sub-array with the following:
@@ -41,7 +41,7 @@ class tx_srsendcard_cardMailer_AdditionalFieldProvider implements tx_scheduler_A
 	 *						['cshKey']		=> The CSH key for the field
 	 *						['cshLabel']	=> The code of the CSH label
 	 */
-	public function getAdditionalFields(array &$taskInfo, $task, tx_scheduler_Module $parentObject) {
+	public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject) {
 			// Initialize extra field value
 		if (empty($taskInfo['tx_srsendcard_viewCardPid'])) {
 			if ($parentObject->CMD == 'add') {
@@ -74,13 +74,13 @@ class tx_srsendcard_cardMailer_AdditionalFieldProvider implements tx_scheduler_A
 	 * If the task class is not relevant, the method is expected to return TRUE
 	 *
 	 * @param array $submittedData Reference to the array containing the data submitted by the user
-	 * @param tx_scheduler_Module $parentObject Reference to the calling object (Scheduler's BE module)
+	 * @param \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject Reference to the calling object (Scheduler's BE module)
 	 * @return boolean TRUE if validation was ok (or selected class is not relevant), FALSE otherwise
 	 */
-	public function validateAdditionalFields(array &$submittedData, tx_scheduler_Module $parentObject) {
+	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $parentObject) {
 		$submittedData['tx_srsendcard_viewCardPid'] = intval($submittedData['tx_srsendcard_viewCardPid']);
 		if ($submittedData['tx_srsendcard_viewCardPid'] <= 0) {
-			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:sr_sendcard/Resources/Private/Language/locallang.xlf:msg.tx_srsendcard_viewCardPid'), t3lib_FlashMessage::ERROR);
+			$parentObject->addMessage($GLOBALS['LANG']->sL('LLL:EXT:sr_sendcard/Resources/Private/Language/locallang.xlf:msg.tx_srsendcard_viewCardPid'), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$result = FALSE;
 		} else {
 			$result = TRUE;
@@ -93,14 +93,10 @@ class tx_srsendcard_cardMailer_AdditionalFieldProvider implements tx_scheduler_A
 	 * if the task class matches
 	 *
 	 * @param array $submittedData Array containing the data submitted by the user
-	 * @param tx_scheduler_Task $task Reference to the current task object
+	 * @param \TYPO3\CMS\Scheduler\Task\AbstractTask $task Reference to the current task object
 	 * @return void
 	 */
-	public function saveAdditionalFields(array $submittedData, tx_scheduler_Task $task) {
+	public function saveAdditionalFields(array $submittedData, \TYPO3\CMS\Scheduler\Task\AbstractTask $task) {
 		$task->viewCardPid = $submittedData['tx_srsendcard_viewCardPid'];
 	}
 }
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/tasks/class.tx_srsendcard_cardmailer_additionalfieldprovider.php']) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/tasks/class.tx_srsendcard_cardmailer_additionalfieldprovider.php']);
-}
-?>
