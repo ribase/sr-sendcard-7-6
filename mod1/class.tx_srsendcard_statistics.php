@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -26,7 +26,7 @@
 *
 * @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-class tx_srsendcard_statistics extends t3lib_SCbase {
+class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
 	var $pageinfo;
 
 	/**
@@ -55,13 +55,13 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 		
 			// Access check!
 			// The page will show only if there is a valid page and if this page may be viewed by the user
-		$this->pageinfo = t3lib_BEfunc::readPageAccess($this->id, $this->perms_clause);
+		$this->pageinfo = \TYPO3\CMS\Backend\Utility\BackendUtility::readPageAccess($this->id, $this->perms_clause);
 		$access = is_array($this->pageinfo) ? 1 : 0;
 		
 		if (($this->id && $access) || ($GLOBALS['BE_USER']->user['admin'] && !$this->id)) {
 			
 				// Draw the header.
-			$this->doc = t3lib_div::makeInstance('template');
+			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
 			$this->doc->backPath = $GLOBALS['BACK_PATH'];
 			$this->doc->form = '<form action="" method="POST">';
 			
@@ -89,10 +89,10 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 					</script>
 				';
 			
-			$headerSection = $this->doc->getHeader('pages', $this->pageinfo, $this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->php3Lang['labels']['path'].': '.t3lib_div::fixed_lgd_cs($this->pageinfo['_thePath'], -50);
+			$headerSection = $this->doc->getHeader('pages', $this->pageinfo, $this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->php3Lang['labels']['path'].': '.\TYPO3\CMS\Core\Utility\GeneralUtility::fixed_lgd_cs($this->pageinfo['_thePath'], -50);
 			$content .= $this->doc->header($GLOBALS['LANG']->getLL('title'));
 			$content .= $this->doc->spacer(5);
-			$content .= $this->doc->section('', $this->doc->funcMenu($headerSection, t3lib_BEfunc::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
+			$content .= $this->doc->section('', $this->doc->funcMenu($headerSection, \TYPO3\CMS\Backend\Utility\BackendUtility::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
 			$content .= $this->doc->divider(5);
 				// Render module content
 			$content .= $this->doc->section($GLOBALS['LANG']->getLL('title'), $this->moduleContent(), 0, 1);
@@ -104,7 +104,7 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
 		} else {
 				// If no access or if ID == zero
-			$this->doc = t3lib_div::makeInstance('template');
+			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
 			$this->doc->backPath = $GLOBALS['BACK_PATH'];
 			$content = $this->doc->header($GLOBALS['LANG']->getLL('title'));
 			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
@@ -194,7 +194,3 @@ class tx_srsendcard_statistics extends t3lib_SCbase {
 		return $content;
 	}
 }
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/mod1/class.tx_srsendcard_statistics.php']) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/mod1/class.tx_srsendcard_statistics.php']);
-}
-?>

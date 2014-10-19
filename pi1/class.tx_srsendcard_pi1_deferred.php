@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -37,7 +37,7 @@
  *  Copyright Peter Bowyer <peter@sendcard.org> 2000, 2001, 2002
  *  This script is released under the Artistic License
  */
-class tx_srsendcard_pi1_deferred extends tslib_pibase {
+class tx_srsendcard_pi1_deferred extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		// The backReference to the parent cObj
 	var $cObj;
 		// Same as class name
@@ -56,14 +56,9 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 	 * @param array $conf: the TS configuration array
 	 * @return void
 	 */
-	function main ($conf) {
-			// Invoke parent constructor
-		if (method_exists($this, '__construct')) {
-			parent::__construct();
-		} else {
-				// Before TYPO3 4.6+ and PHP 5.3+
-			parent::tslib_pibase();
-		}
+	public function main ($conf) {
+		// Invoke parent constructor
+		parent::__construct();
 		$this->conf = $conf;
 		$this->pi_loadLL();
 		$tableName = 'tx_srsendcard_sendcard';
@@ -92,7 +87,7 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 			$whereClause
 			);
 			// Create mail object
-		$mail = t3lib_div::makeInstance('tx_srsendcard_email', $this);
+		$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srsendcard_email', $this);
 			// Send the cards
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			$emailData['from_name'] = $row['fromwho'];
@@ -148,14 +143,8 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		// If the suffix is allowed and we have a localized string for the desired salutation, we'll take that.
 		if (isset($this->conf['salutation']) && in_array($this->conf['salutation'], $this->allowedSuffixes, 1)) {
 			$expandedKey = $key . '_' . $this->conf['salutation'];
-			if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) >= 4006000) {
-				if ($this->LOCAL_LANG[$this->LLkey][$expandedKey][0]['target'] != '') {
-					$key = $expandedKey;
-				}
-			} else {
-				if (isset($this->LOCAL_LANG[$this->LLkey][$expandedKey])) {
-					$key = $expandedKey;
-				}
+			if ($this->LOCAL_LANG[$this->LLkey][$expandedKey][0]['target'] != '') {
+				$key = $expandedKey;
 			}
 		}
 		return parent::pi_getLL($key, $alt, $hsc);
@@ -171,12 +160,8 @@ class tx_srsendcard_pi1_deferred extends tslib_pibase {
 		$content = '';
 		$incFile = PATH_site . $GLOBALS['TSFE']->tmpl->getFileName($fName);
 		if ($incFile) {
-			$content = t3lib_div::getURL($incFile);
+			$content = \TYPO3\CMS\Core\Utility\GeneralUtility::getURL($incFile);
 		}
 		return $content;
 	}	
 }
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/pi1/class.tx_srsendcard_pi1_deferred.php']);
-}
-?>

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -40,7 +40,7 @@
 *  Some initial code was taken from Luke Chiam <luke@webesse.com>'s Webesse E-Card extension to build the image selector.
 *
 */
-class tx_srsendcard_pi1 extends tslib_pibase {
+class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		// The back reference to the content cObj object
 	var $cObj;
 	var $prefixId = 'tx_srsendcard_pi1';  				// Same as class name
@@ -61,7 +61,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @param	array		$conf: TS setup for the plugin
 	 * @return	string		content produced by the plugin
 	 */
-	function main ($content, $conf) {
+	public function main ($content, $conf) {
+		
 		$this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
@@ -87,7 +88,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$markerArray = array();
 		
 			// Get get and post parameters
-		$cardData = t3lib_div::_GP($this->prefixId);
+		$cardData = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP($this->prefixId);
 			// Sanitize incoming data
 		if (is_array($cardData)) {
 			foreach ($cardData as $name => $value) {
@@ -105,11 +106,11 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$music_path = $this->conf['musicDir'].'/';
 		if (substr($music_path,0,4) == 'EXT:')      {       // extension
 			list($extKey,$local) = explode('/',substr($music_path,4),2);
-			if (strcmp($extKey,'') &&  t3lib_extMgm::isLoaded($extKey)) {
-				$music_path = t3lib_extMgm::siteRelPath($extKey) . $local;
+			if (strcmp($extKey,'') &&  \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded($extKey)) {
+				$music_path = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($extKey) . $local;
 			}
 		}
-		$site_url = t3lib_div::getIndpEnv('TYPO3_SITE_URL');
+		$site_url = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_SITE_URL');
 		$this->siteUrl = $site_url;
 		$sentCardsFolderPID = 0;
 		
@@ -133,11 +134,11 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$printType = ($this->conf['printType'] == '') ? $viewType : $this->conf['printType'];
 
 			// Create mail object
-		$this->mail = t3lib_div::makeInstance('tx_srsendcard_email', $this);
+		$this->mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srsendcard_email', $this);
 		
 			// Initialise image parameters and functions
 		$imgInfo = '';
-		$this->imgObj = t3lib_div::makeInstance('tx_srsendcard_pi1_t3lib_stdGraphic' );
+		$this->imgObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srsendcard_pi1_GraphicalFunctions' );
 		$this->imgObj->init();
 		$this->imgObj->mayScaleUp = 0;
 		$this->imgObj->tempPath = $cardData['card_image_path'] ? $cardData['card_image_path'] : $this->conf['dir'].'/';
@@ -151,28 +152,27 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		}
 		$this->date = strftime($this->conf['date_stdWrap']);
 		
-			// Initialise language overlay of cards series
-		$this->pidRecord = t3lib_div::makeInstance('t3lib_pageSelect');
+		// Initialise language overlay of cards series   \TYPO3\CMS\Frontend\Page\PageRepository
+		$this->pidRecord = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
 		$this->pidRecord->init(0);
 		$this->pidRecord->sys_language_uid = (trim($GLOBALS['TSFE']->config['config']['sys_language_uid'])) ? trim($GLOBALS['TSFE']->config['config']['sys_language_uid']):0;
 		
-			// We are not going to send if the captcha string is incorrect
-		if ($cardData['cmd'] == 'send' && t3lib_extMgm::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
-			require_once(t3lib_extMgm::extPath('sr_freecap').'pi2/class.tx_srfreecap_pi2.php');
-			$freeCap = t3lib_div::makeInstance('tx_srfreecap_pi2');
+		// We are not going to send if the captcha string is incorrect
+		if ($cardData['cmd'] == 'send' && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
+			$freeCap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SJBR\\SrFreecap\\PiBaseApi');
 			if (!$freeCap->checkWord($cardData['captcha_response'])) {
 				$cardData['cmd'] = 'preview';
 				$invalid_captcha_response = 1;
 			}
 		}
 
-			// We are not going to preview if there are errors
+		// We are not going to preview if there are errors
 		if ($cardData['cmd'] == 'preview' ) {
 			if (trim($cardData['to_name']) == '' ) {
 				$cardData['cmd'] = 'prompt';
 				$missing_to_name = 1;
 			}
-			if (!(t3lib_div::validEmail(trim($cardData['to_email']))) ) {
+			if (!(\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail(trim($cardData['to_email']))) ) {
 				$cardData['cmd'] = 'prompt';
 				$invalid_to_email = 1;
 			}
@@ -180,7 +180,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$cardData['cmd'] = 'prompt';
 				$missing_from_name = 1;
 			}
-			if (!(t3lib_div::validEmail(trim($cardData['from_email']))) ) {
+			if (!(\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail(trim($cardData['from_email']))) ) {
 				$cardData['cmd'] = 'prompt';
 				$invalid_from_email = 1;
 			}
@@ -280,7 +280,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				for ($day = 1 ; $day <= 31; $day++) {
 					$days[$day] = $day;
 				}
-				$month_labels = t3lib_div::trimExplode(',' , $this->pi_getLL('month_names'));
+				$month_labels = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->pi_getLL('month_names'));
 				for ($month = 1 ; $month <= 12; $month++) {
 					$months[$month] = $month;
 					 $month_names[$month] = $month_labels[$month-1];
@@ -288,22 +288,22 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$years[1] = intval(date('Y', time()));
 				$years[2] = $years[1] + 1;
 
-				$fontface_labels = t3lib_div::trimExplode(',' , $this->pi_getLL('fontface_labels'));
-				$fontface_values = t3lib_div::trimExplode(';' , $this->conf['cardFontfaces']);
+				$fontface_labels = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->pi_getLL('fontface_labels'));
+				$fontface_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(';' , $this->conf['cardFontfaces']);
 				$cardData['fontface'] = ($cardData['fontface']) ? $cardData['fontface'] : htmlspecialchars($fontface_values[0]);
 				if ($this->conf['graphicMess'] ) {
-					$fontfile_values = t3lib_div::trimExplode(',' , $this->conf['graphicMessFontFiles']);
-					$fontsize_values = t3lib_div::trimExplode(',' , $this->conf['graphicMessFontSizes']);
-					$fontfile_labels = t3lib_div::trimExplode(',' , $this->pi_getLL('fontfile_labels'));
+					$fontfile_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['graphicMessFontFiles']);
+					$fontsize_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['graphicMessFontSizes']);
+					$fontfile_labels = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->pi_getLL('fontfile_labels'));
 					$cardData['fontfile'] = ($cardData['fontfile']) ? $cardData['fontfile'] : htmlspecialchars($fontfile_values[0]);
 					$cardData['fontsize'] = ($cardData['fontsize']) ? $cardData['fontsize'] : htmlspecialchars($fontsize_values[0]);
 				}
-				$card_music_labels = t3lib_div::trimExplode(',' , $this->pi_getLL('card_music_labels'));
-				$card_music_values = t3lib_div::trimExplode(',' , $this->conf['cardMusicFiles']);
+				$card_music_labels = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->pi_getLL('card_music_labels'));
+				$card_music_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['cardMusicFiles']);
 				$cardData['card_music'] = ($cardData['card_music']) ? $cardData['card_music'] : htmlspecialchars($card_music_values[0]);
-				$bgcolor_values = t3lib_div::trimExplode(',' , $this->conf['cardBgcolors']);
+				$bgcolor_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['cardBgcolors']);
 				$cardData['bgcolor'] = ($cardData['bgcolor']) ? $cardData['bgcolor'] : htmlspecialchars($bgcolor_values[0]);
-				$fontcolor_values = t3lib_div::trimExplode(',' , $this->conf['cardFontcolors']);
+				$fontcolor_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['cardFontcolors']);
 				$cardData['fontcolor'] = ($cardData['fontcolor']) ? $cardData['fontcolor'] : htmlspecialchars($fontcolor_values[0]);
 				if (!($cardData['notfirsttime'] == 1) ) {
 					$cardData['card_delivery_notify'] = 1;
@@ -319,7 +319,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($this->imgObj->tempPath);
 				$fileInfo = pathinfo($this->imgObj->tempPath . $cardData['card_image']);
 				if ($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg' || $fileInfo['extension'] == 'gif' || $fileInfo['extension'] == 'png') {
-					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($this->addLogo(t3lib_div::deHSCentities($cardData['card_image']), $cardData['image_width'], $cardData['image_height'], $fileInfo['extension']));
+					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($this->addLogo(\TYPO3\CMS\Core\Utility\GeneralUtility::deHSCentities($cardData['card_image']), $cardData['image_width'], $cardData['image_height'], $fileInfo['extension']));
 				} else {
 					$subpartArray['###IMG_INSERT###'] = '';
 				}
@@ -336,8 +336,8 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$markerArray['###LOADING_FLASH_ANIMATION###'] = $this->pi_getLL('loading_flash_animation');
 				}
 				if ($fileInfo['extension'] == 'mov' || $fileInfo['extension'] == 'swf' ) {
-					$selectionFileInfo = pathinfo($this->imgObj->tempPath . t3lib_div::deHSCentities($cardData['selection_image']));
-					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($this->addLogo(t3lib_div::deHSCentities($cardData['selection_image']), $cardData['selection_image_width'], $cardData['selection_image_height'], $selectionFileInfo['extension']));
+					$selectionFileInfo = pathinfo($this->imgObj->tempPath . \TYPO3\CMS\Core\Utility\GeneralUtility::deHSCentities($cardData['selection_image']));
+					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($this->addLogo(\TYPO3\CMS\Core\Utility\GeneralUtility::deHSCentities($cardData['selection_image']), $cardData['selection_image_width'], $cardData['selection_image_height'], $selectionFileInfo['extension']));
 				}
 				
 					// Disable music, font faces, font colors, background colors if requested
@@ -552,11 +552,11 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText')) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title')) . '"');
 				if ($this->conf['graphicMess'] ) {
 					$markerArray['###FONTFILE###'] = $cardData['fontfile'];
-					$fontfile_values = t3lib_div::trimExplode(',' , $this->conf['graphicMessFontFiles']);
-					$fontsize_values = t3lib_div::trimExplode(',' , $this->conf['graphicMessFontSizes']);
+					$fontfile_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['graphicMessFontFiles']);
+					$fontsize_values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',' , $this->conf['graphicMessFontSizes']);
 					$cardData['fontsize'] = $this->getFontSize($cardData['fontfile'], $fontfile_values, $fontsize_values);
 					$markerArray['###FONTSIZE###'] = $cardData['fontsize'];
-					$cardFontFile = substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$cardData['fontfile']), strlen(PATH_site));
+					$cardFontFile = substr(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->conf['fontDir'].'/'.$cardData['fontfile']), strlen(PATH_site));
 					$cardTitleImage = $this->makeTextImage($cardData['card_title'], $cardData['fontsize'], $cardFontFile, $cardData['fontcolor'], $this->conf['graphicMessWidth']-100, $cardData['bgcolor']);
 					$markerArray['###CARD_TITLE_PRESENT###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px; border-style: none;" alt="' . $cardData['card_title'] . '" />';
 					$cardMessageImage = $this->makeTextImage($cardData['card_message'], $cardData['fontsize'], $cardFontFile, $cardData['fontcolor'], $this->conf['graphicMessWidth'], $cardData['bgcolor']);
@@ -580,10 +580,9 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$markerArray['###LOADING_CARD_MUSIC###'] = $this->pi_getLL('loading_card_music');
 				}
 				
-				if (t3lib_extMgm::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
+				if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
 					if (!is_object($freeCap)) {
-						require_once(t3lib_extMgm::extPath('sr_freecap').'pi2/class.tx_srfreecap_pi2.php');
-						$freeCap = t3lib_div::makeInstance('tx_srfreecap_pi2');
+						$freeCap = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SJBR\\SrFreecap\\PiBaseApi');
 					}
 					if ($invalid_captcha_response) {
 						$markerArray['###CAPTCHA_TRY_AGAIN###'] = $this->pi_getLL('captcha_try_again');
@@ -623,7 +622,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				$cardData['charset'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
 				
 					// Collect ip address in case we want to investigate some possile abuse
-				$cardData['ip_address'] = t3lib_div::getIndpEnv('REMOTE_ADDR');
+				$cardData['ip_address'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR');
 				
 					// Reconcile post and db field names
 				$cardData['image'] = $cardData['card_image'];
@@ -639,7 +638,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 
 					// Reconcile both ways...
 				$tableColumns = "uid, pid, image, card_image_path, selection_image, img_width, img_height, selection_image_width, selection_image_height, caption, cardaltText, selection_imagealtText, link_pid, towho, to_email, fromwho, from_email, bgcolor, fontcolor, fontface, fontfile, fontsize, message, card_title, card_signature, music, card_url, notify, emailsent, send_time, time_created, ip_address, language, charset";
-				$tableColumnsArr = t3lib_div::trimExplode(',', $tableColumns, 1);
+				$tableColumnsArr = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $tableColumns, 1);
 				reset($cardData);
 				while (list($key, $value) = each($cardData)) {
 					if( !in_array($key, $tableColumnsArr)) {
@@ -678,7 +677,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$print_unsetVars = array();
 					$print_usePiVars = TRUE;
 					$savedLinkVars = $GLOBALS['TSFE']->linkVars;
-					$linkVarsArr = t3lib_div::trimExplode('&', $GLOBALS['TSFE']->linkVars,1);
+					$linkVarsArr = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode('&', $GLOBALS['TSFE']->linkVars, TRUE);
 					reset($linkVarsArr);
 					while (list($key, $value) = each($linkVarsArr)) {
 						if( strstr($value, $this->prefixId) ) {
@@ -687,6 +686,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					}
 					$GLOBALS['TSFE']->linkVars = implode('&', $linkVarsArr);
 					$printcard_url = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID.','.$printType, $print_vars, $print_unsetVars, $print_usePiVars));
+					//die($printcard_url);
 					$GLOBALS['TSFE']->linkVars = $savedLinkVars;
 
 					$card_message_present = $this->linksInText($row['message']);
@@ -769,7 +769,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 					$markerArray['###CARD_MESSAGE###'] = nl2br($card_message_present);
 					$markerArray['###CARD_SIGNATURE###'] = nl2br($row['card_signature']);
 					if ($row['fontfile'] ) {
-						$cardFontFile = substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$row['fontfile']), strlen(PATH_site));
+						$cardFontFile = substr(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->conf['fontDir'].'/'.$row['fontfile']), strlen(PATH_site));
 						$cardTitleImage = $this->makeTextImage($row['card_title'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth']-100, $row['bgcolor']);
 						$markerArray['###CARD_TITLE###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px;" alt="' . htmlspecialchars($row['card_title']) . '" />';
 						$cardMessageImage = $this->makeTextImage($row['message'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth'], $row['bgcolor']);
@@ -864,12 +864,11 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @param	string		uid of card instance
 	 * @return	string		content to be displayed
 	 */
-	function printCard($uid) {
+	protected function printCard($uid) {
 
-			// Get the card instance from the database
+		// Get the card instance from the database
 		$row = $this->getCard($uid);
-
-			// Display the card... if it is there!
+		// Display the card... if it is there!
 		if ($row ) {
 			$subpart = $this->cObj->getSubpart($this->templateCode, '###TEMPLATE_PRINT_CARD###');
 			$markerArray = array();
@@ -936,7 +935,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 			$markerArray['###CARD_SIGNATURE###'] = nl2br($row['card_signature']);
 
 			if ($row['fontfile'] && $this->conf['useGraphicalMessageEvenOnCardPrint']) {
-				$cardFontFile = substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$row['fontfile']), strlen(PATH_site));
+				$cardFontFile = substr(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->conf['fontDir'].'/'.$row['fontfile']), strlen(PATH_site));
 				$cardTitleImage = $this->makeTextImage($row['card_title'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth']-100, $row['bgcolor']);
 				$markerArray['###CARD_TITLE###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px;" alt="' . htmlspecialchars($row['card_title']) . '" />';
 				$cardMessageImage = $this->makeTextImage($row['message'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth'], $row['bgcolor']);
@@ -1256,7 +1255,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 		$selector = '<ul  id="' . $this->pi_getClassName('font-selector') . '"' . $this-> pi_classParam('font-selector') . '>' . chr(10);
 		for($currentValue = 0; $currentValue < count($fontFiles); $currentValue++) {
 			$selector .= '<li>';
-			$fontLabelImage = $this->makeTextImage($fontLabels[$currentValue], $fontSizes[$currentValue], substr(t3lib_div::getFileAbsFileName($this->conf['fontDir'].'/'.$fontFiles[$currentValue]), strlen(PATH_site)), $fontColor, 130, $bgColor, 'left');
+			$fontLabelImage = $this->makeTextImage($fontLabels[$currentValue], $fontSizes[$currentValue], substr(\TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($this->conf['fontDir'].'/'.$fontFiles[$currentValue]), strlen(PATH_site)), $fontColor, 130, $bgColor, 'left');
 			$selector .= '<input type="radio" id="' . $this->pi_getClassName('font-selector-' . $newName . '-' . htmlspecialchars($fontLabels[$currentValue])) . '" name="' . $name . '" value="' . $fontFiles[$currentValue] . '"';
 			if ($valueChecked == $fontFiles[$currentValue]) {
 				$selector .= ' checked="checked"';
@@ -1343,7 +1342,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 * @return	array		array of lines of text
 	 */
 	function text_to_lines($text, $size, $font, $width) {
-		$words = t3lib_div::trimExplode(' ', preg_replace('/['.preg_quote(chr(10).chr(13)).']/', ' <br> ', preg_replace('/(' . preg_quote(chr(10) . chr(13)) . '|' . preg_quote(chr(13) . chr(10)) . ')/', ' <br> ', $text)));
+		$words = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(' ', preg_replace('/['.preg_quote(chr(10).chr(13)).']/', ' <br> ', preg_replace('/(' . preg_quote(chr(10) . chr(13)) . '|' . preg_quote(chr(13) . chr(10)) . ')/', ' <br> ', $text)));
 		$p = 0;
 		$lines = array();
 		$lines[0] = '';
@@ -1379,7 +1378,7 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 	 */
 	function makeTextImage($text, $size, $font, $color, $width, $bgColor = "white", $align = 'left') {
 		
-		$lines = $this->text_to_lines($text, t3lib_div::freetypeDpiComp($size), t3lib_stdGraphic::prependAbsolutePath($font), $width);
+		$lines = $this->text_to_lines($text, \TYPO3\CMS\Core\Utility\GeneralUtility::freetypeDpiComp($size), \TYPO3\CMS\Core\Imaging\GraphicalFunctions::prependAbsolutePath($font), $width);
 		$lineCount = count($lines);
 		$gifObjArray['backColor'] = $bgColor;
 		$gifObjArray['transparentBackground'] = 0;
@@ -1420,15 +1419,15 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 				if ($this->conf['logoAlignHor'] == 'left') {
 					$geometry = '+0';
 				} else {
-					$geometry = '+' . t3lib_utility_Math::convertToPositiveInteger($width-$logoImgInfo[0]);
+					$geometry = '+' . \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($width-$logoImgInfo[0]);
 				}
 				if ($this->conf['logoAlignVert'] == 'top') {
 					$geometry .= '+0';
 				} else {
-					$geometry .= '+' . t3lib_utility_Math::convertToPositiveInteger($height-$logoImgInfo[1]);
+					$geometry .= '+' . \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($height-$logoImgInfo[1]);
 				}
 				$ifile = $this->imgObj->tempPath.$imageFile;
-				$ofile = $this->extKey.'_'.t3lib_div::shortMD5($this->extKey.$ifile.filemtime($ifile).$logoResource.$geometry).'.'.$extension;
+				$ofile = $this->extKey.'_' . \TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5($this->extKey.$ifile.filemtime($ifile).$logoResource.$geometry).'.'.$extension;
 				if (!$this->imgObj->file_exists_typo3temp_file($this->imgObj->tempPath.$ofile, $ifile)) {
 					$this->imgObj->combineExec($logoResource, $ifile, '', $this->imgObj->tempPath.$ofile, $geometry);
 				}
@@ -1508,17 +1507,17 @@ class tx_srsendcard_pi1 extends tslib_pibase {
 }
 
 /**
- * Extension of t3lib_stdGraphic.
+ * Extension of TYPO3\CMS\Core\Imaging\GraphicalFunctions
  *
  * This version of the combineExec function provided by Martin Kutschker (Martin.Kutschker@blackbox.at)
  * Used in tx_srsendcard_pi1 to brand images
  */
-class tx_srsendcard_pi1_t3lib_stdGraphic extends t3lib_stdGraphic {
+class tx_srsendcard_pi1_GraphicalFunctions extends \TYPO3\CMS\Core\Imaging\GraphicalFunctions {
 
-	function combineExec($input, $overlay, $mask, $output, $geometry = '') {
+	public function combineExec($input, $overlay, $mask, $output, $geometry = '') {
 		if (!$this->NO_IMAGE_MAGICK) {
 			if ($geometry) {
-				$geometry = "-geometry $geometry ";
+				$geometry = '-geometry $geometry ';
 			}
 			$cmd = $this->imageMagickPath.$this->combineScript.' -compose over '.$geometry.$this->wrapFileName($input).' '.$this->wrapFileName($overlay).' '.$this->wrapFileName($mask).' '.$this->wrapFileName($output);
 			$this->IM_commands[] = Array ($output, $cmd);

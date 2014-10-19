@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2012-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -42,9 +42,9 @@ class tx_srsendcard_email {
 	/**
 	 * Constructor
 	 *
-	 * @param tslib_pibase $pibase
+	 * @param \TYPO3\CMS\Frontend\Plugin\AbstractPlugin $pibase
 	 */
-	public function __construct ($pibase) {
+	public function __construct (\TYPO3\CMS\Frontend\Plugin\AbstractPlugin $pibase) {
 		$this->templateCode = $pibase->templateCode;
 		$this->cObj = $pibase->cObj;
 		$this->conf = $pibase->conf;
@@ -59,7 +59,7 @@ class tx_srsendcard_email {
 	 * @param string $emailTemplateKey: template key
 	 * @return void
 	 */
-	function sendEmail ($emailData, $emailTemplateKey) {
+	public function sendEmail ($emailData, $emailTemplateKey) {
 		$content = '';
 		$htmlContent = '';
 			// Get templates
@@ -93,7 +93,7 @@ class tx_srsendcard_email {
 			$markerArray['###' . strtoupper($dataMarker) . '###'] = $emailData[$dataMarker];
 		}
 		$markerArray['###SITE_NAME###'] = $this->conf['siteName'];
-		$markerArray['###SITE_WWW###'] = t3lib_div::getIndpEnv('TYPO3_HOST_ONLY');
+		$markerArray['###SITE_WWW###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY');
 		$markerArray['###SITE_URL###'] = $this->siteUrl;
 		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
 		$markerArray['###CHARSET###'] = $GLOBALS['TSFE']->renderCharset ?: 'utf-8';
@@ -103,7 +103,7 @@ class tx_srsendcard_email {
 			$htmlContent = $this->cObj->substituteMarkerArrayCached($htmlSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 		}
 			// Create mail
-		$mail = t3lib_div::makeInstance('t3lib_mail_Message');
+		$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 			// Set subject
 		$defaultSubject = 'Send-A-Card message';
 		if ($htmlContent) {
@@ -144,11 +144,11 @@ class tx_srsendcard_email {
 	/**
 	 * Embeds media into the mail message
 	 *
-	 * @param t3lib_mail_Message $mail: mail message
+	 * @param \TYPO3\CMS\Core\Mail\MailMessage $mail: mail message
 	 * @param string $htmlContent: the HTML content of the message
 	 * @return string the subtituted HTML content
 	 */
-	protected function embedMedia(t3lib_mail_Message $mail, $htmlContent) {
+	protected function embedMedia(\TYPO3\CMS\Core\Mail\MailMessage $mail, $htmlContent) {
 		$substitutedHtmlContent = $htmlContent;
 		$media = array();
 		$attribRegex = $this->makeTagRegex(array('img', 'embed', 'audio', 'video'));
@@ -235,8 +235,3 @@ class tx_srsendcard_email {
 		return $attributes;
 	}
 }
-
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/lib/class.tx_srsendcard_email.php']) {
-  include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/sr_sendcard/lib/class.tx_srsendcard_email.php']);
-}
-?>
