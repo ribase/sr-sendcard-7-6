@@ -1,6 +1,7 @@
 2014-10-20  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Adapt to new version of TYPO3\CMS\Core\Imaging\GraphicalFunctions::combineExec
+	* Add missing TCA configuration file tx_srsendcard_sentcard.php
 
 2014-10-18  Stanislas Rolland  <typo3@sjbr.ca>
 
