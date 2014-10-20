@@ -686,7 +686,6 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					}
 					$GLOBALS['TSFE']->linkVars = implode('&', $linkVarsArr);
 					$printcard_url = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID.','.$printType, $print_vars, $print_unsetVars, $print_usePiVars));
-					//die($printcard_url);
 					$GLOBALS['TSFE']->linkVars = $savedLinkVars;
 
 					$card_message_present = $this->linksInText($row['message']);
@@ -1072,7 +1071,7 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		$thum_vars = array();
 		$thum_vars['cmd'] = 'prompt';
 		$thum_unsetVars = array();
-		$thum_usePiVars = false;
+		$thum_usePiVars = FALSE;
 		
 		$selector .= '<div class="' . $this->pi_getClassName('image-selector') . '">' . chr(10);
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
@@ -1296,7 +1295,7 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @param	boolean		$usePiVars: if set, input vars and incoming piVars arrays are merge
 	 * @return	string		generated link or url
 	 */
-	function get_url($tag = '', $id, $vars = array(), $unsetVars = array(), $usePiVars = true) {
+	function get_url($tag = '', $id, $vars = array(), $unsetVars = array(), $usePiVars = TRUE) {
 		
 		$vars = (array) $vars;
 		$unsetVars = (array)$unsetVars;
@@ -1325,7 +1324,7 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 * @param	boolean		$stripslashes: apply stripslashes() or not
 	 * @return	string		cleaned text
 	 */
-	function linksInText($text, $stripslashes = false) {
+	function linksInText($text, $stripslashes = FALSE) {
 		$cleanedText = $stripslashes ? stripslashes($text) : $text;
 		$cleanedText = preg_replace('/\[([http|news|ftp]+:\/\/[^ >\n\t]+)\]/i', '<a href="$1" target="_blank">$1</a>', $cleanedText);
 		$cleanedText = preg_replace('/\[(mailto:)([^ >\n\t]+)\]/i', '<a href="$1$2">$2</a>', $cleanedText);
@@ -1410,8 +1409,7 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
  	 * @param	string		$extension: image file extension
 	 * @return	string		output image file
 	 */
-	function addLogo($imageFile,$width,$height,$extension) {
-		
+	protected function addLogo($imageFile, $width, $height, $extension) {
 		if ($this->conf['logo'] && !$this->conf['disableImageScaling']) {
 			$logoResource = $GLOBALS['TSFE']->tmpl->getFileName($this->conf['logo']);
 			$logoImgInfo = $this->imgObj->getImageDimensions($logoResource);
@@ -1426,10 +1424,10 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				} else {
 					$geometry .= '+' . \TYPO3\CMS\Core\Utility\MathUtility::convertToPositiveInteger($height-$logoImgInfo[1]);
 				}
-				$ifile = $this->imgObj->tempPath.$imageFile;
-				$ofile = $this->extKey.'_' . \TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5($this->extKey.$ifile.filemtime($ifile).$logoResource.$geometry).'.'.$extension;
-				if (!$this->imgObj->file_exists_typo3temp_file($this->imgObj->tempPath.$ofile, $ifile)) {
-					$this->imgObj->combineExec($logoResource, $ifile, '', $this->imgObj->tempPath.$ofile, $geometry);
+				$ifile = $this->imgObj->tempPath . $imageFile;
+				$ofile = $this->extKey . '_' . \TYPO3\CMS\Core\Utility\GeneralUtility::shortMD5($this->extKey . $ifile . filemtime($ifile) . $logoResource . $geometry) . '.' . $extension;
+				if (!$this->imgObj->file_exists_typo3temp_file($this->imgObj->tempPath . $ofile, $ifile)) {
+					$this->imgObj->combineExec($ifile, $logoResource, '', $this->imgObj->tempPath . $ofile, FALSE, $geometry);
 				}
 				return $ofile;
 			} else {
@@ -1491,7 +1489,7 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 	 *
 	 * @param    string        The key from the LOCAL_LANG array for which to return the value.
 	 * @param    string        Alternative string to return IF no value is found set for the key, neither for the local language nor the default.
-	 * @param    boolean        If true, the output label is passed through htmlspecialchars()
+	 * @param    boolean        If TRUE, the output label is passed through htmlspecialchars()
 	 * @return    string        The value from LOCAL_LANG.
 	 */
 	function pi_getLL($key, $alt = '', $hsc = FALSE) {
@@ -1508,21 +1506,26 @@ class tx_srsendcard_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 
 /**
  * Extension of TYPO3\CMS\Core\Imaging\GraphicalFunctions
- *
- * This version of the combineExec function provided by Martin Kutschker (Martin.Kutschker@blackbox.at)
- * Used in tx_srsendcard_pi1 to brand images
  */
 class tx_srsendcard_pi1_GraphicalFunctions extends \TYPO3\CMS\Core\Imaging\GraphicalFunctions {
-
-	public function combineExec($input, $overlay, $mask, $output, $geometry = '') {
+	public function combineExec($input, $overlay, $mask, $output, $handleNegation = FALSE, $geometry = '') {
 		if (!$this->NO_IMAGE_MAGICK) {
 			if ($geometry) {
-				$geometry = '-geometry $geometry ';
+				$geometry = '-geometry ' . $geometry . ' ';
 			}
-			$cmd = $this->imageMagickPath.$this->combineScript.' -compose over '.$geometry.$this->wrapFileName($input).' '.$this->wrapFileName($overlay).' '.$this->wrapFileName($mask).' '.$this->wrapFileName($output);
-			$this->IM_commands[] = Array ($output, $cmd);
-			exec($cmd);
+			$params = '-colorspace GRAY +matte';
+			$theMask = $this->randomName() . '.' . $this->gifExtension;
+			$this->imageMagickExec($mask, $theMask, $params);
+			$cmd = \TYPO3\CMS\Core\Utility\GeneralUtility::imageMagickCommand('combine', '-compose over +matte ' . $geometry . $this->wrapFileName($input) . ' ' . $this->wrapFileName($overlay) . ' ' . $this->wrapFileName($theMask) . ' ' . $this->wrapFileName($output));
+			// +matte = no alpha layer in output
+			$this->IM_commands[] = array($output, $cmd);
+			$ret = \TYPO3\CMS\Core\Utility\CommandUtility::exec($cmd);
+			// Change the permissions of the file
+			\TYPO3\CMS\Core\Utility\GeneralUtility::fixPermissions($output);
+			if (is_file($theMask)) {
+				@unlink($theMask);
+			}
+			return $ret;
 		}
 	}
-
 }

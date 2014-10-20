@@ -1,3 +1,7 @@
+2014-10-20  Stanislas Rolland  <typo3@sjbr.ca>
+
+	* Adapt to new version of TYPO3\CMS\Core\Imaging\GraphicalFunctions::combineExec
+
 2014-10-18  Stanislas Rolland  <typo3@sjbr.ca>
 
 	* Update version to 3.2.0
