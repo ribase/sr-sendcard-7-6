@@ -1,10 +1,14 @@
-2014-10-20  Stanislas Rolland  <typo3@sjbr.ca>
+2015-12-25  Stanislas Rolland  <typo3(arobas)sjbr.ca>
+
+	* Move static templates configuration to TCA overrides
+
+2014-10-20  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Adapt to new version of TYPO3\CMS\Core\Imaging\GraphicalFunctions::combineExec
 	* Add missing TCA configuration file tx_srsendcard_sentcard.php
 	* Update manual
 
-2014-10-18  Stanislas Rolland  <typo3@sjbr.ca>
+2014-10-18  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Update version to 3.2.0
 	* Fix some Spanish labels
@@ -13,12 +17,12 @@
 	* Move tasks to Classes/Task folder
 	* Migrate references to core classes to namespaced names
 
-2014-03-30  Stanislas Rolland  <typo3@sjbr.ca>
+2014-03-30  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Add missing label
 	* Fix use of deprecated method
 
-2014-03-24  Stanislas Rolland  <typo3@sjbr.ca>
+2014-03-24  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Move TypoScript configuration to Configuration and Resources folders
 	* Move music files to Resources/Public/Audio folder
@@ -32,55 +36,55 @@
 	* Convert mod1/locallang.xml and mod1/locallang_mod.xml to xlf and merge into Resources/Private/Language folder
 	* Move images to Resources/Public/Images
 
-2014-03-22  Stanislas Rolland  <typo3@sjbr.ca>
+2014-03-22  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Fix charset setting for emails set in deferred mode
 	* Update version to 3.1.0
 
-2014-03-20  Stanislas Rolland  <typo3@sjbr.ca>
+2014-03-20  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Resolves #57101: Fatal Error on Execution of Scheduler Task
 
-2014-03-14  Stanislas Rolland  <typo3@sjbr.ca>
+2014-03-14  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Remove reference to deprecated method
 	* Fix informal salutation in TYPO3 4.6+
 
-2014-02-21  Stanislas Rolland  <typo3@sjbr.ca>
+2014-02-21  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Resolves #56202: Some links are wrong when absRefPrefix is configured
 	* Resolves #42339: Text-Mails are wrong
 	* Add warning in TS constants and manual regarding domain of site email address
 	* Enable in TYPO3 6.2
 
-2012-06-09  Stanislas Rolland  <typo3@sjbr.ca>
+2012-06-09  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Fixed bug #37866: Incorrect localization of informal labels
 	* Version 3.0.1
 
-2012-05-27  Stanislas Rolland  <typo3@sjbr.ca>
+2012-05-27  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Update manual
 	* Version 3.0.0
 
-2012-05-26  Stanislas Rolland  <typo3@sjbr.ca>
+2012-05-26  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Add class tx_srsendcard_email
 	* Add scheduler task for sending deferred cards
 	* Convert statistics module to typo3/mod.php
 
-2012-05-01  Stanislas Rolland  <typo3@sjbr.ca>
+2012-05-01  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Always use utf-8 by default
 	* Fix for tslib_pibase TYPO3 4.6+ and PHP 5.3+
 	* Code cleanup
 	* Use Swift mail API
 
-2012-04-23  Stanislas Rolland  <typo3@sjbr.ca>
+2012-04-23  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Add extension autoload
 
-2011-12-16  Stanislas Rolland  <typo3@sjbr.ca>
+2011-12-16  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Fixed bug #32247: Fatal error for redeclare class
 	* Added feature #32638: Remove deprecated card language overlay table
@@ -92,18 +96,18 @@
 	* Added feature #32644: Eliminate reference to deprecated makeInstanceClassName
 	* Added feature #32646: Eliminate reference to deprecated eregi_replace
 
-2009-03-08  Stanislas Rolland  <typo3@sjbr.ca>
+2009-03-08  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Fixed bug: Overlapping lines, sometimes, in text image (Thanks to Armin Günther)
 	* Version 2.3.1 published to TER.
 
-2009-02-22  Stanislas Rolland  <typo3@sjbr.ca>
+2009-02-22  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Replaced deprecated t3lib_div::fixed_lgd_pre with fixed_lgd_cs
 	* Require TYPO3 4.1+.
 	* Version 2.3.0 published to TER.
 
-2009-02-17  Stanislas Rolland  <typo3@sjbr.ca>
+2009-02-17  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Initial upload to TYPO3 Forge
 	* Added Russian translation
