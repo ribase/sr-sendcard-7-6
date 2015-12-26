@@ -1,3 +1,7 @@
+2015-12-26  Stanislas Rolland  <typo3(arobas)sjbr.ca>
+
+	* Delete unused language files
+
 2015-12-25  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Move static templates configuration to TCA overrides
