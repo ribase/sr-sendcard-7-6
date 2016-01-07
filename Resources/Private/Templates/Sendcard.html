@@ -1,0 +1,753 @@
+<html>
+<head>
+	<title>Send-A-Card CSS-styled XHTML Example Template</title>
+</head>
+<body>
+
+
+<h1>Send-A-Card</h1>
+
+<h2>CSS_STYLED XHTML EXAMPLE TEMPLATE</h2>
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_SELECTION_PAGE</h3>
+<em>This is the template where the selection of cards is presented.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_SELECTION_PAGE### begin -->
+	<p class="tx-srsendcard-pi1-card-selection-prompt">###SELECT_IMAGE_PROMPT###</p>
+	###IMAGE_SELECTOR###
+<!-- ###TEMPLATE_SELECTION_PAGE### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_ALTERNATE_SELECTION_PAGE</h3>
+<em>This is the template where multiple series of cards are presented.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_ALTERNATE_SELECTION_PAGE### begin -->
+	<p class="tx-srsendcard-pi1-card-selection-prompt">###SELECT_IMAGE_PROMPT###</p>
+	<!-- ###TEMPLATE_SINGLE_CARDS_SERIES### begin This is the template for a single series of cards. -->
+		<p class="tx-srsendcard-pi1-card-series-header">###CARDS_SERIES_TITLE###</p>
+		###IMAGE_SELECTOR###
+	<!-- ###TEMPLATE_SINGLE_CARDS_SERIES### end -->
+<!-- ###TEMPLATE_ALTERNATE_SELECTION_PAGE### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_CARD_FORM</h3>
+<em>This is the template for the form where the sender enters all the information about the postcard.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_CARD_FORM### begin -->
+	<div class="tx-srsendcard-pi1-card-form">
+		<div class="tx-srsendcard-pi1-card-image-wrap">
+		<!--###IMG_INSERT### this subpart is removed if the image extension is not jpg, jpeg, gif or png -->
+		<img src="###CARD_IMAGE_PATH######CARD_IMAGE###" alt="###IMAGEALTTEXT###" title="###CARD_CAPTION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;"  />
+		<!--###IMG_INSERT###-->
+		<!--###QUICKTIME_INSERT### this subpart is removed if the image extension is not mov -->
+		<object class="tx-srsendcard-pi1-card-form-image" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" standby="###LOADING_VIDEO_CLIP###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+			<param name="src" value="###CARD_IMAGE_PATH######CARD_IMAGE###" valuetype="ref" />
+			<param name="autoplay" value="true"  valuetype="data" />
+			<param name="cache" value="true"  valuetype="data" />
+			<param name="kioskmode" value="true"  valuetype="data" />
+			<param name="controller" value="true"  valuetype="data" />
+			<param name="scale" value="aspect"  valuetype="data" />
+			<!--[if !IE]> <-->
+			<object class="tx-srsendcard-pi1-card-form-image" type="video/quicktime"  standby="###LOADING_VIDEO_CLIP###" data="###CARD_IMAGE_PATH######CARD_IMAGE###" pluginspage="http://www.apple.com/###LANGUAGE###/quicktime/download/"style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+				<param name="autoplay" value="true" valuetype="data" />
+				<param name="cache" value="true"  valuetype="data" />
+				<param name="kioskmode" value="true"  valuetype="data" />
+				<param name="controller" value="true"  valuetype="data" />
+				<param name="scale" value="aspect"  valuetype="data" />
+			<!--> <![endif]-->
+				<img class="tx-srsendcard-pi1-card-form-image" src="###CARD_IMAGE_PATH######SELECTION_IMAGE###" alt="###SELECTION_IMAGE_ALTTEXT###" title="###CARD_CAPTION###" style="width: ###SELECTION_IMAGE_WIDTH###px; height: ###SELECTION_IMAGE_HEIGHT###px;"  />
+				<br /><p>###NEED_QUICKTIME_MESSAGE### http://www.apple.com/###LANGUAGE###/quicktime/download/</p>
+			<!--[if !IE]> <-->
+			</object>
+			<!--> <![endif]-->
+		</object>
+		<!--###QUICKTIME_INSERT###-->
+		<!--###SHOCKWAVE_INSERT### this subpart is removed if the image extension is not swf -->
+		<object class="tx-srsendcard-pi1-card-form-image" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" standby="###LOADING_FLASH_ANIMATION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+			<param name="movie" value="###CARD_IMAGE_PATH######CARD_IMAGE###" valuetype="ref" /> 
+			<param name="play" value="true"  valuetype="data" />
+			<param name="loop" value="false"  valuetype="data" />
+			<param name="menu" value="true"  valuetype="data" />
+			<param name="scale" value="showall"  valuetype="data" />
+			<param name="quality" value="high"  valuetype="data" />
+			<!--[if !IE]> <-->
+			<object class="tx-srsendcard-pi1-card-form-image" type="application/x-shockwave-flash" data="###CARD_IMAGE_PATH######CARD_IMAGE###" pluginspage="http://www.macromedia.com/go/getflashplayer" standby="###LOADING_FLASH_ANIMATION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###"> 
+				<param name="play" value="true"  valuetype="data" />
+				<param name="loop" value="false"  valuetype="data" />
+				<param name="menu" value="true"  valuetype="data" />
+				<param name="scale" value="showall"  valuetype="data" />
+				<param name="quality" value="high"  valuetype="data" />
+			<!--> <![endif]-->
+				<img class="tx-srsendcard-pi1-card-form-image" src="###CARD_IMAGE_PATH######SELECTION_IMAGE###" alt="###SELECTION_IMAGE_ALTTEXT###" title="###CARD_CAPTION###" style="width: ###SELECTION_IMAGE_WIDTH###px; height: ###SELECTION_IMAGE_HEIGHT###px;" />
+				<br /><p>###NEED_FLASH_MESSAGE### http://www.macromedia.com/go/getflashplayer</p>
+			<!--[if !IE]> <-->
+			</object>
+			<!--> <![endif]-->
+		</object>
+		<!--###SHOCKWAVE_INSERT###-->
+		</div>
+		<p class="tx-srsendcard-pi1-card-caption">###CARD_CAPTION_PRESENT###</p>
+		<div class="tx-srsendcard-pi1-card-form-wrap">
+		<form action="###FORM_URL###" method="post">
+			<fieldset>
+				<legend>###TO_WHO_PROMPT###</legend>
+					<div>
+						<label for="tx_srsendcard_pi1_to_name">###TO_NAME_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<!--###ERROR_MSG_TO_NAME### this subpart is removed if the form has no errors! -->
+							<p class="tx-srsendcard-pi1-error-message">###MISSING_TO_NAME###</p>
+							<!--###ERROR_MSG_TO_NAME###-->
+							<input type="text" size="40" id="tx_srsendcard_pi1_to_name" name="tx_srsendcard_pi1[to_name]" value="###TO_NAME###" />
+						</div>
+					</div>
+					<div>
+						<label for="tx_srsendcard_pi1_to_email">###TO_EMAIL_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<!--###ERROR_MSG_TO_EMAIL### this subpart is removed if the form has no errors! -->
+							<p class="tx-srsendcard-pi1-error-message">###INVALID_TO_EMAIL###</p>
+							<!--###ERROR_MSG_TO_EMAIL###-->
+							<input type="text" size="40" id="tx_srsendcard_pi1_to_email" name="tx_srsendcard_pi1[to_email]" value="###TO_EMAIL###" />
+						</div>
+					</div>
+			</fieldset>
+			<fieldset>
+				<legend>###FROM_WHO_PROMPT###</legend>
+					<div>
+						<label for="tx_srsendcard_pi1_from_name">###FROM_NAME_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<!--###ERROR_MSG_FROM_NAME### this subpart is removed if the form has no errors! -->
+							<p class="tx-srsendcard-pi1-error-message">###MISSING_FROM_NAME###</p>
+							<!--###ERROR_MSG_FROM_NAME###-->
+							<input type="text" size="40" id="tx_srsendcard_pi1_from_name" name="tx_srsendcard_pi1[from_name]" value="###FROM_NAME###" />
+						</div>
+					</div>
+					<div>
+						<label for="tx_srsendcard_pi1_from_email">###FROM_EMAIL_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<!--###ERROR_MSG_FROM_EMAIL### this subpart is removed if the form has no errors! -->
+							<p class="tx-srsendcard-pi1-error-message">###INVALID_FROM_EMAIL###</p>
+							<!--###ERROR_MSG_FROM_EMAIL###-->
+							<input type="text" size="40" id="tx_srsendcard_pi1_from_email" name="tx_srsendcard_pi1[from_email]" value="###FROM_EMAIL###" />
+						</div>
+					</div>
+			</fieldset>
+			<!--###SEND_DATE_INSERT### this subpart is removed if the card sending date option is disabled inTS template! -->
+			<fieldset>
+				<legend>###SEND_DATE_PROMPT###</legend>
+					<div>
+						<div class="tx-srsendcard-pi1-label-place-holder"></div>
+						<div class="tx-srsendcard-pi1-field">
+							<label for="tx_srsendcard_pi1[day]" class="tx-srsendcard-pi1-hidden-label">###DAY_LABEL###</label>
+							<select name="tx_srsendcard_pi1[day]" id="tx_srsendcard_pi1[day]">###CARD_SEND_DAY_SELECTOR###</select>
+							<label for="tx_srsendcard_pi1[month]" class="tx-srsendcard-pi1-hidden-label">###MONTH_LABEL###</label>
+							<select name="tx_srsendcard_pi1[month]" id="tx_srsendcard_pi1[month]">###CARD_SEND_MONTH_SELECTOR###</select>
+							<label for="tx_srsendcard_pi1[year]" class="tx-srsendcard-pi1-hidden-label">###YEAR_LABEL###</label>
+							<select name="tx_srsendcard_pi1[year]" id="tx_srsendcard_pi1[year]">###CARD_SEND_YEAR_SELECTOR###</select>
+						</div>
+					</div>
+			</fieldset>
+			<!--###SEND_DATE_INSERT###-->
+			<!--###CARD_OPTIONS_INSERT### this subpart is removed if card options are disabled inTS template! -->
+			<fieldset>
+				<legend>###CARD_OPTIONS_PROMPT###</legend>
+					<!--###ANY_FONTFACE_SELECTOR_INSERT### this subpart is removed if font face selection is disabled in TS template! -->
+					<div>
+						<label for="tx-srsendcard-pi1-font-selector">###CARD_FONT_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<!--###FONTFACE_SELECTOR_INSERT### this subpart is removed if the graphical message option is "on"  in TS template! -->
+							<select  id="tx-srsendcard-pi1-font-selector" name="tx_srsendcard_pi1[fontface]">###FONTFACE_SELECTOR###</select>
+							<!--###FONTFACE_SELECTOR_INSERT###-->
+							###FONTFILE_SELECTOR###
+						</div>
+					</div>
+					<!--###ANY_FONTFACE_SELECTOR_INSERT### -->
+					<!--###BGCOLOR_SELECTOR_INSERT### this subpart is removed if background color selection is disabled inTS template! -->
+					<div>
+						<label for="tx-srsendcard-pi1-color-selector-tx-srsendcard-pi1-bgcolor">###CARD_BGCOLOR_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							###BGCOLOR_SELECTOR###
+						</div>
+					</div>
+					<!--###BGCOLOR_SELECTOR_INSERT###-->
+					<!--###FONTCOLOR_SELECTOR_INSERT### this subpart is removed if font color selection is disabled inTS template! -->
+					<div>
+						<label for="tx-srsendcard-pi1-color-selector-tx-srsendcard-pi1-fontcolor">###CARD_FONTCOLOR_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							###FONTCOLOR_SELECTOR###
+						</div>
+					</div>
+					<!--###FONTCOLOR_SELECTOR_INSERT###-->
+					<!--###MUSIC_SELECTOR_INSERT### this subpart is removed if music is disabled inTS template! -->
+					<div>
+						<label for="tx_srsendcard_pi1_card_music">###MUSIC_PROMPT###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<select id="tx_srsendcard_pi1_card_music" name="tx_srsendcard_pi1[card_music]">###CARD_MUSIC_SELECTOR###</select>
+						</div>
+					</div>
+					<!--###MUSIC_SELECTOR_INSERT###-->
+			</fieldset>
+			<!--###CARD_OPTIONS_INSERT###-->
+			<fieldset>
+				<legend>###MESSAGE_PROMPT###</legend>
+					<div>
+						<label for="tx_srsendcard_pi1_card_title">###CARD_TITLE_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<textarea id="tx_srsendcard_pi1_card_title" name="tx_srsendcard_pi1[card_title]" cols="60" rows="1">###CARD_TITLE###</textarea>
+						</div>
+					</div>
+					<div>
+						<label for="tx_srsendcard_pi1_card_message">###CARD_MESSAGE_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<!--###ERROR_MSG_CARD_MESSAGE### this subpart is removed if the form has no errors! -->
+							<p class="tx-srsendcard-pi1-error-message">###MISSING_CARD_MESSAGE###</p>
+							<!--###ERROR_MSG_CARD_MESSAGE###-->
+							<p>###MESSAGE_LINK_INSTRUCTION###</p>
+							<textarea id="tx_srsendcard_pi1_card_message" name="tx_srsendcard_pi1[card_message]" cols="60" rows="8">###CARD_MESSAGE###</textarea>
+						</div>
+					</div>
+					<div>
+						<label for="tx_srsendcard_pi1_card_signature">###CARD_SIGNATURE_LABEL###</label>
+						<div class="tx-srsendcard-pi1-field">
+							<textarea id="tx_srsendcard_pi1_card_signature" name="tx_srsendcard_pi1[card_signature]" cols="60" rows="1">###CARD_SIGNATURE###</textarea>
+						</div>
+					</div>
+			</fieldset>
+			<fieldset class="tx-srsendcard-pi1-no-border">
+				<legend></legend>
+					<div class="tx-srsendcard-pi1-delivery-notify">
+						<label for="tx_srsendcard_pi1_card_delivery_notify">###NOTIFY_PROMPT###</label>
+						<input type="checkbox" id="tx_srsendcard_pi1_card_delivery_notify" name="tx_srsendcard_pi1[card_delivery_notify]" value="1" ###CARD_DELIVERY_NOTIFY### />
+					</div>
+					<input type="hidden" name="tx_srsendcard_pi1[card_image]" value="###CARD_IMAGE###" />
+					<input type="hidden" name="tx_srsendcard_pi1[card_image_path]" value="###CARD_IMAGE_PATH###" />
+					<input type="hidden" name="tx_srsendcard_pi1[cardaltText]" value="###IMAGEALTTEXT###" />
+					<input type="hidden" name="tx_srsendcard_pi1[selection_image]" value="###SELECTION_IMAGE###" />
+					<input type="hidden" name="tx_srsendcard_pi1[selection_imagealtText]" value="###SELECTION_IMAGE_ALTTEXT###" />
+					<input type="hidden" name="tx_srsendcard_pi1[card_caption]" value="###CARD_CAPTION###" />
+					<input type="hidden" name="tx_srsendcard_pi1[link_pid]" value="###LINK_PID###" />
+					<input type="hidden" name="tx_srsendcard_pi1[image_width]" value="###IMAGE_WIDTH###" />
+					<input type="hidden" name="tx_srsendcard_pi1[image_height]" value="###IMAGE_HEIGHT###" />
+					<input type="hidden" name="tx_srsendcard_pi1[selection_image_width]" value="###SELECTION_IMAGE_WIDTH###" />
+					<input type="hidden" name="tx_srsendcard_pi1[selection_image_height]" value="###SELECTION_IMAGE_HEIGHT###" />
+					<input type="hidden" name="tx_srsendcard_pi1[notfirsttime]" value="1" />
+					<input type="hidden" name="tx_srsendcard_pi1[cmd]" value="preview" />
+					<div>
+						<input class="tx-srsendcard-pi1-submit" type="submit" name="tx_srsendcard_pi1[preview]" value="###PREVIEW_BUTTON_LABEL###" title="###PREVIEW_BUTTON_LABEL###" alt="###PREVIEW_BUTTON_LABEL###" />
+					</div>	
+			</fieldset>
+		</form>
+		</div>
+	</div>
+<!-- ###TEMPLATE_CARD_FORM### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_PREVIEW_CARD</h3>
+<em>This is the template for the form where the sender previews the postcard.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_PREVIEW_CARD### begin -->
+<div class="tx-srsendcard-pi1-card">
+	<div class="tx-srsendcard-pi1-card-image">
+		<div class="tx-srsendcard-pi1-card-image-wrap">
+			<!--###IMG_INSERT### this subpart is removed if the image extension is not jpg, jpeg, gif or png -->
+			<img src="###CARD_IMAGE_PATH######CARD_IMAGE###" alt="###IMAGEALTTEXT###" title="###CARD_CAPTION###" width="###IMAGE_WIDTH###" height="###IMAGE_HEIGHT###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" />
+			<!--###IMG_INSERT###-->
+			<!--###QUICKTIME_INSERT### this subpart is removed if the image extension is not mov -->
+			<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" standby="###LOADING_VIDEO_CLIP###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+				<param name="src" value="###CARD_IMAGE_PATH######CARD_IMAGE###" valuetype="ref" />
+				<param name="autoplay" value="true" valuetype="data" />
+				<param name="cache" value="true" valuetype="data" />
+				<param name="kioskmode" value="true" valuetype="data" />
+				<param name="controller" value="true" valuetype="data" />
+				<param name="scale" value="aspect" valuetype="data" />
+				<!--[if !IE]> <-->
+				<object type="video/quicktime" data="###CARD_IMAGE_PATH######CARD_IMAGE###" standby="###LOADING_VIDEO_CLIP###" pluginspage="http://www.apple.com/###LANGUAGE###/quicktime/download/" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+					<param name="autoplay" value="true" valuetype="data" />
+					<param name="cache" value="true" valuetype="data" />
+					<param name="kioskmode" value="true" valuetype="data" />
+					<param name="controller" value="true" valuetype="data" />
+					<param name="scale" value="aspect" valuetype="data" />
+				<!--> <![endif]-->
+				<img src="###CARD_IMAGE_PATH######SELECTION_IMAGE###" alt="###SELECTION_IMAGE_ALTTEXT###" title="###CARD_CAPTION###" style="width: ###SELECTION_IMAGE_WIDTH###px; height: ###SELECTION_IMAGE_HEIGHT###px;"  />
+				<br /><p>###NEED_QUICKTIME_MESSAGE### http://www.apple.com/###LANGUAGE###/quicktime/download/</p>
+				<!--[if !IE]> <-->
+				</object>
+				<!--> <![endif]-->
+			</object>
+			<!--###QUICKTIME_INSERT###-->
+			<!--###SHOCKWAVE_INSERT### this subpart is removed if the image extension is not swf -->
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" standby="###LOADING_FLASH_ANIMATION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+				<param name="movie" value="###CARD_IMAGE_PATH######CARD_IMAGE###" valuetype="ref" /> 
+				<param name="play" value="true" valuetype="data" />
+				<param name="loop" value="false" valuetype="data" />
+				<param name="menu" value="true" valuetype="data" />
+				<param name="scale" value="showall" valuetype="data" />
+				<param name="quality" value="high" valuetype="data" />
+				<!--[if !IE]> <-->
+				<object type="application/x-shockwave-flash" data="###CARD_IMAGE_PATH######CARD_IMAGE###" pluginspage="http://www.macromedia.com/go/getflashplayer" standby="###LOADING_FLASH_ANIMATION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###"> 
+					<param name="play" value="true" valuetype="data" />
+					<param name="loop" value="false" valuetype="data" />
+					<param name="menu" value="true" valuetype="data" />
+					<param name="scale" value="showall" valuetype="data" />
+					<param name="quality" value="high" valuetype="data" />
+				<!--> <![endif]-->
+				<img src="###CARD_IMAGE_PATH######SELECTION_IMAGE###" alt="###SELECTION_IMAGE_ALTTEXT###" title="###CARD_CAPTION###" style="width: ###SELECTION_IMAGE_WIDTH###px; height: ###SELECTION_IMAGE_HEIGHT###px;" />
+				<br /><p>###NEED_FLASH_MESSAGE### http://www.macromedia.com/go/getflashplayer</p>
+				<!--[if !IE]> <-->
+				</object>
+				<!--> <![endif]-->
+			</object>
+			<!--###SHOCKWAVE_INSERT###-->
+			<!--###MUSIC_INSERT### this subpart is removed if no music is selected! -->
+			<br />
+			<object class="tx-srsendcard-pi1-card-music-object" type="application/x-oleobject" standby="###LOADING_CARD_MUSIC###" classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112" style="width: ###IMAGE_WIDTH###px; height: 45px;">
+				<param name="URL" value="###CARD_MUSIC_PATH######CARD_MUSIC###" valuetype="ref" type="audio/x-mid" />
+				<param name="AutoStart" value="true" valuetype="data" />
+				<param name="AudioStream" value="true" valuetype="data" />
+				<param name="loop" value="false" valuetype="data" />
+				<param name="ShowControls" value="true" valuetype="data" />
+				<param name="ShowDisplay" value="false" valuetype="data" />
+				<param name="ShowTracker" value="true" valuetype="data" />
+				<param name="ShowPositionControls" value="true" valuetype="data" />
+				<param name="ShowAudioControls" value="true" valuetype="data" />
+				<param name="ShowSelectionControls" value="false" valuetype="data" />
+				<!--[if !IE]> <-->
+				<object class="tx-srsendcard-pi1-card-music-object" type="audio/x-mid" standby="###LOADING_CARD_MUSIC###" data="###CARD_MUSIC_PATH######CARD_MUSIC###" style="width: ###IMAGE_WIDTH###px; height: 16px;">
+					<param name="src" value="###CARD_MUSIC_PATH######CARD_MUSIC###" valuetype="ref" type="audio/x-mid" />
+					<param name="autostart" value="true" valuetype="data" />
+					<param name="loop" value="false" valuetype="data" />
+					<param name="kioskmode" value="true" valuetype="data" />
+					<param name="controls" value="VolumeSlider" valuetype="data" />
+				</object>
+				<!--> <![endif]-->
+			</object>
+			<!--###MUSIC_INSERT###-->
+			<p class="tx-srsendcard-pi1-card-caption">###CARD_CAPTION_PRESENT###</p>
+		</div>
+	</div>
+	<div class="tx-srsendcard-pi1-card-message">
+		<div class="tx-srsendcard-pi1-card-message-block">
+			<div class="tx-srsendcard-pi1-card-title"><p>###CARD_TITLE_PRESENT###</p></div>
+			<div class="tx-srsendcard-pi1-card-text"><p>###CARD_MESSAGE_PRESENT###</p></div>
+			<div class="tx-srsendcard-pi1-card-signature"><p><a href="###FROM_EMAIL_URL###">###CARD_SIGNATURE_PRESENT###</a></p></div>
+		</div>
+		<div class="tx-srsendcard-pi1-card-stamp">###CARD_STAMP###</div>
+	</div>
+	<div class="tx-srsendcard-pi1-clear-float"></div>
+</div>
+<div class="tx-srsendcard-pi1-card-buttons tx-srsendcard-pi1-image-wide-left-margin">
+	<form action="###FORM_URL###" method="post">
+		<input type="hidden" name="tx_srsendcard_pi1[card_image]" value="###CARD_IMAGE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_image_path]" value="###CARD_IMAGE_PATH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[cardaltText]" value="###IMAGEALTTEXT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_image]" value="###SELECTION_IMAGE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_imagealtText]" value="###SELECTION_IMAGE_ALTTEXT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[image_width]" value="###IMAGE_WIDTH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[image_height]" value="###IMAGE_HEIGHT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_image_width]" value="###SELECTION_IMAGE_WIDTH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_image_height]" value="###SELECTION_IMAGE_HEIGHT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_caption]" value="###CARD_CAPTION###" />
+		<input type="hidden" name="tx_srsendcard_pi1[link_pid]" value="###LINK_PID###" />
+		<input type="hidden" name="tx_srsendcard_pi1[to_name]" value="###TO_NAME###" />
+		<input type="hidden" name="tx_srsendcard_pi1[to_email]" value="###TO_EMAIL###" />
+		<input type="hidden" name="tx_srsendcard_pi1[from_name]" value="###FROM_NAME###" />
+		<input type="hidden" name="tx_srsendcard_pi1[from_email]" value="###FROM_EMAIL###" />
+		<input type="hidden" name="tx_srsendcard_pi1[bgcolor]" value="###BGCOLOR###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontcolor]" value="###FONTCOLOR###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontface]" value="###FONTFACE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontfile]" value="###FONTFILE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontsize]" value="###FONTSIZE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_title]" value="###CARD_TITLE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_message]" value="###CARD_MESSAGE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_signature]" value="###CARD_SIGNATURE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_music]" value="###CARD_MUSIC###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_delivery_notify]" value="###CARD_DELIVERY_NOTIFY###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_send_time]" value="###CARD_SEND_TIME###" />
+		<input type="hidden" name="tx_srsendcard_pi1[day]" value="###CARD_SEND_DAY###" />
+		<input type="hidden" name="tx_srsendcard_pi1[month]" value="###CARD_SEND_MONTH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[year]" value="###CARD_SEND_YEAR###" />
+		<input type="hidden" name="tx_srsendcard_pi1[notfirsttime]" value="1" />
+		<input type="hidden" name="tx_srsendcard_pi1[cmd]" value="prompt" />
+		<input type="submit" name="tx_srsendcard_pi1[modify]" value="###MODIFY_BUTTON_LABEL###" title="###MODIFY_BUTTON_LABEL###" alt="###MODIFY_BUTTON_LABEL###" class="tx-srsendcard-pi1-submit" />
+	</form>
+	<form action="###FORM_URL###" method="post">
+		<input type="hidden" name="tx_srsendcard_pi1[card_image]" value="###CARD_IMAGE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_image_path]" value="###CARD_IMAGE_PATH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[cardaltText]" value="###IMAGEALTTEXT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_image]" value="###SELECTION_IMAGE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_imagealtText]" value="###SELECTION_IMAGE_ALTTEXT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[image_width]" value="###IMAGE_WIDTH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[image_height]" value="###IMAGE_HEIGHT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_image_width]" value="###SELECTION_IMAGE_WIDTH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[selection_image_height]" value="###SELECTION_IMAGE_HEIGHT###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_caption]" value="###CARD_CAPTION###" />
+		<input type="hidden" name="tx_srsendcard_pi1[link_pid]" value="###LINK_PID###" />
+		<input type="hidden" name="tx_srsendcard_pi1[to_name]" value="###TO_NAME###" />
+		<input type="hidden" name="tx_srsendcard_pi1[to_email]" value="###TO_EMAIL###" />
+		<input type="hidden" name="tx_srsendcard_pi1[from_name]" value="###FROM_NAME###" />
+		<input type="hidden" name="tx_srsendcard_pi1[from_email]" value="###FROM_EMAIL###" />
+		<input type="hidden" name="tx_srsendcard_pi1[bgcolor]" value="###BGCOLOR###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontcolor]" value="###FONTCOLOR###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontface]" value="###FONTFACE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontfile]" value="###FONTFILE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[fontsize]" value="###FONTSIZE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_title]" value="###CARD_TITLE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_message]" value="###CARD_MESSAGE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_signature]" value="###CARD_SIGNATURE###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_music]" value="###CARD_MUSIC###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_delivery_notify]" value="###CARD_DELIVERY_NOTIFY###" />
+		<input type="hidden" name="tx_srsendcard_pi1[card_send_time]" value="###CARD_SEND_TIME###" />
+		<input type="hidden" name="tx_srsendcard_pi1[day]" value="###CARD_SEND_DAY###" />
+		<input type="hidden" name="tx_srsendcard_pi1[month]" value="###CARD_SEND_MONTH###" />
+		<input type="hidden" name="tx_srsendcard_pi1[year]" value="###CARD_SEND_YEAR###" />
+		<input type="hidden" name="tx_srsendcard_pi1[cmd]" value="send" />
+		<!--###CAPTCHA_INSERT### this subpart is removed if CAPTCHA is not enabled! -->
+			<div class="tx-srsendcard-pi1-captcha">
+				<!--###ERROR_MSG_CAPTCHA### this subpart is removed if there was no errors! -->
+					<span class="tx-srsendcard-pi1-captcha-error">###CAPTCHA_TRY_AGAIN###</span>
+				<!--###ERROR_MSG_CAPTCHA###-->
+				<label for="tx_srsendcard_pi1_captcha_response">###SR_FREECAP_NOTICE###</label>
+				###SR_FREECAP_CANT_READ###
+				<div>
+					<input type="text" size="15" id="tx_srsendcard_pi1_captcha_response" name="tx_srsendcard_pi1[captcha_response]" title="###SR_FREECAP_NOTICE###" value="">
+					###SR_FREECAP_IMAGE###
+					###SR_FREECAP_ACCESSIBLE###
+				</div>
+			</div>
+		<!--###CAPTCHA_INSERT###-->
+		<div>
+			<input class="tx-srsendcard-pi1-submit" type="submit" name="tx_srsendcard_pi1[send]" value="###SEND_BUTTON_LABEL###" title="###SEND_BUTTON_LABEL###" alt="###SEND_BUTTON_LABEL###" />
+		</div>
+	</form>
+	<div class="tx-srsendcard-pi1-clear-float"></div>
+</div>
+<!-- ###TEMPLATE_PREVIEW_CARD### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_CARD_SENT</h3>
+<em>This is the template for the 'is-sent' display.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_CARD_SENT### begin -->
+<div class="tx-srsendcard-pi1-card-sent">
+	<p>###CARDSENT_THANK_YOU###
+	<br /><br />
+	<a href="###FORM_URL###">###CARDSENT_SEND_ANOTHER###</a>
+	</p>
+</div>
+<!-- ###TEMPLATE_CARD_SENT### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_VIEW_CARD</h3>
+<em>This is the template for the form where the recipient views the postcard.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_VIEW_CARD### begin -->
+<div class="tx-srsendcard-pi1-card">
+	<div class="tx-srsendcard-pi1-card-image">
+		<div class="tx-srsendcard-pi1-card-image-wrap">
+			<!--###IMG_INSERT### this subpart is removed if the image extension is not jpg, jpeg, gif or png -->
+			<img src="###CARD_IMAGE_PATH######CARD_IMAGE###" alt="###IMAGEALTTEXT###" title="###CARD_CAPTION###" width="###IMAGE_WIDTH###" height="###IMAGE_HEIGHT###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" />
+			<!--###IMG_INSERT###-->
+			<!--###QUICKTIME_INSERT### this subpart is removed if the image extension is not mov -->
+			<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" standby="###LOADING_VIDEO_CLIP###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+				<param name="src" value="###CARD_IMAGE_PATH######CARD_IMAGE###" valuetype="ref" />
+				<param name="autoplay" value="true" valuetype="data" />
+				<param name="cache" value="true" valuetype="data" />
+				<param name="kioskmode" value="true" valuetype="data" />
+				<param name="controller" value="true" valuetype="data" />
+				<param name="scale" value="aspect" valuetype="data" />
+				<!--[if !IE]> <-->
+				<object type="video/quicktime" data="###CARD_IMAGE_PATH######CARD_IMAGE###" standby="###LOADING_VIDEO_CLIP###" pluginspage="http://www.apple.com/###LANGUAGE###/quicktime/download/" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+					<param name="autoplay" value="true" valuetype="data" />
+					<param name="cache" value="true" valuetype="data" />
+					<param name="kioskmode" value="true" valuetype="data" />
+					<param name="controller" value="true" valuetype="data" />
+					<param name="scale" value="aspect" valuetype="data" />
+				<!--> <![endif]-->
+				<img src="###CARD_IMAGE_PATH######SELECTION_IMAGE###" alt="###SELECTION_IMAGE_ALTTEXT###" title="###CARD_CAPTION###" width="###SELECTION_IMAGE_WIDTH###" height="###SELECTION_IMAGE_HEIGHT###" style="width: ###SELECTION_IMAGE_WIDTH###px; height: ###SELECTION_IMAGE_HEIGHT###px;" />
+				<br /><p>###NEED_QUICKTIME_MESSAGE### http://www.apple.com/###LANGUAGE###/quicktime/download/</p>
+				<!--[if !IE]> <-->
+				</object>
+				<!--> <![endif]-->
+			</object>
+			<!--###QUICKTIME_INSERT###-->
+			<!--###SHOCKWAVE_INSERT### this subpart is removed if the image extension is not swf -->
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" standby="###LOADING_FLASH_ANIMATION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###">
+				<param name="movie" value="###CARD_IMAGE_PATH######CARD_IMAGE###" valuetype="ref" />
+				<param name="play" value="true" valuetype="data" />
+				<param name="loop" value="false" valuetype="data" />
+				<param name="menu" value="true" valuetype="data" />
+				<param name="scale" value="showall" valuetype="data" />
+				<param name="quality" value="high" valuetype="data" />
+				<!--[if !IE]> <-->
+				<object type="application/x-shockwave-flash" data="###CARD_IMAGE_PATH######CARD_IMAGE###" pluginspage="http://www.macromedia.com/go/getflashplayer" standby="###LOADING_FLASH_ANIMATION###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;" title="###CARD_CAPTION###"> 
+					<param name="play" value="true" valuetype="data" />
+					<param name="loop" value="false" valuetype="data" />
+					<param name="menu" value="true" valuetype="data" />
+					<param name="scale" value="showall" valuetype="data" />
+					<param name="quality" value="high" valuetype="data" />
+				<!--> <![endif]-->
+				<img src="###CARD_IMAGE_PATH######SELECTION_IMAGE###" alt="###SELECTION_IMAGE_ALTTEXT###" title="###CARD_CAPTION###" style="width: ###SELECTION_IMAGE_WIDTH###px; height: ###SELECTION_IMAGE_HEIGHT###px;" />
+				<br /><p>###NEED_FLASH_MESSAGE### http://www.macromedia.com/go/getflashplayer</p>
+				<!--[if !IE]> <-->
+				</object>
+				<!--> <![endif]-->
+			</object>
+			<!--###SHOCKWAVE_INSERT###-->
+			<!--###MUSIC_INSERT### this subpart is removed if no music is selected! -->
+			<br />
+			<object class="tx-srsendcard-pi1-card-music-object" type="application/x-oleobject" standby="###LOADING_CARD_MUSIC###" classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112" style="width: ###IMAGE_WIDTH###px; height: 45px;">
+				<param name="URL" value="###CARD_MUSIC_PATH######CARD_MUSIC###" valuetype="ref" type="audio/x-mid" />
+				<param name="AutoStart" value="true" valuetype="data" />
+				<param name="AudioStream" value="true" valuetype="data" />
+				<param name="loop" value="false" valuetype="data" />
+				<param name="ShowControls" value="true" valuetype="data" />
+				<param name="ShowDisplay" value="false" valuetype="data" />
+				<param name="ShowTracker" value="true" valuetype="data" />
+				<param name="ShowPositionControls" value="true" valuetype="data" />
+				<param name="ShowAudioControls" value="true" valuetype="data" />
+				<param name="ShowSelectionControls" value="false" valuetype="data" />
+				<!--[if !IE]> <-->
+				<object class="tx-srsendcard-pi1-card-music-object" type="audio/x-mid" standby="###LOADING_CARD_MUSIC###" data="###CARD_MUSIC_PATH######CARD_MUSIC###" style="width: ###IMAGE_WIDTH###px; height: 16px;">
+					<param name="src" value="###CARD_MUSIC_PATH######CARD_MUSIC###" valuetype="ref" type="audio/x-mid"/>
+					<param name="autostart" value="true" valuetype="data" />
+					<param name="loop" value="false" valuetype="data" />
+					<param name="kioskmode" value="true" valuetype="data" />
+					<param name="controls" value="VolumeSlider" valuetype="data" />
+				</object>
+				<!--> <![endif]-->
+			</object>
+			<!--###MUSIC_INSERT###-->
+			<p class="tx-srsendcard-pi1-card-caption">###CARD_CAPTION_PRESENT###</p>
+		</div>
+	</div>
+	<div class="tx-srsendcard-pi1-card-message">
+		<div class="tx-srsendcard-pi1-card-message-block">
+			<div class="tx-srsendcard-pi1-card-title"><p>###CARD_TITLE###</p></div>
+			<div class="tx-srsendcard-pi1-card-text"><p>###CARD_MESSAGE###</p></div>
+			<div class="tx-srsendcard-pi1-card-signature"><p><a href="###FROM_EMAIL_URL###">###CARD_SIGNATURE###</a></p></div>
+		</div>
+		<div class="tx-srsendcard-pi1-card-stamp">###CARD_STAMP###</div>
+	</div>
+	<div class="tx-srsendcard-pi1-clear-float"></div>
+</div>
+<div class="tx-srsendcard-pi1-card-buttons tx-srsendcard-pi1-image-wide-left-margin">
+	<p><a href="#" onfocus="blurLink(this);"  onclick="window.open('###PRINT_CARD_URL###','PrintCard','###PRINT_WINDOW_PARAMS###');" title="###PRINTCARD_PROMPT###">###PRINT_ICON######PRINTCARD_PROMPT###</a>
+	<br /><a href="###FORM_URL###" title="###SENDCARD_PROMPT###">###SENDCARD_PROMPT###</a></p>
+</div>
+<!-- ###TEMPLATE_VIEW_CARD### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_PRINT_CARD</h3>
+<em>This is the template for the form where the recipient prints the postcard.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_PRINT_CARD### begin -->
+<div class="tx-srsendcard-pi1-card">
+	<div class="tx-srsendcard-pi1-card-image">
+		<div class="tx-srsendcard-pi1-card-image-wrap">
+			<!--###IMG_INSERT### this subpart is removed if the image extension is not jpg, jpeg, gif or png -->
+			<img src="###CARD_IMAGE_PATH######CARD_IMAGE###" alt="###IMAGEALTTEXT###" title="###CARD_CAPTION###"  width="###IMAGE_WIDTH###" height="###IMAGE_HEIGHT###" style="width: ###IMAGE_WIDTH###px; height: ###IMAGE_HEIGHT###px;"  />
+			<!--###IMG_INSERT###-->
+			<p class="tx-srsendcard-pi1-card-caption">###CARD_CAPTION###</p>
+		</div>
+	</div>
+	<div class="tx-srsendcard-pi1-card-message">
+		<div class="tx-srsendcard-pi1-card-message-block">
+			<div class="tx-srsendcard-pi1-card-title"><p>###CARD_TITLE###</p></div>
+			<div class="tx-srsendcard-pi1-card-text"><p>###CARD_MESSAGE###</p></div>
+			<div class="tx-srsendcard-pi1-card-signature"><p><a href="###FROM_EMAIL_URL###">###CARD_SIGNATURE###</a><br />###FROM_EMAIL###</p></div>
+		</div>
+		<div class="tx-srsendcard-pi1-card-stamp">###CARD_STAMP###</div>
+	</div>
+	<div class="tx-srsendcard-pi1-clear-float"></div>
+</div>
+<!-- ###TEMPLATE_PRINT_CARD### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_CARD_NOT_FOUND</h3>
+<em>This is the template for the 'card not found' display.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_CARD_NOT_FOUND### begin -->
+<div class="tx-srsendcard-pi1-card-not-found">
+	<p>###CARDNOTFOUND_SORRY###
+	<br /><br />
+	###CARDNOTFOUND_INSTRUCTIONS###
+	</p>
+</div>
+<!-- ###TEMPLATE_CARD_NOT_FOUND### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_EMAIL_CARD_SENT</h3>
+<em>Template for the plain link notification email. First line is used as subject for the mail.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_EMAIL_CARD_SENT### begin-->
+###EMAIL_CARDSENT_SUBJECT1######FROM_NAME######EMAIL_CARDSENT_SUBJECT2###
+
+###EMAIL_CARDSENT_TITLE1######TO_NAME######EMAIL_CARDSENT_TITLE2###
+
+###EMAIL_CARDSENT_TEXT1######FROM_NAME######EMAIL_CARDSENT_TEXT2###
+
+###EMAIL_CARDSENT_TEXT3######CARD_URL######EMAIL_CARDSENT_TEXT4###
+
+###EMAIL_SIGNATURE###
+###SITE_NAME###
+###SITE_URL###
+###SITE_EMAIL###
+
+<!-- ###TEMPLATE_EMAIL_CARD_SENT### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_EMAIL_CARD_SENT_HTML</h3>
+<em>Template for the HTML notification email sent to the card recipient.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_EMAIL_CARD_SENT_HTML### begin -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<style type="text/css">
+/*<![CDATA[*/
+###CSS_STYLES###
+/*]]>*/
+</style>
+<title>###EMAIL_CARDSENT_SUBJECT1######FROM_NAME######EMAIL_CARDSENT_SUBJECT2###</title>
+<meta http-equiv="Content-Type" content="text/html; charset=###CHARSET###">
+<meta name="generator" content="TYPO3 CMS">
+</head>
+<body>
+	<div class="tx-srsendcard-pi1">
+		<p><span class="tx-srsendcard-pi1-salutation">###EMAIL_CARDSENT_TITLE1######TO_NAME######EMAIL_CARDSENT_TITLE2###</span></p>
+		<p>###EMAIL_CARDSENT_TEXT1######FROM_NAME######EMAIL_CARDSENT_TEXT2###</p>
+		<p>###EMAIL_CARDSENT_TEXT3###<a href="###CARD_URL###">###CARD_URL###</a>###EMAIL_CARDSENT_TEXT4###</p>
+		<p>###EMAIL_SIGNATURE###<br />
+			<span class="tx-srsendcard-pi1-site-name">###SITE_NAME###<span><br />
+			<a href="###SITE_URL###">###SITE_WWW###</a><br />
+			<a href="mailto:###SITE_EMAIL###">###SITE_EMAIL###</a>
+		</p>
+</div>
+</body>
+</html>
+<!-- ###TEMPLATE_EMAIL_CARD_SENT_HTML### end-->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_EMAIL_CARD_VIEWED</h3>
+<em>Template for the plain link notification email. First line is used as subject for the mail.</em>
+<br>
+<br>
+<!-- ###TEMPLATE_EMAIL_VIEWED### begin -->
+###EMAIL_CARDVIEWED_SUBJECT1######EMAIL_CARDVIEWED_SUBJECT2###
+
+###EMAIL_CARDVIEWED_TITLE1######TO_NAME######EMAIL_CARDVIEWED_TITLE2###
+
+###EMAIL_CARDVIEWED_TEXT1###
+
+###FROM_NAME######EMAIL_CARDVIEWED_TEXT2######DATE######EMAIL_CARDVIEWED_TEXT3###
+
+###EMAIL_SIGNATURE###
+###SITE_NAME###
+###SITE_URL###
+###SITE_EMAIL###
+
+<!-- ###TEMPLATE_EMAIL_VIEWED### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>TEMPLATE_EMAIL_VIEWED_HTML</h3>
+<em>Template for the HTML notification email sent to the card recipient.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_EMAIL_VIEWED_HTML### begin -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<style type="text/css">
+/*<![CDATA[*/
+###CSS_STYLES###
+/*]]>*/
+</style>
+<title>###EMAIL_CARDVIEWED_SUBJECT1######EMAIL_CARDVIEWED_SUBJECT2###</title>
+<meta http-equiv="Content-Type" content="text/html; charset=###CHARSET###">
+<meta name="generator" content="TYPO3 CMS">
+</head>
+<body>
+	<div class="tx-srsendcard-pi1">
+		<p><span class="tx-srsendcard-pi1-salutation">###EMAIL_CARDVIEWED_TITLE1######TO_NAME######EMAIL_CARDVIEWED_TITLE2###</span></p>
+		<p>###EMAIL_CARDVIEWED_TEXT1###</p>
+		<p>###FROM_NAME######EMAIL_CARDVIEWED_TEXT2######DATE######EMAIL_CARDVIEWED_TEXT3###</p>
+		<p>###EMAIL_SIGNATURE###<br />
+		<span class="tx-srsendcard-pi1-site-name">###SITE_NAME###</span><br />
+		<a href="###SITE_URL###">###SITE_WWW###</a><br />
+		<a href="mailto:###SITE_EMAIL###">###SITE_EMAIL###</a></p>
+	</div>
+</body>
+</html>
+<!-- ###TEMPLATE_EMAIL_VIEWED_HTML### end-->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>VIEW CARD CSS TEMPLATE</h3>
+<em>This template is used to dynamically generate some additional CSS for viewing the card.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_VIEW_CARD_CSS### begin -->
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card { background-color:###BGCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card p { ###FONTFAMILY### color:###FONTCOLOR###; background-color:###BGCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:link { color:###FONTCOLOR###; ###FONTFAMILY### }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:visited { color:###FONTCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:hover { color:###FONTCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:active { color:###FONTCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-image-wide-left-margin { margin-left: ###IMAGE_WIDTH###px; }
+<!-- ###TEMPLATE_VIEW_CARD_CSS### end -->
+
+
+
+<br /><br /><br /><br /><hr /><br /><br /><br />
+<h3>PRINT CARD CSS TEMPLATE</h3>
+<em>This template is used to dynamically generate some additional CSS for printing the card.</em>
+<br />
+<br />
+<!-- ###TEMPLATE_PRINT_CARD_CSS### begin -->
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card, .tx-srsendcard-pi1 .tx-srsendcard-pi1-card div { background-color:###BGCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card p { ###FONTFAMILY### color:###FONTCOLOR###; background-color:###BGCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:link { color:###FONTCOLOR###; ###FONTFAMILY### }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:visited { color:###FONTCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:hover { color:###FONTCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-card a:active { color:###FONTCOLOR###; }
+.tx-srsendcard-pi1 .tx-srsendcard-pi1-image-wide-left-margin { margin-left: ###IMAGE_WIDTH###px; }
+<!-- ###TEMPLATE_PRINT_CARD_CSS### end -->
+
+
+</body>
+</html>

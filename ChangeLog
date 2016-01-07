@@ -1,6 +1,7 @@
 2016-01-07  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Replace extension icons
+	* Move template to Resources directory
 
 2015-12-26  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 

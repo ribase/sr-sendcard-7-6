@@ -1,4 +1,6 @@
+plugin.tx_srsendcard_pi1 = USER_INT
 plugin.tx_srsendcard_pi1 {
+	userFunc = SJBR\SrSendcard\Controller\SendcardPluginController->main
 
 	templateFile = {$plugin.tx_srsendcard_pi1.file.templateFile}
 	printIcon = {$plugin.tx_srsendcard_pi1.printIcon}
@@ -62,3 +64,4 @@ plugin.tx_srsendcard_pi1 {
 	
 	salutation = {$plugin.tx_srsendcard_pi1.salutation}
 }
+tt_content.list.20.sr_sendcard_pi1 = < plugin.tx_srsendcard_pi1

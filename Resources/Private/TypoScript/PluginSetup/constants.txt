@@ -1,7 +1,7 @@
 plugin.tx_srsendcard_pi1 {
 
-    # cat=plugin.tx_srsendcard_pi1/file; type=file[html,htm,tmpl,txt]; label= Template File: This is the HTML template file used by the extension.
-  file.templateFile = EXT:sr_sendcard/pi1/tx_srsendcard_xhtml.tmpl
+    # cat=plugin.tx_srsendcard_pi1/file; type=file[html,txt]; label= Template File: This is the HTML template file used by the extension.
+  file.templateFile = EXT:sr_sendcard/Resources/Private/Templates/Sendcard.html
 
     # cat=plugin.tx_srsendcard_pi1/file; type=file[gif,jpg,jpeg,png]; label= Print icon: A print icon presented when viewing the card. Used in the default HTML template.
   printIcon = EXT:sr_sendcard/Resources/Public/Images/imprimir.gif
