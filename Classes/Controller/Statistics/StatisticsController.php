@@ -1,42 +1,59 @@
 <?php
-/***************************************************************
-*  Copyright notice
-*
-*  (c) 2003-2014 Stanislas Rolland <typo3(arobas)sjbr.ca>
-*  All rights reserved
-*
-*  This script is part of the Typo3 project. The Typo3 project is
-*  free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation; either version 2 of the License, or
-*  (at your option) any later version.
-*
-*  The GNU General Public License can be found at
-*  http://www.gnu.org/copyleft/gpl.html.
-*
-*  This script is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/
+namespace SJBR\SrSendcard\Controller\Statistics;
+
+/*
+ *  Copyright notice
+ *
+ *  (c) 2003-2016 Stanislas Rolland <typo3(arobas)sjbr.ca>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ */
+
+use TYPO3\CMS\Backend\Module\BaseScriptClass;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
 * Module 'Sent Cards Statistics' for the 'sr_sendcard' extension.
 *
-* @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass {
-	var $pageinfo;
+class StatisticsController extends BaseScriptClass
+{
+	protected $pageinfo;
+
+	/**
+	 * Constructor
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->getLanguageService()->includeLLFile('EXT:sr_sendcard/Resources/Private/Language/locallang_mod.xlf');
+		$this->getBackendUser()->modAccess($GLOBALS['MCONF'], true);
+	}
 
 	/**
 	 * Adds items to the->MOD_MENU array. Used for the function menu selector.
 	 *
 	 * @return void
 	 */
-	function menuConfig() {
-		$this->MOD_MENU = Array (
-			'function' => Array (
+	public function menuConfig()
+	{
+		$this->MOD_MENU = array(
+			'function' => array(
 				'1' => $GLOBALS['LANG']->getLL('function1'),
 				'2' => $GLOBALS['LANG']->getLL('function2'),
 				'3' => $GLOBALS['LANG']->getLL('function3'),
@@ -45,27 +62,28 @@ class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass
 		parent::menuConfig();
 	}
 
-		// If you chose "web" as main module, you will need to consider the $this->id parameter which will contain the uid-number of the page clicked in the page tree
 	/**
 	 * Main function of the module. Write the content to $this->content
+	 * If you chose "web" as main module, you will need to consider the $this->id parameter which will contain the uid-number of the page clicked in the page tree
 	 *
 	 * @return void
 	 */
-	function main() {
-		
-			// Access check!
-			// The page will show only if there is a valid page and if this page may be viewed by the user
-		$this->pageinfo = \TYPO3\CMS\Backend\Utility\BackendUtility::readPageAccess($this->id, $this->perms_clause);
+	public function main()
+	{
+		// Access check!
+		// The page will show only if there is a valid page and if this page may be viewed by the user
+		$this->pageinfo = BackendUtility::readPageAccess($this->id, $this->perms_clause);
 		$access = is_array($this->pageinfo) ? 1 : 0;
-		
+
+		$this->doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
+		$this->doc->backPath = $GLOBALS['BACK_PATH'];		
+
 		if (($this->id && $access) || ($GLOBALS['BE_USER']->user['admin'] && !$this->id)) {
 			
-				// Draw the header.
-			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
-			$this->doc->backPath = $GLOBALS['BACK_PATH'];
+			// Draw the header.
 			$this->doc->form = '<form action="" method="POST">';
 			
-				// JavaScript
+			// JavaScript
 			$this->doc->JScode = '
 				<script type="text/javascript">
 					/*<![CDATA[*/
@@ -83,29 +101,27 @@ class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass
 					/*<![CDATA[*/
 					<!--
 					script_ended = 1;
-					if (top.theMenu) top.theMenu.recentuid = '.intval($this->id).';
+					if (top.theMenu) top.theMenu.recentuid = ' . (int) $this->id . ';
 					// -->
 					/*]]>*/
 					</script>
 				';
 			
-			$headerSection = $this->doc->getHeader('pages', $this->pageinfo, $this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->php3Lang['labels']['path'].': '.\TYPO3\CMS\Core\Utility\GeneralUtility::fixed_lgd_cs($this->pageinfo['_thePath'], -50);
+			$headerSection = $this->doc->getHeader('pages', $this->pageinfo, $this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->php3Lang['labels']['path'] . ': ' . GeneralUtility::fixed_lgd_cs($this->pageinfo['_thePath'], -50);
 			$content .= $this->doc->header($GLOBALS['LANG']->getLL('title'));
 			$content .= $this->doc->spacer(5);
-			$content .= $this->doc->section('', $this->doc->funcMenu($headerSection, \TYPO3\CMS\Backend\Utility\BackendUtility::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
+			$content .= $this->doc->section('', $this->doc->funcMenu($headerSection, BackendUtility::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
 			$content .= $this->doc->divider(5);
-				// Render module content
+			// Render module content
 			$content .= $this->doc->section($GLOBALS['LANG']->getLL('title'), $this->moduleContent(), 0, 1);
-				// ShortCut
+			// ShortCut
 			if ($GLOBALS['BE_USER']->mayMakeShortcut()) {
 				$content .= $this->doc->spacer(20).$this->doc->section('', $this->doc->makeShortcutIcon('id', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']));
 			}
 			$content .= $this->doc->spacer(10);
 			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
 		} else {
-				// If no access or if ID == zero
-			$this->doc = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('template');
-			$this->doc->backPath = $GLOBALS['BACK_PATH'];
+			// If no access or if ID == zero
 			$content = $this->doc->header($GLOBALS['LANG']->getLL('title'));
 			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
 		}
@@ -116,7 +132,8 @@ class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass
 	 *
 	 * @return void
 	 */
-	function printContent() {
+	public function printContent()
+	{
 		echo $this->content;
 	}
 	
@@ -125,9 +142,10 @@ class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass
 	 *
 	 * @return void
 	 */
-	function moduleContent() {
+	public function moduleContent()
+	{
 		$content = '';
-			// Get the sent cards
+		// Get the sent cards
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'caption,time_created',
 			'tx_srsendcard_sendcard',
@@ -155,8 +173,8 @@ class tx_srsendcard_statistics extends \TYPO3\CMS\Backend\Module\BaseScriptClass
 			$lastCaption = $row['caption'];
 		}
 		
-			// Sort and adjust table titles according to selected function
-		switch((string)$this->MOD_SETTINGS['function']) {
+		// Sort and adjust table titles according to selected function
+		switch ((string)$this->MOD_SETTINGS['function']) {
 			case 1:
 				/* Sorted in alphabetial order*/
 				/*Ouput */

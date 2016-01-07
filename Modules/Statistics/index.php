@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2012 Stanislas Rolland <typo3(arobas)sjbr.ca>
+*  (c) 2003-2016 Stanislas Rolland <typo3(arobas)sjbr.ca>
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is
@@ -23,23 +23,13 @@
 ***************************************************************/
 /**
 * Module 'Sent Cards Statistics' for the 'sr_sendcard' extension.
-*
-* @author Stanislas Rolland <typo3(arobas)sjbr.ca>
 */
-$GLOBALS['LANG']->includeLLFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('sr_sendcard') . 'Resources/Private/Language/locallang_mod.xlf');
-// This checks permissions and exits if the users has no permission for entry.
-$GLOBALS['BE_USER']->modAccess($MCONF, 1);
-
-	// Make instance:
-$GLOBALS['SOBE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_srsendcard_statistics');
+// Make instance:
+$GLOBALS['SOBE'] = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('SJBR\\SrSendcard\\Controller\\Statistics\\StatisticsController');
 $GLOBALS['SOBE']->init();
-
-	// Include files?
-reset($GLOBALS['SOBE']->include_once);
-while (list(, $INC_FILE) = each($GLOBALS['SOBE']->include_once)) {
-	include_once($INC_FILE);
-}
-
+// Checking for first level external objects
+$GLOBALS['SOBE']->checkExtObj();
+// Checking second level external objects
+$GLOBALS['SOBE']->checkSubExtObj();
 $GLOBALS['SOBE']->main();
 $GLOBALS['SOBE']->printContent();
-?>
