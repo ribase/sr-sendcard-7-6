@@ -15,7 +15,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('sr_sendcard') . 'Resources/Public/Images/moduleicon.gif',
+		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_card.svg',
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,card,image,cardaltText,img_width,img_height,selection_image,selection_imagealtText,selection_image_width,selection_image_height,link_pid'

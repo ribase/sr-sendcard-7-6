@@ -12,7 +12,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('sr_sendcard') . 'Resources/Public/Images/moduleicon.gif',
+		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_sentcard.svg',
 		'adminOnly' => 1,
 		'hideTable' => 1,
 		'readOnly' => 1

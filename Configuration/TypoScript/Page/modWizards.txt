@@ -1,0 +1,15 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+	elements {
+		tx_srsendcard_pi1 {
+			icon = ../typo3conf/ext/sr_sendcard/Resources/Public/Images/ContentElementWizardIcon.png
+			title = LLL:EXT:sr_sendcard/Resources/Private/Language/locallang.xlf:pi1_title
+			description = LLL:EXT:sr_sendcard/Resources/Private/Language/locallang.xlf:pi1_plus_wiz_description
+			params = &defVals[tt_content][CType]=list&defVals[tt_content][list_type]=sr_sendcard_pi1
+			tt_content_defValues {
+				CType = list
+				list_type = sr_sendcard_pi1
+			}
+		}
+	}
+	show = *
+}
