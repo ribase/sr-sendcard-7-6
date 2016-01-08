@@ -25,6 +25,7 @@ namespace SJBR\SrSendcard\Imaging;
 use TYPO3\CMS\Core\Imaging\GraphicalFunctions;
 use TYPO3\CMS\Core\Utility\CommandUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Adding geometry parameter to position a logo on the image of the card
@@ -40,7 +41,11 @@ class SendcardGraphicalFunctions extends GraphicalFunctions
 			$params = '-colorspace GRAY +matte';
 			$theMask = $this->randomName() . '.' . $this->gifExtension;
 			$this->imageMagickExec($mask, $theMask, $params);
-			$cmd = GeneralUtility::imageMagickCommand('combine', '-compose over +matte ' . $geometry . $this->wrapFileName($input) . ' ' . $this->wrapFileName($overlay) . ' ' . $this->wrapFileName($theMask) . ' ' . $this->wrapFileName($output));
+			if (VersionNumberUtility::convertVersionNumberToInteger(VersionNumberUtility::getNumericTypo3Version()) < 7000000) {
+				$cmd = GeneralUtility::imageMagickCommand('combine', '-compose over +matte ' . $geometry . $this->wrapFileName($input) . ' ' . $this->wrapFileName($overlay) . ' ' . $this->wrapFileName($theMask) . ' ' . $this->wrapFileName($output));
+			} else {
+				$cmd = GeneralUtility::imageMagickCommand('combine', '-compose over +matte ' . $geometry . CommandUtility::escapeShellArgument($input) . ' ' . CommandUtility::escapeShellArgument($overlay) . ' ' . CommandUtility::escapeShellArgument($theMask) . ' ' . CommandUtility::escapeShellArgument($output));
+			}
 			// +matte = no alpha layer in output
 			$this->IM_commands[] = array($output, $cmd);
 			$ret = CommandUtility::exec($cmd);

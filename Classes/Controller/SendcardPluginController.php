@@ -4,7 +4,7 @@ namespace SJBR\SrSendcard\Controller;
 /*
  *  Copyright notice
  *
- *  (c) 2003-2015 Stanislas Rolland <typo3(arobas)sjbr.ca>
+ *  (c) 2003-2016 Stanislas Rolland <typo3(arobas)sjbr.ca>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -143,16 +143,16 @@ class SendcardPluginController extends AbstractPlugin
 		
 		$createPID = $this->conf['createPID'] ? $this->conf['createPID'] : $GLOBALS['TSFE']->id;
 		$createType = ($this->conf['createType'] == '') ? $GLOBALS['TSFE']->type : $this->conf['createType'];
-		$create_url = $this->get_url('', $createPID.','.$createType);
+		$create_url = $this->get_url('', $createPID.','.$createType, array());
 		$markerArray['###FORM_URL###'] = $create_url;
 		
 		$this->formPID = $this->conf['formPID'] ? $this->conf['formPID'] : $GLOBALS['TSFE']->id;
 		$this->formType = ($this->conf['formType'] == '') ? $GLOBALS['TSFE']->type : $this->conf['formType'];
-		$this->form_url = $this->get_url('', $this->formPID.','.$this->formType, array(), array(), FALSE);
+		$this->form_url = $this->get_url('', $this->formPID.','.$this->formType, array(), array(), false);
 		
 		$previewPID = $this->conf['previewPID'] ? $this->conf['previewPID'] : $GLOBALS['TSFE']->id;
 		$previewType = ($this->conf['previewType'] == '') ? $GLOBALS['TSFE']->type : $this->conf['previewType'];
-		$preview_url = $this->get_url('', $previewPID.','.$previewType, array(), array(), FALSE);
+		$preview_url = $this->get_url('', $previewPID.','.$previewType, array(), array(), false);
 		
 		$viewPID = $this->conf['viewPID'] ? $this->conf['viewPID'] : $GLOBALS['TSFE']->id;
 		$viewType = ($this->conf['viewType'] == '') ? $GLOBALS['TSFE']->type : $this->conf['viewType'] ;
@@ -171,7 +171,7 @@ class SendcardPluginController extends AbstractPlugin
 		$this->imgObj->tempPath = $cardData['card_image_path'] ? $cardData['card_image_path'] : $this->conf['dir'].'/';
 		$this->imgObj->filenamePrefix = $this->extKey.'_';
 		
-			// Set language and locale
+		// Set language and locale
 		$language = $GLOBALS['TSFE']->lang;
 		$isoLanguage = strtolower($GLOBALS['TSFE']->sys_language_isocode);
 		if ($this->conf['locale_all']) {
@@ -185,7 +185,7 @@ class SendcardPluginController extends AbstractPlugin
 		$this->pidRecord->sys_language_uid = (trim($GLOBALS['TSFE']->config['config']['sys_language_uid'])) ? trim($GLOBALS['TSFE']->config['config']['sys_language_uid']):0;
 		
 		// We are not going to send if the captcha string is incorrect
-		if ($cardData['cmd'] == 'send' && ExtensionManagementUtility::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
+		if ($cardData['cmd'] === 'send' && ExtensionManagementUtility::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
 			$freeCap = GeneralUtility::makeInstance('SJBR\\SrFreecap\\PiBaseApi');
 			if (!$freeCap->checkWord($cardData['captcha_response'])) {
 				$cardData['cmd'] = 'preview';
@@ -216,13 +216,13 @@ class SendcardPluginController extends AbstractPlugin
 				$missing_card_message = 1;
 			}
 		}
-		
+
 		switch ($cardData['cmd']) {
 			case '':
 				/*
 				* Display choice of cards
 				*/
-					// Get cards series
+				// Get cards series
 				$cardSeriesUid = array();
 				$cardSeriesTitle = array();
 				if ($this->cObj->data['pages'] ) {
@@ -231,14 +231,14 @@ class SendcardPluginController extends AbstractPlugin
 					$cardSeriesUid[0] = $id;
 				}
 				
-					// Determine presentation order
+				// Determine presentation order
 				if (trim($this->conf['cardPresentationOrder']) == 'manual' )  {
 					$cardPresentationOrder = 'sorting';
 				} else {
 					$cardPresentationOrder = 'card';
 				}
 				
-					// Prepare to build the series subpart
+				// Prepare to build the series subpart
 				if ($this->conf['enableAlternateSelectionTemplate'] ) {
 					$cardSeriesUidCount = count($cardSeriesUid);
 					$this->seriesTemplateCode = $this->templateCode;
@@ -292,13 +292,11 @@ class SendcardPluginController extends AbstractPlugin
 					$content = $this->markerBasedTemplateService->substituteMarkerArray($this->subpart, $markerArray);
 				}
 				break;
-				
 			case 'prompt':
 				/*
 				* Display form and prompt for recipent information and card options
 				*/
-				
-					// Initialise values
+				// Initialise values
 				$notfirsttime = ($cardData['notfirsttime'] == 1);
 				($cardData['day']) ? $card_send_time = mktime(0, 0, 0, $cardData['month'], $cardData['day'], $cardData['year']) :$card_send_time = time() ;
 				$cardData['day'] = intval(date('d', $card_send_time));
@@ -340,7 +338,7 @@ class SendcardPluginController extends AbstractPlugin
 				$subpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_CARD_FORM###');
 				$markerArray['###FORM_URL###'] = $preview_url;
 				
-					// Select the correct image insert
+				// Select the correct image insert
 				$markerArray['###CARD_IMAGE###'] = $cardData['card_image'];
 				$markerArray['###SELECTION_IMAGE###'] = $cardData['selection_image'];
 				$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($this->imgObj->tempPath);
@@ -367,7 +365,7 @@ class SendcardPluginController extends AbstractPlugin
 					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($this->addLogo(GeneralUtility::deHSCentities($cardData['selection_image']), $cardData['selection_image_width'], $cardData['selection_image_height'], $selectionFileInfo['extension']));
 				}
 				
-					// Disable music, font faces, font colors, background colors if requested
+				// Disable music, font faces, font colors, background colors if requested
 				if (($this->conf['disableMusic']) == 1 ) {
 					$subpartArray['###MUSIC_SELECTOR_INSERT###'] = '';
 				}
@@ -387,7 +385,7 @@ class SendcardPluginController extends AbstractPlugin
 					$subpartArray['###CARD_OPTIONS_INSERT###'] = '';
 				}
 				
-					// Pre-fill form data if FE user in logged in
+				// Pre-fill form data if FE user in logged in
 				if ($GLOBALS['TSFE']->loginUser) {
 					if (!$cardData['from_name']) {
 						$cardData['from_name'] = htmlspecialchars($GLOBALS['TSFE']->fe_user->user['name']);
@@ -397,7 +395,7 @@ class SendcardPluginController extends AbstractPlugin
 					}
 				}
 
-					// Set markers
+				// Set markers
 				$markerArray['###SELECTION_IMAGE_WIDTH###'] = $cardData['selection_image_width'];
 				$markerArray['###SELECTION_IMAGE_HEIGHT###'] = $cardData['selection_image_height'];
 				$markerArray['###SELECTION_IMAGE_ALTTEXT###'] = $cardData['selection_imagealtText'];
@@ -458,7 +456,7 @@ class SendcardPluginController extends AbstractPlugin
 				$markerArray['###CARD_DELIVERY_NOTIFY###'] = ($cardData['card_delivery_notify']) ? 'checked="checked"' :'';
 				$markerArray['###PREVIEW_BUTTON_LABEL###'] = $this->pi_getLL('preview_button_label');
 
-					// Select error messsage inserts
+				// Select error messsage inserts
 				$markerArray['###MISSING_TO_NAME###'] = $this->pi_getLL('missing_to_name');
 				$markerArray['###INVALID_TO_EMAIL###'] = $this->pi_getLL('invalid_to_email');
 				$markerArray['###MISSING_FROM_NAME###'] = $this->pi_getLL('missing_from_name');
@@ -479,15 +477,12 @@ class SendcardPluginController extends AbstractPlugin
 				if (!(isset($missing_card_message)) ) {
 					$subpartArray['###ERROR_MSG_CARD_MESSAGE###'] = '';
 				}
-
 				$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 				break;
-
 			case 'preview':
 				/*
 				* Preview the card
 				*/
-
 				$markerArray['###FORM_URL###'] = $this->form_url;
 
 				if (($this->conf['disableSendDate']) == 1 ) {
@@ -515,7 +510,7 @@ class SendcardPluginController extends AbstractPlugin
 				$markerArray['###SELECTION_IMAGE###'] = $cardData['selection_image'];
 				$markerArray['###SELECTION_IMAGE_ALTTEXT###'] = $cardData['selection_imagealtText'] ? $cardData['selection_imagealtText'] : $cardData['cardaltText'];
 
-					// Select the correct image insert
+				// Select the correct image insert
 				$fileInfo = pathinfo($this->imgObj->tempPath.$cardData['card_image'] );
 				if (!($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg' || $fileInfo['extension'] == 'gif' || $fileInfo['extension'] == 'png' ) ) {
 					$subpartArray['###IMG_INSERT###'] = '';
@@ -561,10 +556,10 @@ class SendcardPluginController extends AbstractPlugin
 				$markerArray['###LINK_PID###'] = $cardData['link_pid'];
 				$markerArray['###TO_NAME###'] = $cardData['to_name'];
 				$markerArray['###TO_EMAIL###'] = $cardData['to_email'];
-				$markerArray['###TO_EMAIL_URL###'] = $this->get_url('', $cardData['to_email']);
+				$markerArray['###TO_EMAIL_URL###'] = $this->get_url('', $cardData['to_email'], array());
 				$markerArray['###FROM_NAME###'] = $cardData['from_name'];
 				$markerArray['###FROM_EMAIL###'] = $cardData['from_email'];
-				$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $cardData['from_email']);
+				$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $cardData['from_email'], array());
 				$markerArray['###BGCOLOR###'] = $cardData['bgcolor'];
 				$markerArray['###FONTCOLOR###'] = $cardData['fontcolor'];
 				$markerArray['###FONTFACE###'] = $cardData['fontface'];
@@ -623,7 +618,7 @@ class SendcardPluginController extends AbstractPlugin
 
 				$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 
-					// Dynamically generate some CSS selectors
+				// Dynamically generate some CSS selectors
 				$CSSSubpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD_CSS###');
 				$markerArray['###FONTFAMILY###'] = $cardData['fontface'] ? 'font-family: ' . $cardData['fontface'] . ';' : '';
 				$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('preview-card')] = $this->markerBasedTemplateService->substituteMarkerArray($CSSSubpart, $markerArray);
@@ -633,13 +628,12 @@ class SendcardPluginController extends AbstractPlugin
 				/*
 				* Send the card
 				*/
-
-					// Set create time and check when to send
+				// Set create time and check when to send
 				$today = getdate();
 				$cardData['time_created'] = mktime($today['hours'], $today['minutes'], $today['seconds'], $today['mon'], $today['mday'], $today['year']);
 				$cardData['emailsent'] = ($cardData['card_send_time'] > $cardData['time_created']) ? 0 :1;
 
-					// Generate card id and url
+				// Generate card id and url
 				$cardData['uid'] = $this->make_cardid();
 				$vars[$this->prefixId . '[cardid]'] = $cardData['uid'];
 				$vars[$this->prefixId . '[cmd]'] = 'view';
@@ -648,10 +642,10 @@ class SendcardPluginController extends AbstractPlugin
 				$cardData['language'] = $language;
 				$cardData['charset'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
 				
-					// Collect ip address in case we want to investigate some possile abuse
+				// Collect ip address in case we want to investigate some possile abuse
 				$cardData['ip_address'] = GeneralUtility::getIndpEnv('REMOTE_ADDR');
 				
-					// Reconcile post and db field names
+				// Reconcile post and db field names
 				$cardData['image'] = $cardData['card_image'];
 				$cardData['img_width'] = $cardData['image_width'];
 				$cardData['img_height'] = $cardData['image_height'];
@@ -663,7 +657,7 @@ class SendcardPluginController extends AbstractPlugin
 				$cardData['notify'] = $cardData['card_delivery_notify'];
 				$cardData['send_time'] = $cardData['card_send_time'];
 
-					// Reconcile both ways...
+				// Reconcile both ways...
 				$tableColumns = "uid, pid, image, card_image_path, selection_image, img_width, img_height, selection_image_width, selection_image_height, caption, cardaltText, selection_imagealtText, link_pid, towho, to_email, fromwho, from_email, bgcolor, fontcolor, fontface, fontfile, fontsize, message, card_title, card_signature, music, card_url, notify, emailsent, send_time, time_created, ip_address, language, charset";
 				$tableColumnsArr = GeneralUtility::trimExplode(',', $tableColumns, 1);
 				reset($cardData);
@@ -672,52 +666,48 @@ class SendcardPluginController extends AbstractPlugin
 						unset($cardData[$key]);
 					}
 				}
-					// Insert card instance into database
+				// Insert card instance into database
 				$res = $GLOBALS['TYPO3_DB']->exec_INSERTquery($this->tbl_name, $cardData);
 				
-					// Send email to recipient... if this is the time
+				// Send email to recipient... if this is the time
 				$this->notifyRecipient($cardData, 'TEMPLATE_EMAIL_CARD_SENT');
 				
-					// Display card sent thank you message
+				// Display card sent thank you message
 				$subpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_CARD_SENT###');
 				$markerArray['###CARDSENT_THANK_YOU###'] = $this->pi_getLL('cardSent_thank_you');
 				$markerArray['###CARDSENT_SEND_ANOTHER###'] = $this->pi_getLL('cardSent_send_another');
-				$markerArray['###FORM_URL###'] = htmlspecialchars($this->get_url('', $createPID.','.$createType, array(), array(), FALSE));
+				$markerArray['###FORM_URL###'] = htmlspecialchars($this->get_url('', $createPID.','.$createType, array(), array(), false));
 				
 				$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 				break;
-
 			case 'view':
 				/*
 				* View the card!
 				*/
-				
-					// Get the card instance from the database
+				// Get the card instance from the database
 				$row = $this->getCard($cardData['cardid']);
-				
 				if ($row ) {
-						// Display the card... if it is there!
+					// Display the card... if it is there!
 					$subpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD###');
 					$cardid = $row['uid'];
 					$print_vars['cardid'] = $cardid;
 					$print_vars['cmd'] = 'print';
 					$print_unsetVars = array();
-					$print_usePiVars = TRUE;
+					$print_usePiVars = true;
 					$savedLinkVars = $GLOBALS['TSFE']->linkVars;
-					$linkVarsArr = GeneralUtility::trimExplode('&', $GLOBALS['TSFE']->linkVars, TRUE);
+					$linkVarsArr = GeneralUtility::trimExplode('&', $GLOBALS['TSFE']->linkVars, true);
 					reset($linkVarsArr);
 					while (list($key, $value) = each($linkVarsArr)) {
-						if( strstr($value, $this->prefixId) ) {
+						if (strstr($value, $this->prefixId)) {
 							unset($linkVarsArr[$key]);
 						}
 					}
 					$GLOBALS['TSFE']->linkVars = implode('&', $linkVarsArr);
-					$printcard_url = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID.','.$printType, $print_vars, $print_unsetVars, $print_usePiVars));
+					$printcard_url = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID . ',' . $printType, $print_vars, $print_unsetVars, $print_usePiVars));
 					$GLOBALS['TSFE']->linkVars = $savedLinkVars;
-
 					$card_message_present = $this->linksInText($row['message']);
 
-						// Select the correct image insert
+					// Select the correct image insert
 					$img_path = $row['card_image_path'] ? $row['card_image_path'] : $this->imgObj->tempPath;
 					$fileInfo = pathinfo($img_path.$row['image']);
 					if (!$fileInfo) {
@@ -728,7 +718,7 @@ class SendcardPluginController extends AbstractPlugin
 							$fileInfo = pathinfo($img_path.$row['image']);
 						}
 					}
-					if (!($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg' || $fileInfo['extension'] == 'gif' || $fileInfo['extension'] == 'png' ) ) {
+					if (!($fileInfo['extension'] === 'jpg' || $fileInfo['extension'] === 'jpeg' || $fileInfo['extension'] === 'gif' || $fileInfo['extension'] === 'png' )) {
 						$subpartArray['###IMG_INSERT###'] = '';
 					} else {
 						if ($this->conf['logo'] && !$this->conf['disableImageScaling']) {
@@ -736,28 +726,28 @@ class SendcardPluginController extends AbstractPlugin
 							$logoImgInfo = $this->imgObj->getImageDimensions($logoResource);
 							if ($logoImgInfo) {
 								$img_path = $this->imgObj->tempPath;
-								$fileInfo = pathinfo($img_path.$row['image'] );
+								$fileInfo = pathinfo($img_path.$row['image']);
 								if (!$fileInfo ) {
 									$img_path = 'typo3temp/';
-									$fileInfo = pathinfo($img_path.$row['image'] );
+									$fileInfo = pathinfo($img_path . $row['image']);
 								}
 							}
 						}
 					}
-					if (!($fileInfo['extension'] == 'mov' ) ) {
+					if (!($fileInfo['extension'] === 'mov' )) {
 						$subpartArray['###QUICKTIME_INSERT###'] = '';
 					} else {
 						$markerArray['###NEED_QUICKTIME_MESSAGE###'] = $this->pi_getLL('need_quicktime_message');
 						$markerArray['###LOADING_VIDEO_CLIP###'] = $this->pi_getLL('loading_video_clip');
 					}
-					if (!($fileInfo['extension'] == 'swf' ) ) {
+					if (!($fileInfo['extension'] === 'swf' )) {
 						$subpartArray['###SHOCKWAVE_INSERT###'] = '';
 					} else {
 						$markerArray['###NEED_FLASH_MESSAGE###'] = $this->pi_getLL('need_flash_message');
 						$markerArray['###LOADING_FLASH_ANIMATION###'] = $this->pi_getLL('loading_flash_animation');
 					}
 
-						// Prepare the card caption
+					// Prepare the card caption
 					if ($row['link_pid']) {
 						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$row['caption'].'</a>' ;
 					} else {
@@ -782,10 +772,10 @@ class SendcardPluginController extends AbstractPlugin
 					$markerArray['###LANGUAGE###'] = $isoLanguage ? $isoLanguage : $language;
 					$markerArray['###TO_NAME###'] = $row['towho'];
 					$markerArray['###TO_EMAIL###'] = $row['to_email'];
-					$markerArray['###TO_EMAIL_URL###'] = $this->get_url('', $row['to_email']);
+					$markerArray['###TO_EMAIL_URL###'] = $this->get_url('', $row['to_email'], array());
 					$markerArray['###FROM_NAME###'] = $row['fromwho'];
 					$markerArray['###FROM_EMAIL###'] = $row['from_email'];
-					$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $row['from_email']);
+					$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $row['from_email'], array());
 					$markerArray['###BGCOLOR###'] = htmlspecialchars($row['bgcolor']);
 					$markerArray['###FONTCOLOR###'] = htmlspecialchars($row['fontcolor']);
 					$markerArray['###FONTFACE###'] = htmlspecialchars($row['fontface']);
@@ -818,27 +808,24 @@ class SendcardPluginController extends AbstractPlugin
 					
 					$content = $this->cObj->substituteMarkerArrayCached($subpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 					
-						// Dynamically generate some CSS selectors
+					// Dynamically generate some CSS selectors
 					$CSSSubpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD_CSS###');
 					$markerArray['###FONTFAMILY###'] = $row['fontface'] ? 'font-family: ' . $row['fontface'] . ';' : '';
 					$GLOBALS['TSFE']->additionalCSS['css-' . $this->pi_getClassName('view-card')] = $this->markerBasedTemplateService->substituteMarkerArray($CSSSubpart, $markerArray);
-						// Notify the sender that the card was viewed
+					// Notify the sender that the card was viewed
 					$this->notifySender($row, 'TEMPLATE_EMAIL_VIEWED');
-
-						// Cleanup old card instances
+					// Cleanup old card instances
 					$this->cleanupOldCards();
 				} else {
 					$content = $this->cardNotFound();
 				}
 				break;
-
 			case 'print':
 				/*
 				* Display printer-friendly card
 				*/
 				$content = $this->printCard($cardData['cardid']);
 				break;
-
 			default:
 				/*
 				* Really? Nothing we can do
@@ -846,7 +833,6 @@ class SendcardPluginController extends AbstractPlugin
 				$content = $this->cardNotFound();
 				break;
 		}
-		
 		return $this->pi_wrapInBaseClass($content);
 	}
 
@@ -950,10 +936,10 @@ class SendcardPluginController extends AbstractPlugin
 			}
 			$markerArray['###TO_NAME###'] = $row['towho'];
 			$markerArray['###TO_EMAIL###'] = $row['to_email'];
-			$markerArray['###TO_EMAIL_URL###'] = $this->get_url('', $row['to_email']);
+			$markerArray['###TO_EMAIL_URL###'] = $this->get_url('', $row['to_email'], array());
 			$markerArray['###FROM_NAME###'] = $row['fromwho'];
 			$markerArray['###FROM_EMAIL###'] = $row['from_email'];
-			$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $row['from_email']);
+			$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $row['from_email'], array());
 			$markerArray['###BGCOLOR###'] = htmlspecialchars($row['bgcolor']);
 			$markerArray['###FONTCOLOR###'] = htmlspecialchars($row['fontcolor']);
 			$markerArray['###FONTFACE###'] = htmlspecialchars($row['fontface']);
@@ -1101,12 +1087,12 @@ class SendcardPluginController extends AbstractPlugin
 		$thum_vars = array();
 		$thum_vars['cmd'] = 'prompt';
 		$thum_unsetVars = array();
-		$thum_usePiVars = FALSE;
+		$thum_usePiVars = false;
 		
-		$selector .= '<div class="' . $this->pi_getClassName('image-selector') . '">' . chr(10);
+		$selector .= '<div class="' . $this->pi_getClassName('image-selector') . '">' . LF;
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 				
-				// Get the localization of the card
+			// Get the localization of the card
 			$row = $this->pidRecord->getRecordOverlay($this->card_tbl_name, $row, $this->pidRecord->sys_language_uid);
 			
 			if ($colCount++ >= $maxCol) {
@@ -1127,7 +1113,7 @@ class SendcardPluginController extends AbstractPlugin
 				$thum_unsetVars['link_pid'] = 'link_pid';
 			}
 
-				// Set main image
+			// Set main image
 			$thum_vars['card_image'] = $row['image'];
 			$thum_vars['card_image_path'] = $this->imgObj->tempPath;
 			$thum_vars['image_width'] = $row['img_width'];
@@ -1149,7 +1135,7 @@ class SendcardPluginController extends AbstractPlugin
 				$thum_vars['card_image'] = substr($mainImgInfo_scaled[3], strlen($this->imgObj->tempPath));
 			}
 			
-				// Set alternate image
+			// Set alternate image
 			$selectImgInfo = $this->imgObj->getImageDimensions($this->imgObj->tempPath . $row['selection_image']);
 			if ($selectImgInfo) {
 				$thum_vars['selection_image'] = $row['selection_image'];
@@ -1185,10 +1171,10 @@ class SendcardPluginController extends AbstractPlugin
 				$cardAltText = $thum_vars['selection_imagealtText'] ? $thum_vars['selection_imagealtText'] : $cardAltText;
 			}
 			
-				// Set video clip
+			// Set video clip
 			$fileInfo = pathinfo($this->imgObj->tempPath . $row['image']);
-			if (!(($fileInfo['extension'] == 'mov' || $fileInfo['extension'] == 'swf') && !($selectImgInfo)) ) {
-				if ($fileInfo['extension'] == 'mov') {
+			if (!(($fileInfo['extension'] === 'mov' || $fileInfo['extension'] === 'swf') && !($selectImgInfo)) ) {
+				if ($fileInfo['extension'] === 'mov') {
 					$thumbnail_image = $row['selection_image'];
 					$videoClip = '<br /><span' . $this-> pi_classParam('video-clip-highlight') . '>'.$this->pi_getLL('video_clip_highlight').'</span>';
 					if ($row['img_width'] == 0) {
@@ -1198,7 +1184,7 @@ class SendcardPluginController extends AbstractPlugin
 						$thum_vars['image_height'] = $this->conf['imageSmallHeight'];
 					}
 
-				} elseif ($fileInfo['extension'] == 'swf') {
+				} elseif ($fileInfo['extension'] === 'swf') {
 					$thumbnail_image = $row['selection_image'];
 					$videoClip = '<br /><span' . $this-> pi_classParam('flash-clip-highlight') . '>'.$this->pi_getLL('flash_clip_highlight').'</span>';
 					if ($row['img_width'] == 0) {
@@ -1219,17 +1205,15 @@ class SendcardPluginController extends AbstractPlugin
 				}  else {
 					$cardCaption = '<a href="' . htmlspecialchars($this->get_url('', $this->formPID.',' . $this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)) . '" title="' . htmlspecialchars($row['card']) . '">'. htmlspecialchars($row['card']) . $videoClip . '</a>';
 				}
-
-				$selectorRow .= '<dl class="' . $this->pi_getClassName('image-selector-column') . (($colCount == 1) ? ' ' . $this->pi_getClassName('first-column') : '') . '" style="width:'. ((96 / $maxCol)). '%;">' . chr(10);
-				$selectorRow .= '<dt style="height:###SELECTOR_ROW_HEIGHT###px;"><a href="'.htmlspecialchars($this->get_url('', $this->formPID.','.$this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)).' "title="' . htmlspecialchars($row['card']) . '"><img src="'.$imgInfo_scaled[3].'" style="width: ' . $imgInfo_scaled[0] . 'px; height: '.$imgInfo_scaled[1] . 'px;" alt="' . $cardAltText . '" /></a></dt>' . chr(10);
-				$selectorRow .=  '<dd>' . $cardCaption . '</dd></dl>' . chr(10);
+				$selectorRow .= '<dl class="' . $this->pi_getClassName('image-selector-column') . (($colCount == 1) ? ' ' . $this->pi_getClassName('first-column') : '') . '" style="width:'. ((96 / $maxCol)). '%;">' . LF;
+				$selectorRow .= '<dt style="height:###SELECTOR_ROW_HEIGHT###px;"><a href="' . htmlspecialchars($this->get_url('', $this->formPID . ',' . $this->formType, $thum_vars, array_values($thum_unsetVars), $thum_usePiVars)) . '" title="' . htmlspecialchars($row['card']) . '"><img src="' . $imgInfo_scaled[3] . '" style="width: ' . $imgInfo_scaled[0] . 'px; height: '.$imgInfo_scaled[1] . 'px;" alt="' . $cardAltText . '" /></a></dt>' . LF;
+				$selectorRow .=  '<dd>' . $cardCaption . '</dd></dl>' . LF;
 				$selectorRowHeight = max($selectorRowHeight, intval($imgInfo_scaled[1]));
 			}
 		}
-
 		$selectorRow = str_replace('###SELECTOR_ROW_HEIGHT###', $selectorRowHeight, $selectorRow);
 		$selector .= $selectorRow;
-		$selector .= chr(10) . '</div><div ' . $this-> pi_classParam('clear-float') . '></div>' . chr(10);
+		$selector .= LF . '</div><div ' . $this-> pi_classParam('clear-float') . '></div>' . LF;
 		return $selector;
 	}
 
@@ -1327,22 +1311,21 @@ class SendcardPluginController extends AbstractPlugin
 	 * @param boolean $usePiVars: if set, input vars and incoming piVars arrays are merge
 	 * @return string generated link or url
 	 */
-	protected function get_url($tag = '', $id, $vars = array(), $unsetVars = array(), $usePiVars = true)
+	protected function get_url($tag = '', $id, array $vars, $unsetVars = array(), $usePiVars = true)
 	{
-		
-		$vars = (array) $vars;
+		$vars = $vars;
 		$unsetVars = (array)$unsetVars;
-		
 		if ($usePiVars) {
-			$vars = array_merge($this->piVars, $vars);	//vars override pivars
+			//vars override pivars
+			$vars = array_merge($this->piVars, $vars);
 			foreach ($unsetVars as $key => $val) {
-				unset($vars[$key]);	// unsetvars override anything
+				// unsetvars override anything
+				unset($vars[$key]);
 			}
 		}
 		foreach ($vars as $key => $val) {
 			$piVars[$this->prefixId . '['. $key . ']'] = $val;
 		}
-		
 		if ($tag) {
 			return $this->cObj->getTypoLink($tag, $id, $piVars);
 		} else {
@@ -1462,8 +1445,8 @@ class SendcardPluginController extends AbstractPlugin
 				}
 				$ifile = $this->imgObj->tempPath . $imageFile;
 				$ofile = $this->extKey . '_' . GeneralUtility::shortMD5($this->extKey . $ifile . filemtime($ifile) . $logoResource . $geometry) . '.' . $extension;
-				if (!$this->imgObj->file_exists_typo3temp_file($this->imgObj->tempPath . $ofile, $ifile)) {
-					$this->imgObj->combineExec($ifile, $logoResource, '', $this->imgObj->tempPath . $ofile, FALSE, $geometry);
+				if (!is_file($this->imgObj->tempPath . $ofile)) {
+					$this->imgObj->combineExec($ifile, $logoResource, '', $this->imgObj->tempPath . $ofile, false, $geometry);
 				}
 				return $ofile;
 			} else {

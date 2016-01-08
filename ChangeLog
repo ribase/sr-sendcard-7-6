@@ -1,6 +1,7 @@
 2016-01-08  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Adjustments to the layout of the Statistics module
+	* Adapt frontend plugin to TYPO3 CMS 7
 
 2016-01-07  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
