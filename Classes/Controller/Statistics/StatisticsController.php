@@ -24,6 +24,7 @@ namespace SJBR\SrSendcard\Controller\Statistics;
 
 use TYPO3\CMS\Backend\Module\BaseScriptClass;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -32,18 +33,63 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 */
 class StatisticsController extends BaseScriptClass
 {
-	protected $pageinfo;
+
+    /**
+     * @var array
+     */
+    public $pageinfo;
+
+    /**
+     * Document Template Object
+     *
+     * @var \TYPO3\CMS\Backend\Template\DocumentTemplate
+     * @deprecated
+     */
+    public $doc;
+
+    /**
+     * @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
+     */
+    protected $backendUser;
+
+    /**
+     * @var \TYPO3\CMS\Lang\LanguageService
+     */
+    protected $languageService;
+
+    /**
+     * The name of the module
+     *
+     * @var string
+     */
+    protected $moduleName = 'web_txsrsendcardM1';
 
 	/**
-	 * Constructor
-	 *
-	 * @return void
+	 * @var string
 	 */
-	public function __construct()
-	{
-		$this->getLanguageService()->includeLLFile('EXT:sr_sendcard/Resources/Private/Language/locallang_mod.xlf');
-		$this->getBackendUser()->modAccess($GLOBALS['MCONF'], true);
-	}
+	protected $moduleTemplate = 'EXT:sr_sendcard/Resources/Private/Templates/Statistics.html';
+
+	/**
+	 * @var string
+	 */
+	protected $styleSheetFile2 = '';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->languageService = $GLOBALS['LANG'];
+        $this->languageService->includeLLFile('EXT:sr_sendcard/Resources/Private/Language/locallang_mod.xlf');
+
+        $this->backendUser = $GLOBALS['BE_USER'];
+        $this->getBackendUser()->modAccess($GLOBALS['MCONF'], true);
+
+        $this->MCONF = array(
+            'name' => $this->moduleName,
+        );
+        $this->styleSheetFile2 = ExtensionManagementUtility::extRelPath('sr_sendcard') . 'Resources/Public/StyleSheets/Statistics.css';
+    }
 
 	/**
 	 * Adds items to the->MOD_MENU array. Used for the function menu selector.
@@ -54,9 +100,9 @@ class StatisticsController extends BaseScriptClass
 	{
 		$this->MOD_MENU = array(
 			'function' => array(
-				'1' => $GLOBALS['LANG']->getLL('function1'),
-				'2' => $GLOBALS['LANG']->getLL('function2'),
-				'3' => $GLOBALS['LANG']->getLL('function3'),
+				'1' => $this->languageService->getLL('function1'),
+				'2' => $this->languageService->getLL('function2'),
+				'3' => $this->languageService->getLL('function3'),
 				)
 			);
 		parent::menuConfig();
@@ -76,55 +122,52 @@ class StatisticsController extends BaseScriptClass
 		$access = is_array($this->pageinfo) ? 1 : 0;
 
 		$this->doc = GeneralUtility::makeInstance('TYPO3\\CMS\\Backend\\Template\\DocumentTemplate');
-		$this->doc->backPath = $GLOBALS['BACK_PATH'];		
+		$this->doc->backPath = $GLOBALS['BACK_PATH'];
+		$this->doc->setModuleTemplate($this->moduleTemplate);
+		$this->doc->styleSheetFile2 = $this->styleSheetFile2;
 
 		if (($this->id && $access) || ($GLOBALS['BE_USER']->user['admin'] && !$this->id)) {
-			
 			// Draw the header.
-			$this->doc->form = '<form action="" method="POST">';
-			
+			$this->doc->form = $this->getFormTag();
 			// JavaScript
-			$this->doc->JScode = '
-				<script type="text/javascript">
-					/*<![CDATA[*/
-					<!--
-					script_ended = 0;
-					function jumpToUrl(URL) {
-					document.location = URL;
-					}
-					// -->
-					/*]]>*/
-					</script>
-				';
-			$this->doc->postCode = '
-				<script type="text/javascript">
-					/*<![CDATA[*/
-					<!--
-					script_ended = 1;
-					if (top.theMenu) top.theMenu.recentuid = ' . (int) $this->id . ';
-					// -->
-					/*]]>*/
-					</script>
-				';
-			
-			$headerSection = $this->doc->getHeader('pages', $this->pageinfo, $this->pageinfo['_thePath']).'<br>'.$GLOBALS['LANG']->php3Lang['labels']['path'] . ': ' . GeneralUtility::fixed_lgd_cs($this->pageinfo['_thePath'], -50);
-			$content .= $this->doc->header($GLOBALS['LANG']->getLL('title'));
-			$content .= $this->doc->spacer(5);
-			$content .= $this->doc->section('', $this->doc->funcMenu($headerSection, BackendUtility::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function'])));
-			$content .= $this->doc->divider(5);
-			// Render module content
-			$content .= $this->doc->section($GLOBALS['LANG']->getLL('title'), $this->moduleContent(), 0, 1);
+			$this->doc->postCode = $this->doc->wrapScriptTags('if (top.fsMod) top.fsMod.recentIds["web"] = ' . (int)$this->id . ';');
+			$this->doc->getContextMenuCode();
+			$this->extObjContent();
+			// Markers
+			$this->markers = array(
+				'FUNC_MENU' => BackendUtility::getFuncMenu(
+					$this->id,
+					'SET[function]',
+					$this->MOD_SETTINGS['function'],
+					$this->MOD_MENU['function']
+				),
+				'CONTENT' => $this->doc->section(
+					$this->languageService->getLL('title'),
+					$this->moduleContent(),
+					0,
+					1
+				),
+				'VIEW' => ''
+			);
 			// ShortCut
-			if ($GLOBALS['BE_USER']->mayMakeShortcut()) {
-				$content .= $this->doc->spacer(20).$this->doc->section('', $this->doc->makeShortcutIcon('id', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']));
+			if ($this->backendUser->mayMakeShortcut()) {
+				$this->markers['SHORTCUT'] = $this->doc->makeShortcutIcon('id', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']);
+			} else {
+				$this->markers['SHORTCUT'] = '';
 			}
-			$content .= $this->doc->spacer(10);
-			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
+			$docHeaderButtons = array(
+				'VIEW' => $this->markers['VIEW'],
+				'SHORTCUT' => $this->markers['SHORTCUT']
+			);
+
+			// Build the <body> for the module
+			$this->content = $this->doc->moduleBody($this->pageinfo, $docHeaderButtons, $this->markers);
 		} else {
 			// If no access or if ID == zero
-			$content = $this->doc->header($GLOBALS['LANG']->getLL('title'));
-			$this->content = $this->doc->render($GLOBALS['LANG']->getLL('title'), $content);
+			$this->content = $this->doc->header($this->languageService->getLL('title'));
 		}
+		// Renders the module page
+		$this->content = $this->doc->render($this->languageService->getLL('title'), $this->content);
 	}
 
 	/**
@@ -134,6 +177,7 @@ class StatisticsController extends BaseScriptClass
 	 */
 	public function printContent()
 	{
+		$this->content = $this->doc->insertStylesAndJS($this->content);
 		echo $this->content;
 	}
 	
@@ -179,7 +223,7 @@ class StatisticsController extends BaseScriptClass
 				/* Sorted in alphabetial order*/
 				/*Ouput */
 				$index = 0;
-				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="padding: 1px 3px; font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table class="statistics"><tr><th class="selected">' . $this->languageService->getLL('cardTitle') . '</th><th>' . $this->languageService->getLL('cardTimes') . '</th><th>' . $this->languageService->getLL('cardLastTime') . '</th></tr>';
 				break;
 				
 			case 2:
@@ -188,7 +232,7 @@ class StatisticsController extends BaseScriptClass
 				
 				/*Output */
 				$index = 0;
-				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="padding: 1px 3px; font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table class="statistics"><tr><th>' . $this->languageService->getLL('cardTitle') . '</th><th>' . $this->languageService->getLL('cardTimes') . '</th><th class="selected">' . $this->languageService->getLL('cardLastTime') . '</th></tr>';
 				break;
 				
 			case 3:
@@ -197,7 +241,7 @@ class StatisticsController extends BaseScriptClass
 				
 				/*Output */
 				$index = 0;
-				$content = '<table style="border-style: none; margin-left: 5px;"><tr><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardTitle') . '</td><td style="padding: 1px 3px; font-weight: bold; color: blue;">' . $GLOBALS['LANG']->getLL('cardTimes') . '</td><td style="padding: 1px 3px; font-weight: bold;">' . $GLOBALS['LANG']->getLL('cardLastTime') . '</td></tr>';
+				$content = '<table class="statistics"><tr><th>' . $this->languageService->getLL('cardTitle') . '</th><th class="selected">' . $this->languageService->getLL('cardTimes') . '</th><th>' . $this->languageService->getLL('cardLastTime') . '</th></tr>';
 				break;
 		}
 			 
@@ -205,10 +249,22 @@ class StatisticsController extends BaseScriptClass
 		while ($cardsCaption[$index]) {
 			$date = getdate($cardsDate[$index]);
 			$date_output = substr('0'.$date[mday], -2).'.'.substr('0'.$date[mon], -2).'.'.$date[year];
-			$content .= '<tr><td style="padding: 1px 3px;">'.$cardsCaption[$index].'</td><td style="padding: 1px 3px; text-align: right;">'.$cardsCount[$index].'</td><td style="padding: 1px 3px; text-align: right;">'.$date_output.'</td></tr>';
+			$content .= '<tr><td>'.$cardsCaption[$index].'</td><td>'.$cardsCount[$index].'</td><td>'.$date_output.'</td></tr>';
 			$index++;
 		}
 		$content .= '</table>';
 		return $content;
+	}
+
+	/**
+	 * Returns a form tag with the current configured params
+	 *
+	 * @param string $name Name of the form tag
+	 * @return string HTML form tag
+	 */
+	protected function getFormTag($name='editform')
+	{
+		$formAction = GeneralUtility::linkThisScript();
+		return '<form action="' . htmlspecialchars($formAction) . '" method="post" name="' . $name . '" id="' . $name . '" autocomplete="off" enctype="' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['form_enctype'] . '">';
 	}
 }

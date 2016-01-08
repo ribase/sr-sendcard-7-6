@@ -1,0 +1,17 @@
+table.statistics {
+	width: 100%;
+}
+table.statistics th {
+	padding-bottom: 5px;
+}
+table.statistics th.selected {
+	color: blue;
+}
+table tr th,
+table tr td {
+	text-align: center;
+}
+table tr th:first-child,
+table tr td:first-child {
+	text-align: left;
+}
