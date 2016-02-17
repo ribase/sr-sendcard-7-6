@@ -78,7 +78,7 @@ class DeferredSendcardController extends AbstractPlugin
 		parent::__construct();
 		$this->conf = $conf;
 		$this->pi_loadLL();
-		$tableName = 'tx_srsendcard_sendcard';
+		$tableName = 'tx_srsendcard_domain_model_sendcard';
 		// Disable caching
 		$this->pi_USER_INT_obj = false;
 		$GLOBALS['TSFE']->set_no_cache();

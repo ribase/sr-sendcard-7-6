@@ -192,7 +192,7 @@ class StatisticsController extends BaseScriptClass
 		// Get the sent cards
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'caption,time_created',
-			'tx_srsendcard_sendcard',
+			'tx_srsendcard_domain_model_sendcard',
 			'1=1',
 			'',
 			'caption'

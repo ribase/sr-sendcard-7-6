@@ -70,9 +70,9 @@ class SendcardPluginController extends AbstractPlugin
 	var $conf = array();
 	var $siteUrl;
 	// Card instances table
-	protected $tbl_name = 'tx_srsendcard_sendcard';
+	protected $tbl_name = 'tx_srsendcard_domain_model_sendcard';
 	// Card table
-	protected $card_tbl_name = 'tx_srsendcard_card';
+	protected $card_tbl_name = 'tx_srsendcard_domain_model_card';
 	// Mail object
 	protected $mail;
 

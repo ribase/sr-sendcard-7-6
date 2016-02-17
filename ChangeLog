@@ -1,6 +1,7 @@
 2016-02-17  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Cleanup in CardMailerTask.php
+	* [!!!] Rename tables
 
 2016-01-08  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 

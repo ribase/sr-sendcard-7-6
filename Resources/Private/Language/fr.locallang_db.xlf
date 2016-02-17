@@ -7,7 +7,7 @@
 				<source>Sent card</source>
 				<target>Carte envoyée</target>
 			</trans-unit>
-			<trans-unit id="tx_srsendcard_sentcard.fromwho" xml:space="preserve">
+			<trans-unit id="tx_srsendcard_sendcard.fromwho" xml:space="preserve">
 				<source>Name of card sender</source>
 				<target>Nom de l'expéditeur de la carte</target>
 			</trans-unit>

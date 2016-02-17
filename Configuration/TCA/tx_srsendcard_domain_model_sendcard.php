@@ -12,7 +12,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_sentcard.svg',
+		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_sendcard.svg',
 		'adminOnly' => 1,
 		'hideTable' => 1,
 		'readOnly' => 1
@@ -59,7 +59,7 @@ return array(
 		),
 		'fromWho' => array(		
 			'exclude' => 0,		
-			'label' => $extensionResourcesLanguagePath . 'tx_srsendcard_sentcard.fromwho',		
+			'label' => $extensionResourcesLanguagePath . 'tx_srsendcard_sendcard.fromwho',		
 			'config' => array(
 				'type' => 'input',	
 				'size' => '360',	
