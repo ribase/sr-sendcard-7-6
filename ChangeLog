@@ -1,3 +1,7 @@
+2016-02-17  Stanislas Rolland  <typo3(arobas)sjbr.ca>
+
+	* Cleanup in CardMailerTask.php
+
 2016-01-08  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Adjustments to the layout of the Statistics module

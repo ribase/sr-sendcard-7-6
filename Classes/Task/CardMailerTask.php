@@ -4,7 +4,7 @@ namespace SJBR\SrSendcard\Task;
 /*
  *  Copyright notice
  *
- *  (c) 2012-2015 Stanislas Rolland <typo3(arobas)sjbr.ca>
+ *  (c) 2012-2016 Stanislas Rolland <typo3(arobas)sjbr.ca>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -27,10 +27,9 @@ use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
 /**
  * This is the card mailer task of extension Send-A-Card (sr_sendcard) that sends the deferred cards
- *
  */
-class CardMailerTask extends AbstractTask {
-
+class CardMailerTask extends AbstractTask
+{
 	/**
 	 * Page id on which the card will be viewed
 	 *
@@ -42,13 +41,11 @@ class CardMailerTask extends AbstractTask {
 	 * Invokes the deferred card mailing class
 	 *
 	 */
-	public function execute() {
+	public function execute()
+	{
 		$success = false;
 		if (!empty($this->viewCardPid)) {
 			$GLOBALS['TT'] = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\TimeTracker\\TimeTracker');
-			// ***********************************
-			// Creating a fake $TSFE object
-			// ***********************************
 			$GLOBALS['TSFE'] = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Controller\\TypoScriptFrontendController', $GLOBALS['TYPO3_CONF_VARS'], $this->viewCardPid, '0', 1, '', '', '', '');
 			$GLOBALS['TSFE']->connectToDB();
 			$GLOBALS['TSFE']->initFEuser();
