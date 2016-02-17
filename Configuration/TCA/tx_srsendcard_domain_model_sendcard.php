@@ -12,7 +12,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_sendcard.svg',
+		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_domain_model_sendcard.svg',
 		'adminOnly' => 1,
 		'hideTable' => 1,
 		'readOnly' => 1

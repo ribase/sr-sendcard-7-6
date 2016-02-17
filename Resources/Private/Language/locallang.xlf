@@ -315,6 +315,12 @@
 			<trans-unit id="msg.tx_srsendcard_viewCardPid" xml:space="preserve">
 				<source>The page id must be an integer greater than 0.</source>
 			</trans-unit>
+			<trans-unit id="update.tableMigrated" xml:space="preserve">
+				<source>%1$d records from table %2$s were migrated.</source>
+			</trans-unit>
+			<trans-unit id="update.tableNotMigrated" xml:space="preserve">
+				<source>Table %1$s could not be migrated because table %2$s was not empty. Perhaps the table was already migrated.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

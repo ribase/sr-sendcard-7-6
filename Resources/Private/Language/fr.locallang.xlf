@@ -419,6 +419,14 @@
 				<source>The page id must be an integer greater than 0.</source>
 				<target>Le numéro de la page doit être un entier plus grand que 0.</target>
 			</trans-unit>
+			<trans-unit id="update.tableMigrated" xml:space="preserve">
+				<source>%1$d records from table %2$s were migrated.</source>
+				<target>%1$d enregistrements de la table %2$s ont été migrées.</target>
+			</trans-unit>
+			<trans-unit id="update.tableNotMigrated" xml:space="preserve">
+				<source>Table %1$s could not be migrated because table %2$s was not empty. Perhaps the table was already migrated.</source>
+				<target>La table %1$s n'a pas pu être migrée car la table %2$s n'était pas vide. La migration avait peut-être déjà été effectée.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

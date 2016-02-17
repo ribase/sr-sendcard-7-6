@@ -15,7 +15,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_card.svg',
+		'iconfile' => 'EXT:sr_sendcard/Resources/Public/Images/tx_srsendcard_domain_model_card.svg',
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'hidden,card,image,cardaltText,img_width,img_height,selection_image,selection_imagealtText,selection_image_width,selection_image_height,link_pid'
@@ -49,8 +49,8 @@ return array(
 				'items' => array(
 					Array('', 0),
 				),
-				'foreign_table' => 'tx_srsendcard_card',
-				'foreign_table_where' => 'AND tx_srsendcard_card.pid=###CURRENT_PID### AND tx_srsendcard_card.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_srsendcard_domain_model_card',
+				'foreign_table_where' => 'AND tx_srsendcard_domain_model_card.pid=###CURRENT_PID### AND tx_srsendcard_domain_model_card.sys_language_uid IN (-1,0)',
 			)
 		),
 		'l18n_diffsource' => array(

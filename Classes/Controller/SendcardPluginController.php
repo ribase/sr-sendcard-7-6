@@ -634,8 +634,8 @@ class SendcardPluginController extends AbstractPlugin
 				$cardData['emailsent'] = ($cardData['card_send_time'] > $cardData['time_created']) ? 0 :1;
 
 				// Generate card id and url
-				$cardData['uid'] = $this->make_cardid();
-				$vars[$this->prefixId . '[cardid]'] = $cardData['uid'];
+				$cardData['id'] = $this->make_cardid();
+				$vars[$this->prefixId . '[cardid]'] = $cardData['id'];
 				$vars[$this->prefixId . '[cmd]'] = 'view';
 				$cardData['card_url'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . $this->cObj->getTypoLink_URL($viewPID.','.$viewType, $vars);
 				$cardData['pid'] = $sentCardsFolderPID;
@@ -658,7 +658,7 @@ class SendcardPluginController extends AbstractPlugin
 				$cardData['send_time'] = $cardData['card_send_time'];
 
 				// Reconcile both ways...
-				$tableColumns = "uid, pid, image, card_image_path, selection_image, img_width, img_height, selection_image_width, selection_image_height, caption, cardaltText, selection_imagealtText, link_pid, towho, to_email, fromwho, from_email, bgcolor, fontcolor, fontface, fontfile, fontsize, message, card_title, card_signature, music, card_url, notify, emailsent, send_time, time_created, ip_address, language, charset";
+				$tableColumns = 'pid, id, image, card_image_path, selection_image, img_width, img_height, selection_image_width, selection_image_height, caption, cardaltText, selection_imagealtText, link_pid, towho, to_email, fromwho, from_email, bgcolor, fontcolor, fontface, fontfile, fontsize, message, card_title, card_signature, music, card_url, notify, emailsent, send_time, time_created, ip_address, language, charset';
 				$tableColumnsArr = GeneralUtility::trimExplode(',', $tableColumns, 1);
 				reset($cardData);
 				while (list($key, $value) = each($cardData)) {
@@ -689,7 +689,7 @@ class SendcardPluginController extends AbstractPlugin
 				if ($row ) {
 					// Display the card... if it is there!
 					$subpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_VIEW_CARD###');
-					$cardid = $row['uid'];
+					$cardid = $row['id'];
 					$print_vars['cardid'] = $cardid;
 					$print_vars['cmd'] = 'print';
 					$print_unsetVars = array();
@@ -839,13 +839,13 @@ class SendcardPluginController extends AbstractPlugin
 	/**
 	 * Display card.
 	 *
-	 * @param string uid of card instance
+	 * @param string id of card instance
 	 * @return string content to be displayed
 	 */
-	protected function viewCard($uid)
+	protected function viewCard($id)
 	{
 		// Get the card instance from the database
-		$row = $this->getCard($uid);
+		$row = $this->getCard($id);
 		// Display the card... if it is there!
 		if ($row) {
 			
@@ -874,13 +874,13 @@ class SendcardPluginController extends AbstractPlugin
 	/**
 	 * Display printer-friendly card.
 	 *
-	 * @param string uid of card instance
+	 * @param string id of card instance
 	 * @return string content to be displayed
 	 */
-	protected function printCard($uid)
+	protected function printCard($id)
 	{
 		// Get the card instance from the database
-		$row = $this->getCard($uid);
+		$row = $this->getCard($id);
 		// Display the card... if it is there!
 		if ($row ) {
 			$subpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_PRINT_CARD###');
@@ -973,15 +973,15 @@ class SendcardPluginController extends AbstractPlugin
 	/**
 	 * Get the card instance.
 	 *
-	 * @param string uid of card instance
+	 * @param string id of card instance
 	 * @return array table row of card instance
 	 */
-	protected function getCard($uid)
+	protected function getCard($id)
 	{
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',
 			$this->tbl_name,
-			'uid=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($uid, $this->tbl_name)
+			'id=' . $GLOBALS['TYPO3_DB']->fullQuoteStr($id, $this->tbl_name)
 			);
 		return $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 	}
@@ -1028,7 +1028,7 @@ class SendcardPluginController extends AbstractPlugin
 	 * @param string $emailTemplateKey: key to compose the HTML template name
 	 * @return void
 	 */
-	protected function notifySender($row,$emailTemplateKey)
+	protected function notifySender($row, $emailTemplateKey)
 	{
 		if ($row['notify'] == 1) {
 			$emailData = array();

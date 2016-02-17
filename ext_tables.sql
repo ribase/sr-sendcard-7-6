@@ -92,7 +92,7 @@ CREATE TABLE tx_srsendcard_card (
 	card tinytext NOT NULL,
 	image blob NOT NULL,
 	cardaltText tinytext NOT NULL,
-        selection_image blob NOT NULL,
+    selection_image blob NOT NULL,
 	selection_imagealtText tinytext NOT NULL,
  	img_width varchar(20) DEFAULT '' NOT NULL,
  	img_height varchar(20) DEFAULT '' NOT NULL,
