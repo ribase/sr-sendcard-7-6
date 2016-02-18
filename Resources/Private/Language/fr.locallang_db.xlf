@@ -11,6 +11,14 @@
 				<source>Name of card sender</source>
 				<target>Nom de l'expéditeur de la carte</target>
 			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.caption" xml:space="preserve">
+				<source>Card caption</source>
+				<target>Légende de la carte</target>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.timeCreated" xml:space="preserve">
+				<source>Date of card creation</source>
+				<target>Date de création de la carte</target>
+			</trans-unit>
 			<trans-unit id="tx_srsendcard_sendcard.uid" xml:space="preserve" approved="yes">
 				<source>Card Uid</source>
 				<target>Identifiant (Uid) de la carte</target>

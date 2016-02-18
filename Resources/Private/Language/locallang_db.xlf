@@ -9,6 +9,12 @@
 			<trans-unit id="tx_srsendcard_sendcard.fromwho" xml:space="preserve">
 				<source>Name of card sender</source>
 			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.caption" xml:space="preserve">
+				<source>Card caption</source>
+			</trans-unit>
+			<trans-unit id="tx_srsendcard_sendcard.timeCreated" xml:space="preserve">
+				<source>Date of card creation</source>
+			</trans-unit>
 			<trans-unit id="tx_srsendcard_sendcard.uid" xml:space="preserve">
 				<source>Card Uid</source>
 			</trans-unit>
