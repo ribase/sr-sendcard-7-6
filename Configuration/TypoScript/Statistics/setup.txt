@@ -1,0 +1,8 @@
+## Configuring the Statistics backend module
+module.tx_srsendcard {
+	view {
+		templateRootPaths.0 = EXT:sr_sendcard/Resources/Private/Templates/
+		partialRootPaths.0 = EXT:sr_sendcard/Resources/Private/Partials/
+		layoutRootPaths.0 = EXT:sr_sendcard/Resources/Private/Layouts/Statistics/
+	}
+}

@@ -16,7 +16,7 @@
 				<target>Tarjetas</target>
 			</trans-unit>
 			<trans-unit id="title" xml:space="preserve" approved="yes">
-				<source>Sent Cards</source>
+				<source>Sent Cards Statistics</source>
 				<target>Tarjetas enviadas</target>
 			</trans-unit>
 			<trans-unit id="function1" xml:space="preserve" approved="yes">

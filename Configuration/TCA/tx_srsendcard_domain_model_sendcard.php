@@ -57,15 +57,34 @@ return array(
 				)
 			)
 		),
-		'fromWho' => array(		
-			'exclude' => 0,		
-			'label' => $extensionResourcesLanguagePath . 'tx_srsendcard_sendcard.fromwho',		
+		'caption' => array(
+			'exclude' => 0,
+			'label' => $extensionResourcesLanguagePath . 'tx_srsendcard_sendcard.caption',
 			'config' => array(
-				'type' => 'input',	
-				'size' => '360',	
-				'eval' => 'trim',
+				'type' => 'input',
+				'size' => '60',
+				'eval' => 'trim'
 			)
 		),
+		'time_created' => array(
+			'exclude' => 0,
+			'label' => $extensionResourcesLanguagePath . 'tx_srsendcard_sendcard.timeCreated',
+			'config' => array(
+				'type' => 'input',
+				'size' => '8',
+				'max' => '20',
+				'eval' => 'date'
+			)
+		),
+		'fromWho' => array(
+			'exclude' => 0,
+			'label' => $extensionResourcesLanguagePath . 'tx_srsendcard_sendcard.fromwho',
+			'config' => array(
+				'type' => 'input',
+				'size' => '360',
+				'eval' => 'trim'
+			)
+		)
 	),
 	'types' => array(
 		'0' => Array( 'showitem' => 'hidden;;;;1-1-1, fromwho')

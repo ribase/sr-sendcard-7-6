@@ -13,10 +13,10 @@
 				<source>Cards</source>
 			</trans-unit>
 			<trans-unit id="title" xml:space="preserve">
-				<source>Sent Cards</source>
+				<source>Sent Cards Statistics</source>
 			</trans-unit>
 			<trans-unit id="function1" xml:space="preserve">
-				<source>Alphabetically</source>
+				<source>Sent cards</source>
 			</trans-unit>
 			<trans-unit id="function2" xml:space="preserve">
 				<source>Recently sent cards</source>

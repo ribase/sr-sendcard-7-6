@@ -16,12 +16,12 @@
 				<target>Cartes</target>
 			</trans-unit>
 			<trans-unit id="title" xml:space="preserve" approved="yes">
-				<source>Sent Cards</source>
-				<target>Cartes envoyées</target>
+				<source>Sent Cards Statistics</source>
+				<target>Statistiques des cartes envoyées</target>
 			</trans-unit>
 			<trans-unit id="function1" xml:space="preserve" approved="yes">
-				<source>Alphabetically</source>
-				<target>Par ordre alphabétique</target>
+				<source>Sent cards</source>
+				<target>Cartes envoyées</target>
 			</trans-unit>
 			<trans-unit id="function2" xml:space="preserve" approved="yes">
 				<source>Recently sent cards</source>

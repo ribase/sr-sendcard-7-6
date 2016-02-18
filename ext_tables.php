@@ -5,22 +5,25 @@ defined('TYPO3_MODE') or die();
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_srsendcard_domain_model_card');
 
 if (TYPO3_MODE === 'BE') {
-	// Backend module
-	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule(
+	// Backend statistics module
+	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+		'SJBR.' . $_EXTKEY,
+		// Make module a submodule of 'web'
 		'web',
-		'txsrsendcardM1',
+		// Submodule key
+		'Statistics',
+		// Position
 		'',
-		\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Modules/Statistics/',
+		// An array holding the controller-action combinations that are accessible
 		array(
-			'script' => '_DISPATCH',
-			'access' => 'group,user',
-			'name' => 'web_txsrsendcardM1',
-			'labels' => array(
-				'tabs_images' => array(
-					'tab' => 'EXT:' . $_EXTKEY .'/Resources/Public/Images/tx_srsendcard_domain_model_card.svg'
-				),
-				'll_ref' => 'LLL:EXT:' . $_EXTKEY .'/Resources/Private/Language/locallang_mod.xlf'
-			)
+			'Statistics' => 'index,recent,popular'
+		),
+		array(
+			'access' => 'user,group',
+			'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Images/tx_srsendcard_domain_model_card.svg',
+			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf'
 		)
 	);
+	// Add module configuration setup
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/TypoScript/Statistics/setup.txt">');
 }
