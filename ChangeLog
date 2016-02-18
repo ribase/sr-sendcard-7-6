@@ -5,6 +5,7 @@
 	* Add missing labels
 	* Update version to 4.0.0
 	* Resolves #66381: Wrong link generation in mails when config absRefPrefix = /
+	* Resolves #66381: Revert Wrong link generation in mails when config absRefPrefix = /
 
 2016-02-17  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 

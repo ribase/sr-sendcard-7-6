@@ -497,7 +497,7 @@ class SendcardPluginController extends AbstractPlugin
 				$card_message_present = $this->linksInText($cardData['card_message']);
 				// Prepare the card caption
 				if ($cardData['link_pid']) {
-					 $card_caption_present = '<a href="' . (($GLOBALS['TSFE']->config['config']['absRefPrefix'] && $GLOBALS['TSFE']->config['config']['absRefPrefix'] !== '/') ? '' : $site_url) . htmlspecialchars($this->get_url('', $cardData['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$cardData['card_caption'].'</a>' ;
+					 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $cardData['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$cardData['card_caption'].'</a>' ;
 				} else {
 					$card_caption_present = $cardData['card_caption'];
 				}
@@ -637,7 +637,7 @@ class SendcardPluginController extends AbstractPlugin
 				$cardData['id'] = $this->make_cardid();
 				$vars[$this->prefixId . '[cardid]'] = $cardData['id'];
 				$vars[$this->prefixId . '[cmd]'] = 'view';
-				$cardData['card_url'] = (($GLOBALS['TSFE']->config['config']['absRefPrefix'] && $GLOBALS['TSFE']->config['config']['absRefPrefix'] !== '/') ? '' : $site_url) . $this->cObj->getTypoLink_URL($viewPID.','.$viewType, $vars);
+				$cardData['card_url'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . $this->cObj->getTypoLink_URL($viewPID.','.$viewType, $vars);
 				$cardData['pid'] = $sentCardsFolderPID;
 				$cardData['language'] = $language;
 				$cardData['charset'] = $GLOBALS['TSFE']->renderCharset ? $GLOBALS['TSFE']->renderCharset : 'utf-8';
@@ -703,7 +703,7 @@ class SendcardPluginController extends AbstractPlugin
 						}
 					}
 					$GLOBALS['TSFE']->linkVars = implode('&', $linkVarsArr);
-					$printcard_url = (($GLOBALS['TSFE']->config['config']['absRefPrefix'] && $GLOBALS['TSFE']->config['config']['absRefPrefix'] !== '/') ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID . ',' . $printType, $print_vars, $print_unsetVars, $print_usePiVars));
+					$printcard_url = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $printPID . ',' . $printType, $print_vars, $print_unsetVars, $print_usePiVars));
 					$GLOBALS['TSFE']->linkVars = $savedLinkVars;
 					$card_message_present = $this->linksInText($row['message']);
 
@@ -749,7 +749,7 @@ class SendcardPluginController extends AbstractPlugin
 
 					// Prepare the card caption
 					if ($row['link_pid']) {
-						 $card_caption_present = '<a href="' . (($GLOBALS['TSFE']->config['config']['absRefPrefix'] && $GLOBALS['TSFE']->config['config']['absRefPrefix'] !== '/') ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$row['caption'].'</a>' ;
+						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$row['caption'].'</a>' ;
 					} else {
 						$card_caption_present = $row['caption'];
 					}
@@ -799,7 +799,7 @@ class SendcardPluginController extends AbstractPlugin
 					$markerArray['###PRINT_ICON###'] = $this->cObj->fileResource($this->conf['printIcon']);
 					$markerArray['###PRINT_WINDOW_PARAMS###'] = $this->conf['printWindowParams'];
 					$markerArray['###SENDCARD_PROMPT###'] = $this->pi_getLL('sendCard_prompt');
-					$markerArray['###FORM_URL###'] = (($GLOBALS['TSFE']->config['config']['absRefPrefix'] && $GLOBALS['TSFE']->config['config']['absRefPrefix'] !== '/') ? '' : $site_url) . htmlspecialchars($this->get_url('', $createPID . ',' . $createType, array('cmd' => '', 'cardid' => ''), array(), FALSE));
+					$markerArray['###FORM_URL###'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $createPID . ',' . $createType, array('cmd' => '', 'cardid' => ''), array(), FALSE));
 					if ($row['music'] == '' ) {
 						$subpartArray['###MUSIC_INSERT###'] = '';
 					} else {
