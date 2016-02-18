@@ -1,6 +1,7 @@
 2016-02-18  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Migrate backend module to Extbase/Fluid
+	* Add composer.json
 
 2016-02-17  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 

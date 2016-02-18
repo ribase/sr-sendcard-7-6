@@ -1,0 +1,30 @@
+{
+  "name": "sjbr/sr-sendcard",
+  "description": "Send-A-Card",
+  "version": "4.0.0",
+  "type": "typo3-cms-extension",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Stanislas Rolland",
+      "role": "Developer"
+    }
+  ],
+  "homepage": "https://forge.typo3.org/projects/extension-sr_sencard",
+  "support": {
+	"issues": "https://forge.typo3.org/projects/extension-sr_sencard/issues"
+  },
+  "replace": {
+    "sr_sendcard": "*",
+    "sjbr/sr_sendcard": "*",
+    "typo3-ter/sr-sendcard": "self.version"
+  },
+  "require": {
+  	  "typo3/cms-core": ">=6.2,<8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SJBR\\SrSendcard\\": "Classes/"
+    }
+  }
+}
