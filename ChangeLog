@@ -3,6 +3,7 @@
 	* Migrate backend module to Extbase/Fluid
 	* Add composer.json
 	* Add missing labels
+	* Update version to 4.0.0
 
 2016-02-17  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
