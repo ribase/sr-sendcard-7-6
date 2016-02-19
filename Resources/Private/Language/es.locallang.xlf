@@ -213,11 +213,11 @@
 			</trans-unit>
 			<trans-unit id="captcha_try_again" xml:space="preserve" approved="yes">
 				<source>The word you entered did not match the word on the image. Please try again!</source>
-				<target>La valor entrada no era correcta.</target>
+				<target>La palabra entrada no era correcta.</target>
 			</trans-unit>
 			<trans-unit id="captcha_try_again_informal" xml:space="preserve" approved="yes">
 				<source>The word you entered did not match the word on the image. Please try again!</source>
-				<target>La valor entrada no era correcta.</target>
+				<target>La palabra entrada no era correcta.</target>
 			</trans-unit>
 			<trans-unit id="modify_button_label" xml:space="preserve" approved="yes">
 				<source>Modify the card</source>

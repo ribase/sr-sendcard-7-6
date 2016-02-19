@@ -6,6 +6,7 @@
 	* Correction in SendcardPluginController
 	* Adjustments to plugin template and localization files
 	* Correction to SendcardRepository for TYPO3 CMS 6.2
+	* Correction to Spanish language file
 
 2016-02-18  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
