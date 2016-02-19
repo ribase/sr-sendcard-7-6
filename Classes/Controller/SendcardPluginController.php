@@ -119,7 +119,7 @@ class SendcardPluginController extends AbstractPlugin
 		// Sanitize incoming data
 		if (is_array($cardData)) {
 			foreach ($cardData as $name => $value) {
-				$cardData[$name] = htmlspecialchars(strip_tags($value));
+				$cardData[$name] = htmlspecialchars(strip_tags($value), ENT_COMPAT, 'UTF-8', false);
 			}
 			if (is_array(parse_url($cardData['card_image_path']))) {
 				$cardData['card_image_path'] = '';
@@ -131,7 +131,7 @@ class SendcardPluginController extends AbstractPlugin
 		$type = $GLOBALS['TSFE']->type;
 		$workingDir = $this->conf['dir'];
 		$music_path = $this->conf['musicDir'].'/';
-		if (substr($music_path,0,4) == 'EXT:')      {       // extension
+		if (substr($music_path,0,4) == 'EXT:') {
 			list($extKey,$local) = explode('/',substr($music_path,4),2);
 			if (strcmp($extKey,'') &&  ExtensionManagementUtility::isLoaded($extKey)) {
 				$music_path = ExtensionManagementUtility::siteRelPath($extKey) . $local;
@@ -344,7 +344,7 @@ class SendcardPluginController extends AbstractPlugin
 				$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($this->imgObj->tempPath);
 				$fileInfo = pathinfo($this->imgObj->tempPath . $cardData['card_image']);
 				if ($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg' || $fileInfo['extension'] == 'gif' || $fileInfo['extension'] == 'png') {
-					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($this->addLogo(GeneralUtility::deHSCentities($cardData['card_image']), $cardData['image_width'], $cardData['image_height'], $fileInfo['extension']));
+					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($this->addLogo($cardData['card_image']), $cardData['image_width'], $cardData['image_height'], $fileInfo['extension']);
 				} else {
 					$subpartArray['###IMG_INSERT###'] = '';
 				}
@@ -361,8 +361,8 @@ class SendcardPluginController extends AbstractPlugin
 					$markerArray['###LOADING_FLASH_ANIMATION###'] = $this->pi_getLL('loading_flash_animation');
 				}
 				if ($fileInfo['extension'] == 'mov' || $fileInfo['extension'] == 'swf' ) {
-					$selectionFileInfo = pathinfo($this->imgObj->tempPath . GeneralUtility::deHSCentities($cardData['selection_image']));
-					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($this->addLogo(GeneralUtility::deHSCentities($cardData['selection_image']), $cardData['selection_image_width'], $cardData['selection_image_height'], $selectionFileInfo['extension']));
+					$selectionFileInfo = pathinfo($this->imgObj->tempPath . $cardData['selection_image']);
+					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($this->addLogo(htmlspecialchars_decode($cardData['selection_image']), htmlspecialchars_decode($cardData['selection_image_width']), htmlspecialchars_decode($cardData['selection_image_height']), $selectionFileInfo['extension']));
 				}
 				
 				// Disable music, font faces, font colors, background colors if requested
@@ -406,7 +406,7 @@ class SendcardPluginController extends AbstractPlugin
 				if($this->conf['doNotShowCardCaptions'] && $this->conf['doNotShowCardCaptions'] != '0') {
 					$markerArray['###CARD_CAPTION_PRESENT###'] = '';
 				} else {
-					$markerArray['###CARD_CAPTION_PRESENT###'] = $cardData['card_caption'];
+					$markerArray['###CARD_CAPTION_PRESENT###'] = htmlspecialchars($cardData['card_caption'], ENT_COMPAT, 'UTF-8', false);
 				}
 				$markerArray['###LANGUAGE###'] = $isoLanguage ? $isoLanguage : $language;
 				$markerArray['###LINK_PID###'] = $cardData['link_pid'];
@@ -497,9 +497,9 @@ class SendcardPluginController extends AbstractPlugin
 				$card_message_present = $this->linksInText($cardData['card_message']);
 				// Prepare the card caption
 				if ($cardData['link_pid']) {
-					 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $cardData['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$cardData['card_caption'].'</a>' ;
+					 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $cardData['link_pid'], array('cmd' => '', 'cardid' => ''), array(), false)) . '">' . $cardData['card_caption'] . '</a>' ;
 				} else {
-					$card_caption_present = $cardData['card_caption'];
+					$card_caption_present = htmlspecialchars($cardData['card_caption'], ENT_COMPAT, 'UTF-8', false);
 				}
 				// Display preview
 				$subpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_PREVIEW_CARD###');
@@ -749,9 +749,9 @@ class SendcardPluginController extends AbstractPlugin
 
 					// Prepare the card caption
 					if ($row['link_pid']) {
-						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">'.$row['caption'].'</a>' ;
+						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">' . htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false) . '</a>' ;
 					} else {
-						$card_caption_present = $row['caption'];
+						$card_caption_present = htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false);
 					}
 
 					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($row['image']);
@@ -932,7 +932,7 @@ class SendcardPluginController extends AbstractPlugin
 			if($this->conf['doNotShowCardCaptions'] && $this->conf['doNotShowCardCaptions'] != '0') {
 				$markerArray['###CARD_CAPTION###'] = '';
 			} else {
-				$markerArray['###CARD_CAPTION###'] = $row['caption'];
+				$markerArray['###CARD_CAPTION###'] = htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false);
 			}
 			$markerArray['###TO_NAME###'] = $row['towho'];
 			$markerArray['###TO_EMAIL###'] = $row['to_email'];

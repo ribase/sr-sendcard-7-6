@@ -1,3 +1,7 @@
+2016-02-19  Stanislas Rolland  <typo3(arobas)sjbr.ca>
+
+	* Correction for double html characters encoding
+
 2016-02-18  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Migrate backend module to Extbase/Fluid
