@@ -4,7 +4,7 @@ namespace SJBR\SrSendcard\Mail;
 /*
  *  Copyright notice
  *
- *  (c) 2012-2015 Stanislas Rolland <typo3(arobas)sjbr.ca>
+ *  (c) 2012-2016 Stanislas Rolland <typo3(arobas)sjbr.ca>
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -94,7 +94,7 @@ class MailCard
 			$markerArray['###' . strtoupper($dataMarker) . '###'] = $emailData[$dataMarker];
 		}
 		$markerArray['###SITE_NAME###'] = $this->conf['siteName'];
-		$markerArray['###SITE_WWW###'] = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY');
+		$markerArray['###SITE_WWW###'] = GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY');
 		$markerArray['###SITE_URL###'] = $this->siteUrl;
 		$markerArray['###SITE_EMAIL###'] = $this->conf['siteEmail'];
 		$markerArray['###CHARSET###'] = $GLOBALS['TSFE']->renderCharset ?: 'utf-8';
@@ -104,7 +104,7 @@ class MailCard
 			$htmlContent = $this->cObj->substituteMarkerArrayCached($htmlSubpart, $markerArray, $subpartArray, $wrappedSubpartArray);
 		}
 		// Create mail
-		$mail = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+		$mail = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 		// Set subject
 		$defaultSubject = 'Send-A-Card message';
 		if ($htmlContent) {
@@ -172,7 +172,7 @@ class MailCard
 		foreach ($media as $key => $source) {
 			$substitutedHtmlContent = str_replace(
 				'"' . $source . '"',
-				'"' . $mail->embed(Swift_Image::fromPath($source)) . '"',
+				'"' . $mail->embed(\Swift_Image::fromPath($source)) . '"',
 				$substitutedHtmlContent);
 		}
 		return $substitutedHtmlContent;
