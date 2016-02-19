@@ -7,6 +7,7 @@
 	* Adjustments to plugin template and localization files
 	* Correction to SendcardRepository for TYPO3 CMS 6.2
 	* Correction to Spanish language file
+	* Fix excess html characters encoding
 
 2016-02-18  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 

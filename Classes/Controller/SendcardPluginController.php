@@ -571,7 +571,7 @@ class SendcardPluginController extends AbstractPlugin
 				$markerArray['###CARD_MESSAGE_PRESENT###'] = nl2br($card_message_present);
 				$markerArray['###CARD_SIGNATURE###'] = $cardData['card_signature'];
 				$markerArray['###CARD_SIGNATURE_PRESENT###'] = nl2br($cardData['card_signature']);
-				$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText')) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title')) . '"');
+				$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText'), ENT_COMPAT, 'UTF-8', false) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title'), ENT_COMPAT, 'UTF-8', false) . '"');
 				if ($this->conf['graphicMess'] ) {
 					$markerArray['###FONTFILE###'] = $cardData['fontfile'];
 					$fontfile_values = GeneralUtility::trimExplode(',' , $this->conf['graphicMessFontFiles']);
@@ -584,7 +584,7 @@ class SendcardPluginController extends AbstractPlugin
 					$cardMessageImage = $this->makeTextImage($cardData['card_message'], $cardData['fontsize'], $cardFontFile, $cardData['fontcolor'], $this->conf['graphicMessWidth'], $cardData['bgcolor']);
 					$markerArray['###CARD_MESSAGE_PRESENT###'] = '<img src="'.$cardMessageImage[3].'" style="width: ' . $cardMessageImage[0] . 'px; height: ' . $cardMessageImage[1] . 'px; border-style: none;" alt="' . $cardData['card_message'] . '" />';
 					$cardSignatureImage = $this->makeTextImage($cardData['card_signature'], $cardData['fontsize'], $cardFontFile, $cardData['fontcolor'], $this->conf['graphicMessWidth'], $cardData['bgcolor']);
-					$markerArray['###CARD_SIGNATURE_PRESENT###'] = '<img src="'.$cardSignatureImage[3].'" style="width: ' . $cardSignatureImage[0] . 'px; height: ' . $cardSignatureImage[1] . 'px; border-style: none;" alt="' . $cardData['card_signature'] . htmlspecialchars(chr(10).'<'.$cardData['from_email'].'>') . '" />';
+					$markerArray['###CARD_SIGNATURE_PRESENT###'] = '<img src="'.$cardSignatureImage[3].'" style="width: ' . $cardSignatureImage[0] . 'px; height: ' . $cardSignatureImage[1] . 'px; border-style: none;" alt="' . $cardData['card_signature'] . htmlspecialchars(chr(10) . '<' . $cardData['from_email'] . '>', ENT_COMPAT, 'UTF-8', false) . '" />';
 				} else {
 					$markerArray['###FONTFILE###'] = '';
 					$markerArray['###FONTSIZE###'] = '';
@@ -602,7 +602,7 @@ class SendcardPluginController extends AbstractPlugin
 					$markerArray['###LOADING_CARD_MUSIC###'] = $this->pi_getLL('loading_card_music');
 				}
 				
-				if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
+				if (ExtensionManagementUtility::isLoaded('sr_freecap') && $this->conf['useCAPTCHA']) {
 					if (!is_object($freeCap)) {
 						$freeCap = GeneralUtility::makeInstance('SJBR\\SrFreecap\\PiBaseApi');
 					}
@@ -749,21 +749,21 @@ class SendcardPluginController extends AbstractPlugin
 
 					// Prepare the card caption
 					if ($row['link_pid']) {
-						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), FALSE)) . '">' . htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false) . '</a>' ;
+						 $card_caption_present = '<a href="' . ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $row['link_pid'], array('cmd' => '', 'cardid' => ''), array(), false)) . '">' . htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false) . '</a>' ;
 					} else {
 						$card_caption_present = htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false);
 					}
 
-					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($row['image']);
-					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($row['selection_image']);
-					$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($img_path);
+					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($row['image'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###SELECTION_IMAGE###'] = htmlspecialchars($row['selection_image'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($img_path, ENT_COMPAT, 'UTF-8', false);
 					$markerArray['###IMAGE_WIDTH###'] = $row['img_width'];
 					$markerArray['###IMAGE_HEIGHT###'] = $row['img_height'];
 					$markerArray['###SELECTION_IMAGE_WIDTH###'] = $row['selection_image_width'];
 					$markerArray['###SELECTION_IMAGE_HEIGHT###'] = $row['selection_image_height'];
-					$markerArray['###CARD_CAPTION###'] = htmlspecialchars($row['caption']);
-					$markerArray['###IMAGEALTTEXT###'] = htmlspecialchars($row['cardaltText']);
-					$markerArray['###SELECTION_IMAGE_ALTTEXT###'] = $row['selection_imagealtText'] ? htmlspecialchars($row['selection_imagealtText']) : htmlspecialchars($row['cardaltText']);
+					$markerArray['###CARD_CAPTION###'] = htmlspecialchars($row['caption'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###IMAGEALTTEXT###'] = htmlspecialchars($row['cardaltText'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###SELECTION_IMAGE_ALTTEXT###'] = $row['selection_imagealtText'] ? htmlspecialchars($row['selection_imagealtText'], ENT_COMPAT, 'UTF-8', false) : htmlspecialchars($row['cardaltText'], ENT_COMPAT, 'UTF-8', false);
 					if($this->conf['doNotShowCardCaptions'] && $this->conf['doNotShowCardCaptions'] != '0') {
 						$markerArray['###CARD_CAPTION_PRESENT###'] = '';
 					} else {
@@ -776,10 +776,10 @@ class SendcardPluginController extends AbstractPlugin
 					$markerArray['###FROM_NAME###'] = $row['fromwho'];
 					$markerArray['###FROM_EMAIL###'] = $row['from_email'];
 					$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $row['from_email'], array());
-					$markerArray['###BGCOLOR###'] = htmlspecialchars($row['bgcolor']);
-					$markerArray['###FONTCOLOR###'] = htmlspecialchars($row['fontcolor']);
-					$markerArray['###FONTFACE###'] = htmlspecialchars($row['fontface']);
-					$markerArray['###CARD_MUSIC###'] = htmlspecialchars($row['music']);
+					$markerArray['###BGCOLOR###'] = htmlspecialchars($row['bgcolor'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###FONTCOLOR###'] = htmlspecialchars($row['fontcolor'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###FONTFACE###'] = htmlspecialchars($row['fontface'], ENT_COMPAT, 'UTF-8', false);
+					$markerArray['###CARD_MUSIC###'] = htmlspecialchars($row['music'], ENT_COMPAT, 'UTF-8', false);
 					$markerArray['###CARD_MUSIC_PATH###'] = $music_path;
 					$markerArray['###CARD_TITLE###'] = nl2br($row['card_title']);
 					$markerArray['###CARD_MESSAGE###'] = nl2br($card_message_present);
@@ -787,19 +787,19 @@ class SendcardPluginController extends AbstractPlugin
 					if ($row['fontfile'] ) {
 						$cardFontFile = substr(GeneralUtility::getFileAbsFileName($this->conf['fontDir'].'/'.$row['fontfile']), strlen(PATH_site));
 						$cardTitleImage = $this->makeTextImage($row['card_title'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth']-100, $row['bgcolor']);
-						$markerArray['###CARD_TITLE###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px;" alt="' . htmlspecialchars($row['card_title']) . '" />';
+						$markerArray['###CARD_TITLE###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px;" alt="' . htmlspecialchars($row['card_title'], ENT_COMPAT, 'UTF-8', false) . '" />';
 						$cardMessageImage = $this->makeTextImage($row['message'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth'], $row['bgcolor']);
-						$markerArray['###CARD_MESSAGE###'] = '<img src="'.$cardMessageImage[3].'" style="width: ' . $cardMessageImage[0] . 'px; height: ' . $cardMessageImage[1] . 'px;" alt="' . htmlspecialchars($card_message_present) . '" />';
+						$markerArray['###CARD_MESSAGE###'] = '<img src="'.$cardMessageImage[3].'" style="width: ' . $cardMessageImage[0] . 'px; height: ' . $cardMessageImage[1] . 'px;" alt="' . htmlspecialchars($card_message_present, ENT_COMPAT, 'UTF-8', false) . '" />';
 						$cardSignatureImage = $this->makeTextImage($row['card_signature'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth'], $row['bgcolor']);
-						$markerArray['###CARD_SIGNATURE###'] = '<img src="'.$cardSignatureImage[3].'" style="width: ' . $cardSignatureImage[0] . 'px; height: ' . $cardSignatureImage[1] . 'px;" alt="' . htmlspecialchars($row['card_signature']) . htmlspecialchars(chr(10).'<'.$row['from_email'].'>'). '" />';
+						$markerArray['###CARD_SIGNATURE###'] = '<img src="'.$cardSignatureImage[3].'" style="width: ' . $cardSignatureImage[0] . 'px; height: ' . $cardSignatureImage[1] . 'px;" alt="' . htmlspecialchars($row['card_signature'], ENT_COMPAT, 'UTF-8', false) . htmlspecialchars(chr(10) . '<' . $row['from_email'] . '>', ENT_COMPAT, 'UTF-8', false). '" />';
 					}
-					$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText')) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title')) . '"');
+					$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText'), ENT_COMPAT, 'UTF-8', false) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title'), ENT_COMPAT, 'UTF-8', false) . '"');
 					$markerArray['###PRINTCARD_PROMPT###'] = $this->pi_getLL('printCard_prompt');
 					$markerArray['###PRINT_CARD_URL###'] = htmlspecialchars($printcard_url);
 					$markerArray['###PRINT_ICON###'] = $this->cObj->fileResource($this->conf['printIcon']);
 					$markerArray['###PRINT_WINDOW_PARAMS###'] = $this->conf['printWindowParams'];
 					$markerArray['###SENDCARD_PROMPT###'] = $this->pi_getLL('sendCard_prompt');
-					$markerArray['###FORM_URL###'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $createPID . ',' . $createType, array('cmd' => '', 'cardid' => ''), array(), FALSE));
+					$markerArray['###FORM_URL###'] = ($GLOBALS['TSFE']->config['config']['absRefPrefix'] ? '' : $site_url) . htmlspecialchars($this->get_url('', $createPID . ',' . $createType, array('cmd' => '', 'cardid' => ''), array(), false));
 					if ($row['music'] == '' ) {
 						$subpartArray['###MUSIC_INSERT###'] = '';
 					} else {
@@ -902,7 +902,7 @@ class SendcardPluginController extends AbstractPlugin
 					}
 				}
 			}
-			$markerArray['###IMAGEALTTEXT###'] = htmlspecialchars($row['cardaltText']);
+			$markerArray['###IMAGEALTTEXT###'] = htmlspecialchars($row['cardaltText'], ENT_COMPAT, 'UTF-8', false);
 			$img_width = $row['img_width'];
 			$img_height = $row['img_height'];
 			$fileInfo = pathinfo($img_path.$row['image']);
@@ -919,13 +919,13 @@ class SendcardPluginController extends AbstractPlugin
 					}
 					$img_width = $row['selection_image_width'];
 					$img_height = $row['selection_image_height'];
-					$markerArray['###IMAGEALTTEXT###'] = $row['selection_imagealtText'] ? htmlspecialchars($row['selection_imagealtText']) : htmlspecialchars($row['cardaltText']);
+					$markerArray['###IMAGEALTTEXT###'] = $row['selection_imagealtText'] ? htmlspecialchars($row['selection_imagealtText'], ENT_COMPAT, 'UTF-8', false) : htmlspecialchars($row['cardaltText'], ENT_COMPAT, 'UTF-8', false);
 				} elseif ( !($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg' || $fileInfo['extension'] == 'gif' || $fileInfo['extension'] == 'png' ) ) {
 					$subpartArray['###IMG_INSERT###'] = '';
 				}
 			}
 
-			$markerArray['###CARD_IMAGE###'] = htmlspecialchars($card_image_present);
+			$markerArray['###CARD_IMAGE###'] = htmlspecialchars($card_image_present, ENT_COMPAT, 'UTF-8', false);
 			$markerArray['###CARD_IMAGE_PATH###'] = $img_path;
 			$markerArray['###IMAGE_WIDTH###'] = $img_width;
 			$markerArray['###IMAGE_HEIGHT###'] = $img_height;
@@ -940,9 +940,9 @@ class SendcardPluginController extends AbstractPlugin
 			$markerArray['###FROM_NAME###'] = $row['fromwho'];
 			$markerArray['###FROM_EMAIL###'] = $row['from_email'];
 			$markerArray['###FROM_EMAIL_URL###'] = $this->get_url('', $row['from_email'], array());
-			$markerArray['###BGCOLOR###'] = htmlspecialchars($row['bgcolor']);
-			$markerArray['###FONTCOLOR###'] = htmlspecialchars($row['fontcolor']);
-			$markerArray['###FONTFACE###'] = htmlspecialchars($row['fontface']);
+			$markerArray['###BGCOLOR###'] = htmlspecialchars($row['bgcolor'], ENT_COMPAT, 'UTF-8', false);
+			$markerArray['###FONTCOLOR###'] = htmlspecialchars($row['fontcolor'], ENT_COMPAT, 'UTF-8', false);
+			$markerArray['###FONTFACE###'] = htmlspecialchars($row['fontface'], ENT_COMPAT, 'UTF-8', false);
 			$markerArray['###CARD_TITLE###'] = nl2br($row['card_title']);
 			$markerArray['###CARD_MESSAGE###'] = nl2br($card_message_present);
 			$markerArray['###CARD_SIGNATURE###'] = nl2br($row['card_signature']);
@@ -950,14 +950,14 @@ class SendcardPluginController extends AbstractPlugin
 			if ($row['fontfile'] && $this->conf['useGraphicalMessageEvenOnCardPrint']) {
 				$cardFontFile = substr(GeneralUtility::getFileAbsFileName($this->conf['fontDir'].'/'.$row['fontfile']), strlen(PATH_site));
 				$cardTitleImage = $this->makeTextImage($row['card_title'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth']-100, $row['bgcolor']);
-				$markerArray['###CARD_TITLE###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px;" alt="' . htmlspecialchars($row['card_title']) . '" />';
+				$markerArray['###CARD_TITLE###'] = '<img src="'.$cardTitleImage[3].'" style="width: ' . $cardTitleImage[0] . 'px; height: ' . $cardTitleImage[1] . 'px;" alt="' . htmlspecialchars($row['card_title'], ENT_COMPAT, 'UTF-8', false) . '" />';
 				$cardMessageImage = $this->makeTextImage($row['message'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth'], $row['bgcolor']);
-				$markerArray['###CARD_MESSAGE###'] = '<img src="'.$cardMessageImage[3].'" style="width: ' . $cardMessageImage[0] . 'px; height: ' . $cardMessageImage[1] . 'px;" alt="' . htmlspecialchars($card_message_present) . '" />';
+				$markerArray['###CARD_MESSAGE###'] = '<img src="'.$cardMessageImage[3].'" style="width: ' . $cardMessageImage[0] . 'px; height: ' . $cardMessageImage[1] . 'px;" alt="' . htmlspecialchars($card_message_present, ENT_COMPAT, 'UTF-8', false) . '" />';
 				$cardSignatureImage = $this->makeTextImage($row['card_signature'], $row['fontsize'], $cardFontFile, $row['fontcolor'], $this->conf['graphicMessWidth'], $row['bgcolor']);
-				$markerArray['###CARD_SIGNATURE###'] = '<img src="'.$cardSignatureImage[3].'" style="width: ' . $cardSignatureImage[0] . 'px; height: ' . $cardSignatureImage[1] . 'px;" alt="' . htmlspecialchars($row['card_signature']) . '" />';
+				$markerArray['###CARD_SIGNATURE###'] = '<img src="'.$cardSignatureImage[3].'" style="width: ' . $cardSignatureImage[0] . 'px; height: ' . $cardSignatureImage[1] . 'px;" alt="' . htmlspecialchars($row['card_signature'], ENT_COMPAT, 'UTF-8', false) . '" />';
 			}
 
-			$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText')) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title')) . '"');
+			$markerArray['###CARD_STAMP###'] = $this->cObj->fileResource($this->conf['cardStamp'], 'alt="' . htmlspecialchars($this->pi_getLL('stamp_altText'), ENT_COMPAT, 'UTF-8', false) . '" title="' . htmlspecialchars($this->pi_getLL('stamp_title'), ENT_COMPAT, 'UTF-8', false) . '"');
 			
 				// Dynamically generate some CSS selectors
 			$CSSSubpart = $this->markerBasedTemplateService->getSubpart($this->templateCode, '###TEMPLATE_PRINT_CARD_CSS###');

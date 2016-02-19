@@ -121,7 +121,7 @@ class StatisticsController extends ActionController
 		$index = 0;
 		while ($cardsCaption[$index]) {
 			$entries[] = array(
-				'cardTitle' => $cardsCaption[$index],
+				'cardTitle' => htmlspecialchars_decode($cardsCaption[$index]),
 				'cardTimes' => $cardsCount[$index],
 				'cardLastTime' => $cardsDate[$index]
 			);
