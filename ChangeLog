@@ -4,6 +4,7 @@
 	* Correction to MailCard.php
 	* Correction to Spanish language file
 	* Correction in SendcardPluginController
+	* Adjustments to plugin template and localization files
 
 2016-02-18  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 

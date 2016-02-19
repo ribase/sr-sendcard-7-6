@@ -213,11 +213,11 @@
 			</trans-unit>
 			<trans-unit id="captcha_try_again" xml:space="preserve" approved="yes">
 				<source>The word you entered did not match the word on the image. Please try again!</source>
-				<target></target>
+				<target>La valor entrada no era correcta.</target>
 			</trans-unit>
 			<trans-unit id="captcha_try_again_informal" xml:space="preserve" approved="yes">
 				<source>The word you entered did not match the word on the image. Please try again!</source>
-				<target></target>
+				<target>La valor entrada no era correcta.</target>
 			</trans-unit>
 			<trans-unit id="modify_button_label" xml:space="preserve" approved="yes">
 				<source>Modify the card</source>
@@ -293,19 +293,19 @@
 			</trans-unit>
 			<trans-unit id="email_cardSent_subject2" xml:space="preserve" approved="yes">
 				<source> sent you a postcard</source>
-				<target> le envió una tarjeta postal de La Matatena, A.C.</target>
+				<target> le envió una tarjeta postal.</target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_subject2_informal" xml:space="preserve" approved="yes">
 				<source> sent you a postcard</source>
-				<target> te envió una tarjeta postal de La Matatena, A.C.</target>
+				<target> te envió una tarjeta postal.</target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_title1" xml:space="preserve" approved="yes">
 				<source>Dear </source>
-				<target>Hola </target>
+				<target>Estimado(a) </target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_title1_informal" xml:space="preserve" approved="yes">
 				<source>Dear </source>
-				<target></target>
+				<target>Hola </target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_title2" xml:space="preserve" approved="yes">
 				<source>,</source>
@@ -313,7 +313,7 @@
 			</trans-unit>
 			<trans-unit id="email_cardSent_title2_informal" xml:space="preserve" approved="yes">
 				<source>,</source>
-				<target></target>
+				<target>:</target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_text2" xml:space="preserve" approved="yes">
 				<source> sent you a postcard.</source>
@@ -332,12 +332,12 @@
 				<target>Puedes verla aquí: </target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_text4" xml:space="preserve" approved="yes">
-				<source> .</source>
-				<target> .</target>
+				<source>.</source>
+				<target>.</target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_text4_informal" xml:space="preserve" approved="yes">
-				<source> .</source>
-				<target></target>
+				<source>.</source>
+				<target>.</target>
 			</trans-unit>
 			<trans-unit id="email_signature" xml:space="preserve" approved="yes">
 				<source>Kind regards,</source>
@@ -345,23 +345,23 @@
 			</trans-unit>
 			<trans-unit id="email_signature_informal" xml:space="preserve" approved="yes">
 				<source>Kind regards,</source>
-				<target></target>
+				<target>Saludos,</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_subject1" xml:space="preserve" approved="yes">
 				<source>Thank you for sending an electronic card!</source>
-				<target>¡Gracias por enviar una tarjeta de La Matatena, A.C.!</target>
+				<target>¡Gracias por enviar una tarjeta electrónica!</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_subject1_informal" xml:space="preserve" approved="yes">
 				<source>Thank you for sending an electronic card!</source>
-				<target></target>
+				<target>¡Gracias por enviar una tarjeta electrónica!</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_title1" xml:space="preserve" approved="yes">
-				<source>Dear </source>
-				<target>Hola </target>
+				<source>Dear</source>
+				<target>Hola</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_title1_informal" xml:space="preserve" approved="yes">
-				<source>Dear </source>
-				<target></target>
+				<source>Dear</source>
+				<target>Hola</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_title2" xml:space="preserve" approved="yes">
 				<source>,</source>
@@ -369,31 +369,31 @@
 			</trans-unit>
 			<trans-unit id="email_cardViewed_title2_informal" xml:space="preserve" approved="yes">
 				<source>,</source>
-				<target></target>
+				<target>:</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text1" xml:space="preserve" approved="yes">
-				<source>Thank you for sending one of our electronic postcards. </source>
-				<target>Gracias por haber enviado una tarjeta electrónica de La Matatena, A.C. </target>
+				<source>Thank you for sending one of our electronic postcards.</source>
+				<target>Gracias por haber enviado una tarjeta electrónica.</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text1_informal" xml:space="preserve" approved="yes">
-				<source>Thank you for sending one of our electronic postcards. </source>
-				<target></target>
+				<source>Thank you for sending one of our electronic postcards.</source>
+				<target>Gracias por haber enviado una tarjeta electrónica.</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text2" xml:space="preserve" approved="yes">
 				<source> saw your card </source>
-				<target> ha visto su tarjeta el </target>
+				<target> ha visto su tarjeta </target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text2_informal" xml:space="preserve" approved="yes">
 				<source> saw your card </source>
-				<target> ha visto tu tarjeta el </target>
+				<target> ha visto tu tarjeta </target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text3" xml:space="preserve" approved="yes">
-				<source> .</source>
+				<source>.</source>
 				<target>.</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text3_informal" xml:space="preserve" approved="yes">
-				<source> .</source>
-				<target></target>
+				<source>.</source>
+				<target>.</target>
 			</trans-unit>
 			<trans-unit id="pi1_title" xml:space="preserve" approved="yes">
 				<source>Postcards</source>
@@ -405,7 +405,7 @@
 			</trans-unit>
 			<trans-unit id="cardMailer.name" xml:space="preserve" approved="yes">
 				<source>Send-A-Card: Send deferred cards</source>
-				<target></target>
+				<target>Send-A-Card: Enviar tarjetas diferidas</target>
 			</trans-unit>
 			<trans-unit id="cardMailer.description" xml:space="preserve" approved="yes">
 				<source>Sends cards that where scheduled to be sent on a specific date by the sender.</source>

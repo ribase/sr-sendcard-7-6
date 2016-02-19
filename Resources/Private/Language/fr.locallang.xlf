@@ -336,8 +336,8 @@
 				<target> </target>
 			</trans-unit>
 			<trans-unit id="email_cardSent_text4_informal" xml:space="preserve" approved="yes">
-				<source> .</source>
-				<target> </target>
+				<source>.</source>
+				<target>.</target>
 			</trans-unit>
 			<trans-unit id="email_signature" xml:space="preserve" approved="yes">
 				<source>Kind regards,</source>
@@ -388,11 +388,11 @@
 				<target> a vu ta carte </target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text3" xml:space="preserve" approved="yes">
-				<source> .</source>
+				<source>.</source>
 				<target>.</target>
 			</trans-unit>
 			<trans-unit id="email_cardViewed_text3_informal" xml:space="preserve" approved="yes">
-				<source> .</source>
+				<source>.</source>
 				<target>.</target>
 			</trans-unit>
 			<trans-unit id="pi1_title" xml:space="preserve" approved="yes">
