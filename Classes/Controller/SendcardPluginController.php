@@ -344,7 +344,7 @@ class SendcardPluginController extends AbstractPlugin
 				$markerArray['###CARD_IMAGE_PATH###'] = htmlspecialchars($this->imgObj->tempPath);
 				$fileInfo = pathinfo($this->imgObj->tempPath . $cardData['card_image']);
 				if ($fileInfo['extension'] == 'jpg' || $fileInfo['extension'] == 'jpeg' || $fileInfo['extension'] == 'gif' || $fileInfo['extension'] == 'png') {
-					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($this->addLogo($cardData['card_image']), $cardData['image_width'], $cardData['image_height'], $fileInfo['extension']);
+					$markerArray['###CARD_IMAGE###'] = htmlspecialchars($this->addLogo(htmlspecialchars_decode($cardData['card_image']), htmlspecialchars_decode($cardData['image_width']), htmlspecialchars_decode($cardData['image_height']), $fileInfo['extension']));
 				} else {
 					$subpartArray['###IMG_INSERT###'] = '';
 				}
