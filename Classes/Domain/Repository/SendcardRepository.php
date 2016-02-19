@@ -27,6 +27,7 @@ namespace SJBR\SrSendcard\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  */
 
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
@@ -38,4 +39,12 @@ class SendcardRepository extends Repository
 	protected $defaultOrderings = array(
 		'caption' => QueryInterface::ORDER_ASCENDING
 	);
+
+	public function initializeObject()
+	{
+		/** @var $querySettings Typo3QuerySettings */
+        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings->setRespectStoragePage(false);
+        $this->setDefaultQuerySettings($querySettings);
+	}
 }
