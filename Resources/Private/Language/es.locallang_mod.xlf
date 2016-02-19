@@ -21,7 +21,7 @@
 			</trans-unit>
 			<trans-unit id="function1" xml:space="preserve" approved="yes">
 				<source>Alphabetically</source>
-				<target>En orden alfabético</target>
+				<target>Tarjetas enviadas en orden alfabético</target>
 			</trans-unit>
 			<trans-unit id="function2" xml:space="preserve" approved="yes">
 				<source>Recently sent cards</source>
