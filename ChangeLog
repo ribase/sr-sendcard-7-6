@@ -1,3 +1,7 @@
+2016-03-09  Stanislas Rolland  <typo3(arobas)sjbr.ca>
+
+	* Correction to deprecated syntax in TCA
+
 2016-02-19  Stanislas Rolland  <typo3(arobas)sjbr.ca>
 
 	* Correction for double html characters encoding

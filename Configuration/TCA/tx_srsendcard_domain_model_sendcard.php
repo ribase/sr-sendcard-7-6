@@ -87,7 +87,7 @@ return array(
 		)
 	),
 	'types' => array(
-		'0' => Array( 'showitem' => 'hidden;;;;1-1-1, fromwho')
+		'0' => Array( 'showitem' => 'hidden,--palette--;;1,fromwho')
 	),
 	'palettes' => array(
 		'1' => Array('showitem' => 'starttime, endtime')

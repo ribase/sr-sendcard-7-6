@@ -33,6 +33,7 @@ return array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => Array(
@@ -46,6 +47,7 @@ return array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					Array('', 0),
 				),
@@ -214,7 +216,7 @@ return array(
 		)
 	),
 	'types' => array(
-		'0' => Array( 'showitem' => 'sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource,hidden;;1;;2-2-2, card, image, cardaltText, img_width, img_height, selection_image, selection_imagealtText, selection_image_width, selection_image_height, link_pid')
+		'0' => Array( 'showitem' => 'sys_language_uid,l18n_parent,l18n_diffsource,hidden,--palette--;;1,card, image, cardaltText, img_width, img_height, selection_image, selection_imagealtText, selection_image_width, selection_image_height, link_pid')
 	),
 	'palettes' => array(
 		'1' => Array('showitem' => 'starttime, endtime')
