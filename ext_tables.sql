@@ -22,7 +22,7 @@ CREATE TABLE tx_srsendcard_domain_model_card (
  	selection_image_width varchar(20) DEFAULT '' NOT NULL,
  	selection_image_height varchar(20) DEFAULT '' NOT NULL,
 	link_pid int(11) unsigned DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -70,7 +70,7 @@ CREATE TABLE tx_srsendcard_domain_model_sendcard (
  	ip_address varchar(15) DEFAULT '',
  	language char(2) DEFAULT 'es',
  	charset varchar(30) DEFAULT 'iso-8859-1',
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -79,12 +79,12 @@ CREATE TABLE tx_srsendcard_domain_model_sendcard (
 # Table structure for table 'tx_srsendcard_card'
 #
 CREATE TABLE tx_srsendcard_card (
-	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
-	pid int(11) unsigned DEFAULT '0' NOT NULL,
+  uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	starttime int(11) unsigned DEFAULT '0' NOT NULL,
-	endtime int(11) unsigned DEFAULT '0' NOT NULL
+	endtime int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(10) unsigned DEFAULT '0' NOT NULL,
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE tx_srsendcard_card (
  	selection_image_width varchar(20) DEFAULT '' NOT NULL,
  	selection_image_height varchar(20) DEFAULT '' NOT NULL,
 	link_pid int(11) unsigned DEFAULT '0' NOT NULL,
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
@@ -146,7 +146,7 @@ CREATE TABLE tx_srsendcard_sendcard (
  	ip_address varchar(15) DEFAULT '',
  	language char(2) DEFAULT 'es',
  	charset varchar(30) DEFAULT 'iso-8859-1',
-	
+
 	PRIMARY KEY (uid),
 	KEY parent (pid)
 );
